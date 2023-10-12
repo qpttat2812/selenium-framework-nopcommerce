@@ -18,13 +18,13 @@ public class RegisterPageObject extends BasePages{
 	}
 	
 	public void inputToTextboxAtRegisterPage(String inputText, String... fieldName) {
-		waitForElementVisibility(driver, RegisterPageUI.DYNAMIC_XPATH_TEXTBOX_AT_REGISTER_PAGE, fieldName);
-		sendkeyToElement(driver, RegisterPageUI.DYNAMIC_XPATH_TEXTBOX_AT_REGISTER_PAGE, inputText, fieldName);
+		waitForElementVisibility(driver, RegisterPageUI.DYNAMIC_TEXTBOX_AT_REGISTER_PAGE_XPATH, fieldName);
+		sendkeyToElement(driver, RegisterPageUI.DYNAMIC_TEXTBOX_AT_REGISTER_PAGE_XPATH, inputText, fieldName);
 	}
 	
 	public boolean isRequiredErrorMessageDisplayedAtTextbox(String... fieldName) {
-		waitForElementVisibility(driver, RegisterPageUI.DYNAMIC_XPATH_REQUIRED_ERROR_MESSAGE, fieldName);
-		return isElementDisplayed(driver, RegisterPageUI.DYNAMIC_XPATH_REQUIRED_ERROR_MESSAGE, fieldName); 
+		waitForElementVisibility(driver, RegisterPageUI.DYNAMIC_REQUIRED_ERROR_MESSAGE_XPATH, fieldName);
+		return isElementDisplayed(driver, RegisterPageUI.DYNAMIC_REQUIRED_ERROR_MESSAGE_XPATH, fieldName); 
 	}
 	
 	public String getErrorMessageTextAtHeader() {

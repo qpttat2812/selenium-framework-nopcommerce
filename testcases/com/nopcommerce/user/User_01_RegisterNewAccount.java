@@ -78,7 +78,7 @@ public class User_01_RegisterNewAccount extends BaseTest {
 	
 	@Test
 	public void Register_04_InputExistedEmail() {
-		registerPage.clickOnRegisterLink();
+		registerPage.clickTextLinkAtHeaderOfPages(driver, "Register");
 		
 		registerPage.inputToTextboxAtRegisterPage(firstName, "FirstName");
 		registerPage.inputToTextboxAtRegisterPage(lastName, "LastName");
@@ -87,9 +87,10 @@ public class User_01_RegisterNewAccount extends BaseTest {
 		registerPage.inputToTextboxAtRegisterPage(password, "ConfirmPassword");
 		registerPage.clickOnRegisterButton();
 		
-		Assert.assertEquals(registerPage.getRegisterSuccessfullyText(), "Your registration completed");
+		Assert.assertEquals(registerPage.getErrorMessageTextAtHeader(), "The specified email already exists");
 	}
 
+	
 	public int randomNumber() {
 		Random rnd = new Random();
 		return rnd.nextInt(999);

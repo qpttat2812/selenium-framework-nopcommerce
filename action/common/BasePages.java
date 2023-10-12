@@ -18,6 +18,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import pagesUI.user.BasePageUI;
 import pagesUI.user.RegisterPageUI;
 
 
@@ -514,4 +515,11 @@ public class BasePages {
 		by = By.xpath(String.format(xpathLocator, (Object[])values));
 		return by;
 	}
+	
+	//common function for Register, Login...
+	public void clickTextLinkAtHeaderOfPages(WebDriver driver, String... valuesOfXpathLocator) {
+		waitForElementClickable(driver, BasePageUI.DYNAMIC_TEXTLINK_AT_HEADER_OF_PAGES, valuesOfXpathLocator);
+		clickOnElement(driver, BasePageUI.DYNAMIC_TEXTLINK_AT_HEADER_OF_PAGES, valuesOfXpathLocator);
+	}
+	
 }
