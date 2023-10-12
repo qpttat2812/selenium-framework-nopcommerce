@@ -18,6 +18,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import pagesUI.user.RegisterPageUI;
+
 
 public class BasePages {
 	private static final long SECOND = GlobalConstants.LONG_TIMEOUT;
@@ -308,15 +310,27 @@ public class BasePages {
 	public boolean isElementDisplayed(WebDriver driver, String xpathLocator) {
 		return getElement(driver, xpathLocator).isDisplayed();
 	}
+	
+	public boolean isElementDisplayed(WebDriver driver, String xpathLocator, String... valuesForXpathLocator) {
+		return getElement(driver, xpathLocator, valuesForXpathLocator).isDisplayed();
+	}
 
 	public boolean isElementEnabled(WebDriver driver, String xpathLocator) {
 		return getElement(driver, xpathLocator).isEnabled();
+	}
+	
+	public boolean isElementEnabled(WebDriver driver, String xpathLocator, String... valuesForXpathLocator) {
+		return getElement(driver, xpathLocator, valuesForXpathLocator).isEnabled();
 	}
 
 	public boolean isElementSelected(WebDriver driver, String xpathLocator) {
 		return getElement(driver, xpathLocator).isSelected();
 	}
-
+	
+	public boolean isElementSelected(WebDriver driver, String xpathLocator, String... valuesForXpathLocator) {
+		return getElement(driver, xpathLocator, valuesForXpathLocator).isSelected();
+	}
+	
 	public void switchToFrameOrIframe(WebDriver driver, String xpathLocator) {
 		driver.switchTo().frame(getElement(driver, xpathLocator));
 	}
@@ -497,7 +511,7 @@ public class BasePages {
 
 	private By getByDynamicXpath(String xpathLocator, String... values) {
 		By by = null;
-		by = By.xpath(String.format(xpathLocator, (Object)values));
+		by = By.xpath(String.format(xpathLocator, (Object[])values));
 		return by;
 	}
 }
