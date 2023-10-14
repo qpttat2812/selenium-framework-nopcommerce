@@ -3,7 +3,6 @@ package pagesObject;
 import org.openqa.selenium.WebDriver;
 
 import common.BasePages;
-import pagesUI.user.BasePageUI;
 import pagesUI.user.RegisterPageUI;
 
 public class RegisterPageObject extends BasePages{

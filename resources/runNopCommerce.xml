@@ -5,6 +5,7 @@
 		<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="com.nopcommerce.user.User_01_RegisterNewAccount" />
+			<class name="com.nopcommerce.user.User_02_LoginAccount" />
 		</classes>
 	</test>
 	

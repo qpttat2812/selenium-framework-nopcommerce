@@ -19,8 +19,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import pagesUI.user.BasePageUI;
-import pagesUI.user.RegisterPageUI;
-
 
 public class BasePages {
 	private static final long SECOND = GlobalConstants.LONG_TIMEOUT;
@@ -212,7 +210,7 @@ public class BasePages {
 		}
 	}
 
-	public void clickAndSelectItemCustomDropdownList(WebDriver driver, String baseDropdownListXpath, String itemsInDropdownListXpath, String expectedItem) {
+	public void selectItemCustomDropdownList(WebDriver driver, String baseDropdownListXpath, String itemsInDropdownListXpath, String expectedItem) {
 		getElement(driver, baseDropdownListXpath).click();
 
 		WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(SECOND));
@@ -229,11 +227,11 @@ public class BasePages {
 		}
 	}
 
-	public void clickAndSelectDefaultDropdownList(WebDriver driver, String baseDropdownListXpath, String expectedText) {
+	public void selectItemDefaultDropdownList(WebDriver driver, String baseDropdownListXpath, String expectedText) {
 		new Select(getElement(driver, baseDropdownListXpath)).selectByVisibleText(expectedText);
 	}
 	
-	public void clickAndSelectDefaultDropdownList(WebDriver driver, String baseDropdownListXpath, String expectedText, String... valuesForXpathLocator) {
+	public void selectDefaultItemInDropdownList(WebDriver driver, String baseDropdownListXpath, String expectedText, String... valuesForXpathLocator) {
 		new Select(getElement(driver, baseDropdownListXpath, valuesForXpathLocator)).selectByVisibleText(expectedText);
 	}
 
@@ -252,7 +250,7 @@ public class BasePages {
 		}
 	}
 
-	public String getOneSelectedItemInDropdown(WebDriver driver, String xpathLocator) {
+	public String getFirstSelectedItemInDropdown(WebDriver driver, String xpathLocator) {
 		return new Select(getElement(driver, xpathLocator)).getFirstSelectedOption().getText();
 	}
 
@@ -518,5 +516,11 @@ public class BasePages {
 		By by = null;
 		by = By.xpath(String.format(xpathLocator, (Object[])values));
 		return by;
+	}
+	
+	//common dynamic text in Xpath
+	public void clickOnSideBasePage(WebDriver driver, String... valuesForXpathLocator) {
+		waitForElementVisibility(driver, BasePageUI.DYNAMIC_SIDEBAR_MY_ACCOUNT_LINKS, valuesForXpathLocator);
+		clickOnElement(driver, BasePageUI.DYNAMIC_SIDEBAR_MY_ACCOUNT_LINKS, valuesForXpathLocator);
 	}
 }

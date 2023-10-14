@@ -24,4 +24,21 @@ public class HomePageObject extends BasePages{
 		clickOnElement(driver, HomePageUI.LOGIN_LINK);
 		return PageGeneratorManager.getLoginPageObject(driver);
 	}
+
+	public boolean isMyAccountDisplayed() {
+		waitForElementVisibility(driver, HomePageUI.MY_ACCOUNT_LINK);
+		return isElementDisplayed(driver, HomePageUI.MY_ACCOUNT_LINK);
+	}
+
+	public MyAccountPageObject clickOnMyAccountLink() {
+		waitForElementVisibility(driver, HomePageUI.MY_ACCOUNT_LINK);
+		clickOnElement(driver, HomePageUI.MY_ACCOUNT_LINK);
+		return PageGeneratorManager.getMyAccountPageObject(driver);
+	}
+
+	public HomePageObject clickOnLogoutLink() {
+		waitForElementVisibility(driver, HomePageUI.LOGOUT_LINK);
+		clickOnElement(driver, HomePageUI.LOGOUT_LINK);
+		return PageGeneratorManager.getHomePageObject(driver);
+	}
 }
