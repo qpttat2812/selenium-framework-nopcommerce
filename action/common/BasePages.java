@@ -270,6 +270,10 @@ public class BasePages {
 	public String getTextElement(WebDriver driver, String xpathLocator) {
 		return getElement(driver, xpathLocator).getText();
 	}
+	
+	public String getTextElement(WebDriver driver, String xpathLocator, String... valuesForXpathLocator) {
+		return getElement(driver, xpathLocator, valuesForXpathLocator).getText();
+	}
 
 	public boolean isDropdownMultiple(WebDriver driver, String xpathLocator) {
 		return new Select(getElement(driver, xpathLocator)).isMultiple();
@@ -515,11 +519,4 @@ public class BasePages {
 		by = By.xpath(String.format(xpathLocator, (Object[])values));
 		return by;
 	}
-	
-	//common function for Register, Login...
-	public void clickTextLinkAtHeaderOfPages(WebDriver driver, String... valuesOfXpathLocator) {
-		waitForElementClickable(driver, BasePageUI.DYNAMIC_TEXTLINK_AT_HEADER_OF_PAGES, valuesOfXpathLocator);
-		clickOnElement(driver, BasePageUI.DYNAMIC_TEXTLINK_AT_HEADER_OF_PAGES, valuesOfXpathLocator);
-	}
-	
 }

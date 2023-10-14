@@ -4,7 +4,6 @@ import java.io.File;
 
 public class GlobalConstants {
 	public static final String USER_URL = "https://demo.nopcommerce.com/";
-	public static final String REGISTER_URL = "https://demo.nopcommerce.com/register";
 	public static final String ADMIN_URL = "https://admin-demo.nopcommerce.com/";
 	
 	public static final String PROJECT_PATH = System.getProperty("user.dir");
