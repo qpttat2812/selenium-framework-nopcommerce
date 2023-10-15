@@ -31,7 +31,7 @@ public class User_03_MyAccountInfo extends BaseTest{
 	private BookProductPageObject bookProductPage;
 	private MyProductReviewPageObject myProductReviewPage;
 	
-	private String firstName, lastName, email, companyName;
+	private String firstName, lastName, newEmail, companyName;
 	private String dayOfBirth, monthOfBirth, yearOfBirth, gender;
 	private String country, state, city, phoneNumber, faxNumber, address_1, address_2, zipCode;
 	private String addressPageName;
@@ -48,25 +48,25 @@ public class User_03_MyAccountInfo extends BaseTest{
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		
-		firstName = "Automation";
+		firstName = "Auto";
 		lastName = "Test";
-		email = "automationfc" + randomNumber() + "@yopmail.com";
+		newEmail = "automate" + randomNumber() + "@yopmail.com";
 		companyName = "Amazon";
 		dayOfBirth = "25";
 		monthOfBirth = "September";
 		yearOfBirth = "2001";
 		gender = "F";
-		country = "Finland";
-		state = "Other";
+		country = "United States";
+		state = "Alaska";
 		city = "Helsinki";
-		address_1 = "Vuolteenkatu 1, 33100 Tampere";
-		address_2 = "Yliopistonkatu 20, 20100 Turku";
+		address_1 = "Tampere";
+		address_2 = "Turku";
 		zipCode = "222333";
-		phoneNumber = "9999333666";
-		faxNumber = "9999333667";
+		phoneNumber = "99333666";
+		faxNumber = "99333667";
 		oldPassword = User_01_RegisterNewAccount.password;
 		loginEmail = User_01_RegisterNewAccount.emailAddress;
-		newPassword = "222222";
+		newPassword = "22222223";
 		addressPageName = "Addresses";
 		changePasswordPageName = "Change password";
 		bookTitle = "Fahrenheit 451 by Ray Bradbury";
@@ -84,7 +84,7 @@ public class User_03_MyAccountInfo extends BaseTest{
 		
 	}
 	
-	@Test
+	 @Test 
 	public void MyAccount_01_UpdateCustomerInfo() {
 		myAccountPage.selectGenderRadioButton();
 		myAccountPage.updateFirstNameTextbox(firstName);
@@ -92,7 +92,7 @@ public class User_03_MyAccountInfo extends BaseTest{
 		myAccountPage.updateDayOfBirthDropdownList(dayOfBirth);
 		myAccountPage.updateMonthOfBirthDropdownList(monthOfBirth);
 		myAccountPage.updateYearOfBirthDropdownList(yearOfBirth);
-		myAccountPage.updateEmailTextbox(email);
+		myAccountPage.updateEmailTextbox(newEmail);
 		myAccountPage.updateCompanyNameTextbox(companyName);
 		myAccountPage.clickOnSaveButton();
 		
@@ -105,11 +105,11 @@ public class User_03_MyAccountInfo extends BaseTest{
 		Assert.assertEquals(myAccountPage.getDayOfBirthValue(), dayOfBirth);
 		Assert.assertEquals(myAccountPage.getMonthOfBirthValue(), monthOfBirth);
 		Assert.assertEquals(myAccountPage.getYearOfBirthValue(), yearOfBirth);
-		Assert.assertEquals(myAccountPage.getEmailValue("value"), email);
+		Assert.assertEquals(myAccountPage.getEmailValue("value"), newEmail);
 		Assert.assertEquals(myAccountPage.getCompanyNameValue("value"), companyName);
 	}
 	
-	@Test
+	 @Test 
 	public void MyAccount_02_AddAddressInfo() {
 		myAccountPage.clickOnSideBarPage(driver, addressPageName);
 		addressPage = PageGeneratorManager.getAddressPageObject(driver);
@@ -117,7 +117,7 @@ public class User_03_MyAccountInfo extends BaseTest{
 		addressPage.clickOnAddNewAddressButton();
 		addressPage.inputToFirstNameTextbox(firstName);
 		addressPage.inputToLastNameTextbox(lastName);
-		addressPage.inputToEmailTextbox(email);
+		addressPage.inputToEmailTextbox(newEmail);
 		addressPage.inputToCompanyTextbox(companyName);
 		addressPage.selectCountryDropdownList(country);
 		addressPage.selectStateDropdownList(state);
@@ -133,7 +133,7 @@ public class User_03_MyAccountInfo extends BaseTest{
 		addressPage.clickOnCloseButton();
 		Assert.assertEquals(addressPage.getNameTitle(), firstName + " " + lastName);
 		Assert.assertEquals(addressPage.getNameText(), firstName + " " + lastName);
-		Assert.assertTrue(addressPage.getEmailText().contains(email));
+		Assert.assertTrue(addressPage.getEmailText().contains(newEmail));
 		Assert.assertTrue(addressPage.getPhoneNumberText().contains(phoneNumber));
 		Assert.assertTrue(addressPage.getFaxNumberText().contains(faxNumber));
 		Assert.assertTrue(addressPage.getCompanyText().contains(companyName));
@@ -141,7 +141,7 @@ public class User_03_MyAccountInfo extends BaseTest{
 		Assert.assertTrue(addressPage.getAddressIIText().contains(address_2));
 		Assert.assertTrue(addressPage.getCityText().contains(city));
 		Assert.assertTrue(addressPage.getZipCodeText().contains(zipCode));
-		Assert.assertFalse(addressPage.getStateText(state));
+		Assert.assertTrue(addressPage.getStateText(state));
 		Assert.assertEquals(addressPage.getcountryText(), country);
 	}
 	
@@ -161,14 +161,14 @@ public class User_03_MyAccountInfo extends BaseTest{
 		homePage.clickOnLogoutLink();
 		
 		loginPage = homePage.clickOnLoginLink();
-		loginPage.inputToEmailTextbox(loginEmail);
+		loginPage.inputToEmailTextbox(newEmail);
 		loginPage.inputToPasswordTextbox(oldPassword);
 		loginPage.clickOnLoginButton();
 		
 		Assert.assertTrue(loginPage.getInvalidErrorMessageText().contains("Login was unsuccessful"));
 		
 		loginPage = homePage.clickOnLoginLink();
-		loginPage.inputToEmailTextbox(loginEmail);
+		loginPage.inputToEmailTextbox(newEmail);
 		loginPage.inputToPasswordTextbox(newPassword);
 		homePage = loginPage.clickOnLoginButton();
 		
