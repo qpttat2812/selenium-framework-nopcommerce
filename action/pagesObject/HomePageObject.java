@@ -41,4 +41,10 @@ public class HomePageObject extends BasePages{
 		clickOnElement(driver, HomePageUI.LOGOUT_LINK);
 		return PageGeneratorManager.getHomePageObject(driver);
 	}
+
+	public void clickOnProductTab(String... items) {
+		waitForElementVisibility(driver, HomePageUI.PRODUCT_TAB, items);
+		clickOnElement(driver, HomePageUI.PRODUCT_TAB, items);
+	}
+
 }

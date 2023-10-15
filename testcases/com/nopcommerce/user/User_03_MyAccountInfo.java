@@ -11,12 +11,15 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import common.BaseTest;
+import common.GlobalConstants;
 import common.PageGeneratorManager;
 import pagesObject.AddressPageObject;
+import pagesObject.BookProductPageObject;
 import pagesObject.ChangePasswordPageObject;
 import pagesObject.HomePageObject;
 import pagesObject.LoginPageObject;
 import pagesObject.MyAccountPageObject;
+import pagesObject.MyProductReviewPageObject;
 
 public class User_03_MyAccountInfo extends BaseTest{
 	private WebDriver driver;
@@ -25,13 +28,18 @@ public class User_03_MyAccountInfo extends BaseTest{
 	private AddressPageObject addressPage;
 	private LoginPageObject loginPage;
 	private ChangePasswordPageObject changePasswordPage;
+	private BookProductPageObject bookProductPage;
+	private MyProductReviewPageObject myProductReviewPage;
 	
 	private String firstName, lastName, email, companyName;
 	private String dayOfBirth, monthOfBirth, yearOfBirth, gender;
 	private String country, state, city, phoneNumber, faxNumber, address_1, address_2, zipCode;
-	private String addressPageName = "Addresses";
-	private String changePasswordPageName = "Change password";
+	private String addressPageName;
+	private String changePasswordPageName;
 	private String oldPassword, newPassword, loginEmail;
+	private String bookTitle;
+	private String reviewTitle;
+	private String reviewContent;
 	
 	@Parameters("browser")
 	@BeforeClass
@@ -48,7 +56,7 @@ public class User_03_MyAccountInfo extends BaseTest{
 		monthOfBirth = "September";
 		yearOfBirth = "2001";
 		gender = "F";
-		country = "Helsinki";
+		country = "Finland";
 		state = "Other";
 		city = "Helsinki";
 		address_1 = "Vuolteenkatu 1, 33100 Tampere";
@@ -57,10 +65,21 @@ public class User_03_MyAccountInfo extends BaseTest{
 		phoneNumber = "9999333666";
 		faxNumber = "9999333667";
 		oldPassword = User_01_RegisterNewAccount.password;
-		newPassword = "222000";
 		loginEmail = User_01_RegisterNewAccount.emailAddress;
+		newPassword = "222222";
+		addressPageName = "Addresses";
+		changePasswordPageName = "Change password";
+		bookTitle = "Fahrenheit 451 by Ray Bradbury";
+		reviewTitle = "recommended";
+		reviewContent = "it's worth to buy.\nAll books of this author are good.";
 		
+		driver.get(GlobalConstants.USER_URL);
 		homePage = PageGeneratorManager.getHomePageObject(driver);
+		//login account
+		loginPage = homePage.clickOnLoginLink();
+		loginPage.inputToEmailTextbox(loginEmail);
+		loginPage.inputToPasswordTextbox(oldPassword);
+		homePage = loginPage.clickOnLoginButton();
 		myAccountPage = homePage.clickOnMyAccountLink();
 		
 	}
@@ -92,7 +111,7 @@ public class User_03_MyAccountInfo extends BaseTest{
 	
 	@Test
 	public void MyAccount_02_AddAddressInfo() {
-		myAccountPage.clickOnSideBasePage(driver, addressPageName);
+		myAccountPage.clickOnSideBarPage(driver, addressPageName);
 		addressPage = PageGeneratorManager.getAddressPageObject(driver);
 		
 		addressPage.clickOnAddNewAddressButton();
@@ -128,7 +147,7 @@ public class User_03_MyAccountInfo extends BaseTest{
 	
 	@Test
 	public void MyAccount_03_ChangePassword() {
-		myAccountPage.clickOnSideBasePage(driver, changePasswordPageName);
+		myAccountPage.clickOnSideBarPage(driver, changePasswordPageName);
 		changePasswordPage = PageGeneratorManager.getChangePasswordPageObject(driver);
 		
 		changePasswordPage.inputToOldPasswordTextbox(oldPassword);
@@ -137,16 +156,19 @@ public class User_03_MyAccountInfo extends BaseTest{
 		changePasswordPage.clickOnChangePasswordButton();
 		
 		Assert.assertTrue(changePasswordPage.isNotificationSuccessDisplayed());
+		changePasswordPage.clickOnCloseButton();
 		
 		homePage.clickOnLogoutLink();
-		loginPage = homePage.clickOnLoginLink();
 		
+		loginPage = homePage.clickOnLoginLink();
 		loginPage.inputToEmailTextbox(loginEmail);
 		loginPage.inputToPasswordTextbox(oldPassword);
 		loginPage.clickOnLoginButton();
 		
-		Assert.assertEquals(loginPage.getInvalidErrorMessageText(), "");
+		Assert.assertTrue(loginPage.getInvalidErrorMessageText().contains("Login was unsuccessful"));
 		
+		loginPage = homePage.clickOnLoginLink();
+		loginPage.inputToEmailTextbox(loginEmail);
 		loginPage.inputToPasswordTextbox(newPassword);
 		homePage = loginPage.clickOnLoginButton();
 		
@@ -155,28 +177,29 @@ public class User_03_MyAccountInfo extends BaseTest{
 	
 	@Test
 	public void MyAccount_04_MyProductReview() {
-		bookProductPage = homePage.clickOnBookProduct();
+		homePage.clickOnProductTab("Books");
+		bookProductPage = PageGeneratorManager.getBookProductPageObject(driver);
 		
-		bookProductPage.clickOnBookTitle();
+		bookProductPage.clickOnBookTitle(bookTitle);
 		bookProductPage.clickOnAddReviewLink();
 		
-		bookProductPage.inputToReviewTitle();
-		bookProductPage.inputToReviewText();
-		bookProductPage.selectRatingLevelRadioButton();
+		bookProductPage.inputToReviewTitle(reviewTitle);
+		bookProductPage.inputToReviewContent(reviewContent);
+		bookProductPage.selectRatingLevelRadioButton("Good");
 		bookProductPage.clickOnSubmitReviewButton();
 		
 		myAccountPage = homePage.clickOnMyAccountLink();
-		myAccountPage.clickOnSideBasePage();
-		myProductReviewPage = PageGeneratorManager.getMyProductReviewPageObject();
+		myAccountPage.clickOnSideBarPage(driver, "My product reviews");
+		myProductReviewPage = PageGeneratorManager.getMyProductReviewPageObject(driver);
 		
 		Assert.assertEquals(myProductReviewPage.getReviewTitleText(), reviewTitle);
-		Assert.assertEquals(myProductReviewPage.getReviewText(), reviewText);
-		Assert.assertEquals(myProductReviewPage.getBookReviewText(), bookTitle);
+		Assert.assertEquals(myProductReviewPage.getReviewText(), reviewContent);
+		Assert.assertEquals(myProductReviewPage.getBookReviewText(bookTitle), bookTitle);
 	}
 	
 	public int randomNumber() {
 		Random rnd = new Random();
-		return rnd.nextInt();
+		return rnd.nextInt(9999);
 	}
 	
 	@AfterClass

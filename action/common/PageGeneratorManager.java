@@ -3,10 +3,12 @@ package common;
 import org.openqa.selenium.WebDriver;
 
 import pagesObject.AddressPageObject;
+import pagesObject.BookProductPageObject;
 import pagesObject.ChangePasswordPageObject;
 import pagesObject.HomePageObject;
 import pagesObject.LoginPageObject;
 import pagesObject.MyAccountPageObject;
+import pagesObject.MyProductReviewPageObject;
 import pagesObject.RegisterPageObject;
 
 public class PageGeneratorManager {
@@ -32,5 +34,13 @@ public class PageGeneratorManager {
 	
 	public static ChangePasswordPageObject getChangePasswordPageObject(WebDriver driver) {
 		return new ChangePasswordPageObject(driver);
+	}
+
+	public static BookProductPageObject getBookProductPageObject(WebDriver driver) {
+		return new BookProductPageObject(driver);
+	}
+
+	public static MyProductReviewPageObject getMyProductReviewPageObject(WebDriver driver) {
+		return new MyProductReviewPageObject(driver);
 	}
 }

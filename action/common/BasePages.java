@@ -182,6 +182,12 @@ public class BasePages {
 			getElement(driver, xpathLocator).click();
 		}
 	}
+	
+	public void clickOnRadioButton(WebDriver driver, String xpathLocator, String... valuesForXpath) {
+		if (!getElement(driver, xpathLocator, valuesForXpath).isSelected()) {
+			getElement(driver, xpathLocator, valuesForXpath).click();
+		}
+	}
 
 	public void sendkeyToElement(WebDriver driver, String xpathLocator, String sendkeyText) {
 		getElement(driver, xpathLocator).clear();
@@ -519,7 +525,7 @@ public class BasePages {
 	}
 	
 	//common dynamic text in Xpath
-	public void clickOnSideBasePage(WebDriver driver, String... valuesForXpathLocator) {
+	public void clickOnSideBarPage(WebDriver driver, String... valuesForXpathLocator) {
 		waitForElementVisibility(driver, BasePageUI.DYNAMIC_SIDEBAR_MY_ACCOUNT_LINKS, valuesForXpathLocator);
 		clickOnElement(driver, BasePageUI.DYNAMIC_SIDEBAR_MY_ACCOUNT_LINKS, valuesForXpathLocator);
 	}

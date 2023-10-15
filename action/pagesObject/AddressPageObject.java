@@ -48,8 +48,8 @@ public class AddressPageObject extends BasePages {
 	}
 
 	public void inputToCityTextbox(String city) {
-		waitForElementVisibility(driver, AddressPageUI.FIRST_NAME_TEXTBOX);
-		sendkeyToElement(driver, AddressPageUI.FIRST_NAME_TEXTBOX, city);
+		waitForElementVisibility(driver, AddressPageUI.CITY_TEXTBOX);
+		sendkeyToElement(driver, AddressPageUI.CITY_TEXTBOX, city);
 	}
 
 	public void inputToAddreessITextbox(String address1) {
@@ -90,6 +90,7 @@ public class AddressPageObject extends BasePages {
 	public void clickOnCloseButton() {
 		waitForElementVisibility(driver, AddressPageUI.CLOSE_BUTTON);
 		clickOnElement(driver, AddressPageUI.CLOSE_BUTTON);
+		waitForElementInvisibility(driver, AddressPageUI.CLOSE_BUTTON);
 	}
 
 	public String getNameText() {
