@@ -31,12 +31,13 @@ public class User_03_MyAccountInfo extends BaseTest{
 	private BookProductPageObject bookProductPage;
 	private MyProductReviewPageObject myProductReviewPage;
 	
-	private String firstName, lastName, newEmail, companyName;
+	private String firstName, lastName, companyName;
 	private String dayOfBirth, monthOfBirth, yearOfBirth, gender;
 	private String country, state, city, phoneNumber, faxNumber, address_1, address_2, zipCode;
 	private String addressPageName;
 	private String changePasswordPageName;
-	private String oldPassword, newPassword, loginEmail;
+	private String oldPassword, loginEmail;
+	public static String newEmail, newPassword;
 	private String bookTitle;
 	private String reviewTitle;
 	private String reviewContent;

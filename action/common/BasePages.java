@@ -275,6 +275,16 @@ public class BasePages {
 		return getElement(driver, xpathLocator).getText();
 	}
 	
+	public List<String> getAllTextElements(WebDriver driver, String xpathLocator) {
+		List<WebElement> elements = getElements(driver, xpathLocator);
+		List<String> textResults = new ArrayList<>();
+		for(WebElement element : elements) {
+			textResults.add(element.getText());
+			System.out.println(element.getText());
+		}
+		return textResults;
+	}
+	
 	public String getTextElement(WebDriver driver, String xpathLocator, String... valuesForXpathLocator) {
 		return getElement(driver, xpathLocator, valuesForXpathLocator).getText();
 	}
@@ -309,6 +319,7 @@ public class BasePages {
 	}
 
 	public int getElementSize(WebDriver driver, String xpathLocator) {
+		System.out.println(getElements(driver, xpathLocator).size());
 		return getElements(driver, xpathLocator).size();
 	}
 	
@@ -498,6 +509,11 @@ public class BasePages {
 		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByDynamicXpath(xpathLocator, valuesForXpathLocator)));
 	}
 
+	public void waitForAllElementsVisibility(WebDriver driver, String xpathLocator) {
+		WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(SECOND));
+		explicitWait.until(ExpectedConditions.visibilityOfAllElements(getElements(driver, xpathLocator)));
+	}
+
 	public void waitForElementClickable(WebDriver driver, String xpathLocator) {
 		WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(SECOND));
 		explicitWait.until(ExpectedConditions.elementToBeClickable(getByXpathLocator(driver, xpathLocator)));
@@ -528,5 +544,11 @@ public class BasePages {
 	public void clickOnSideBarPage(WebDriver driver, String... valuesForXpathLocator) {
 		waitForElementVisibility(driver, BasePageUI.DYNAMIC_SIDEBAR_MY_ACCOUNT_LINKS, valuesForXpathLocator);
 		clickOnElement(driver, BasePageUI.DYNAMIC_SIDEBAR_MY_ACCOUNT_LINKS, valuesForXpathLocator);
+	}
+	
+
+	public void clickOnSearchLink(WebDriver driver, String... valuesForXpathLocator) {
+		waitForElementVisibility(driver, BasePageUI.DYNAMIC_FOOTER_LINKS, valuesForXpathLocator);
+		clickOnElement(driver, BasePageUI.DYNAMIC_FOOTER_LINKS, valuesForXpathLocator);
 	}
 }
