@@ -12,7 +12,7 @@ public class BookProductPageObject extends BasePages{
 		this.driver = driver;
 	}
 
-	public void clickOnBookTitle(String... title) {
+	public void clickOnBookTitle(String title) {
 		waitForElementVisibility(driver, BookProductPageUI.BOOK_TITLE, title);
 		clickOnElement(driver, BookProductPageUI.BOOK_TITLE, title);
 	}
@@ -32,7 +32,7 @@ public class BookProductPageObject extends BasePages{
 		sendkeyToElement(driver, BookProductPageUI.REIVEW_ITEM_CONTENT, reviewContent);
 	}
 
-	public void selectRatingLevelRadioButton(String... level) {
+	public void selectRatingLevelRadioButton(String level) {
 		waitForElementVisibility(driver, BookProductPageUI.RATING_LEVEL, level);
 		clickOnRadioButton(driver, BookProductPageUI.RATING_LEVEL, level);
 	}

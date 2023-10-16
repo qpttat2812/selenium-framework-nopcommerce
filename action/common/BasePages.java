@@ -280,7 +280,6 @@ public class BasePages {
 		List<String> textResults = new ArrayList<>();
 		for(WebElement element : elements) {
 			textResults.add(element.getText());
-			System.out.println(element.getText());
 		}
 		return textResults;
 	}
@@ -319,7 +318,6 @@ public class BasePages {
 	}
 
 	public int getElementSize(WebDriver driver, String xpathLocator) {
-		System.out.println(getElements(driver, xpathLocator).size());
 		return getElements(driver, xpathLocator).size();
 	}
 	

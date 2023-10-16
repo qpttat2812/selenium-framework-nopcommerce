@@ -42,7 +42,7 @@ public class HomePageObject extends BasePages{
 		return PageGeneratorManager.getHomePageObject(driver);
 	}
 
-	public void clickOnProductTab(String... items) {
+	public void clickOnProductTab(String items) {
 		waitForElementVisibility(driver, HomePageUI.PRODUCT_TAB, items);
 		clickOnElement(driver, HomePageUI.PRODUCT_TAB, items);
 	}
