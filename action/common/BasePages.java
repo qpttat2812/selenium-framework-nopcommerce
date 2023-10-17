@@ -437,12 +437,12 @@ public class BasePages {
 
 	public void removeAttributeElementByJS(WebDriver driver, String xpathLocator, String attribute) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].removeAttribute('" + attribute + "';", getElement(driver, xpathLocator));
+		js.executeScript("arguments[0].removeAttribute('" + attribute + "');", getElement(driver, xpathLocator));
 	}
 	
 	public void removeAttributeElementByJS(WebDriver driver, String xpathLocator, String attribute, String... valuesForXpathLocator) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].removeAttribute('" + attribute + "';", getElement(driver, xpathLocator, valuesForXpathLocator));
+		js.executeScript("arguments[0].removeAttribute('" + attribute + "');", getElement(driver, xpathLocator, valuesForXpathLocator));
 	}
 
 	public boolean checkImageLoaded(WebDriver driver, String xpathLocator) {
