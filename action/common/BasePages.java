@@ -233,7 +233,7 @@ public class BasePages {
 		}
 	}
 
-	public void selectItemDefaultDropdownList(WebDriver driver, String baseDropdownListXpath, String expectedText) {
+	public void selectDefaultItemDropdownList(WebDriver driver, String baseDropdownListXpath, String expectedText) {
 		new Select(getElement(driver, baseDropdownListXpath)).selectByVisibleText(expectedText);
 	}
 	

@@ -51,7 +51,7 @@ public class SearchPageObject extends BasePages{
 
 	public void selectSearchCategory(String expectedItem) {
 		waitForElementVisibility(driver, SearchPageUI.SEARCH_CATEGORY_DROPDOWNLIST);
-		selectItemDefaultDropdownList(driver, SearchPageUI.SEARCH_CATEGORY_DROPDOWNLIST, expectedItem);
+		selectDefaultItemDropdownList(driver, SearchPageUI.SEARCH_CATEGORY_DROPDOWNLIST, expectedItem);
 	}
 
 	public void clickOnSearchSubCategory() {
@@ -61,7 +61,7 @@ public class SearchPageObject extends BasePages{
 
 	public void selectOnManufacturer(String expectedItem) {
 		waitForElementVisibility(driver, SearchPageUI.MANUFACTURER_DROPDOWNLIST);
-		selectItemDefaultDropdownList(driver, SearchPageUI.MANUFACTURER_DROPDOWNLIST, expectedItem);
+		selectDefaultItemDropdownList(driver, SearchPageUI.MANUFACTURER_DROPDOWNLIST, expectedItem);
 	}
 
 	public boolean isContainedExpectedItem(String expectedItem) {

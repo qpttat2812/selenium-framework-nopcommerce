@@ -39,12 +39,12 @@ public class AddressPageObject extends BasePages {
 
 	public void selectCountryDropdownList(String expectedCountry) {
 		waitForElementVisibility(driver, AddressPageUI.COUNTRY_DROPDOWNLIST);
-		selectItemDefaultDropdownList(driver, AddressPageUI.COUNTRY_DROPDOWNLIST, expectedCountry);
+		selectDefaultItemDropdownList(driver, AddressPageUI.COUNTRY_DROPDOWNLIST, expectedCountry);
 	}
 
 	public void selectStateDropdownList(String expectedState) {
 		waitForElementVisibility(driver, AddressPageUI.STATE_DROPDOWNLIST);
-		selectItemDefaultDropdownList(driver, AddressPageUI.STATE_DROPDOWNLIST, expectedState);
+		selectDefaultItemDropdownList(driver, AddressPageUI.STATE_DROPDOWNLIST, expectedState);
 	}
 
 	public void inputToCityTextbox(String city) {
