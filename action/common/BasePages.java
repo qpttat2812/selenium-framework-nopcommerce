@@ -1,5 +1,6 @@
 package common;
 
+import java.io.File;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -241,18 +242,17 @@ public class BasePages {
 		new Select(getElement(driver, baseDropdownListXpath, valuesForXpathLocator)).selectByVisibleText(expectedText);
 	}
 
-	public void uploadOneFile(WebDriver driver, String xpathLocator, String filePath) {
+	public void uploadSingleFile(WebDriver driver, String xpathLocator, String fileName) {
+		String filePath = GlobalConstants.UPLOAD_FILE + File.separator + fileName;
 		getElement(driver, xpathLocator).sendKeys(filePath);
 	}
-	
-	public void uploadOneFile(WebDriver driver, String xpathLocator, String filePath, String... valuesForXpathLocator) {
-		getElement(driver, xpathLocator, valuesForXpathLocator).sendKeys(filePath);
-	}
 
-	public void uploadMultipleFiles(WebDriver driver, String xpathLocator, List<String> filesPath) {
-
-		for (String filePath : filesPath) {
-			getElement(driver, xpathLocator).sendKeys(filePath);
+	public void uploadMultipleFiles(WebDriver driver, String xpathLocator, String... filesName) {
+		String basePath = GlobalConstants.UPLOAD_FILE + File.separator;
+		String filePath = "";
+		for (String file : filesName) {
+			filePath = basePath + file + "\n";
+			getElement(driver, xpathLocator).sendKeys(filePath.trim());
 		}
 	}
 
