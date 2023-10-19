@@ -3,6 +3,10 @@
 	
 	<parameter name="url" value="https://demo.nopcommerce.com/" />
 	
+	<listeners>
+		<listener class-name="commons.MethodListener" />
+	</listeners>
+	
 	<test name="RUN ON CHROME">
 		<parameter name="browser" value="firefox" />
 		<classes>
