@@ -1,6 +1,5 @@
 package com.nopcommerce.user;
 
-import java.time.Duration;
 import java.util.Random;
 
 import org.openqa.selenium.WebDriver;
@@ -10,9 +9,9 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import common.BaseTest;
-import common.GlobalConstants;
-import common.PageGeneratorManager;
+import commons.BaseTest;
+import commons.GlobalConstants;
+import commons.PageGeneratorManager;
 import pagesObject.AddressPageObject;
 import pagesObject.BookProductPageObject;
 import pagesObject.ChangePasswordPageObject;
@@ -42,12 +41,10 @@ public class User_03_MyAccountInfo extends BaseTest{
 	private String reviewTitle;
 	private String reviewContent;
 	
-	@Parameters("browser")
+	@Parameters({"browser", "url"})
 	@BeforeClass
-	public void BeforeClass(String browserName) {
-		driver = getBrowserName(browserName);
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+	public void BeforeClass(String browserName, String pageURL) {
+		driver = getBrowserName(browserName, pageURL);
 		
 		firstName = "Auto";
 		lastName = "Test";

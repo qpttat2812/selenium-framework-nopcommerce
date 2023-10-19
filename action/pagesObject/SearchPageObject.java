@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.openqa.selenium.WebDriver;
 
-import common.BasePages;
+import commons.BasePages;
 import pagesUI.user.SearchPageUI;
 
 public class SearchPageObject extends BasePages{

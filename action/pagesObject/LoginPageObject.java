@@ -2,8 +2,8 @@ package pagesObject;
 
 import org.openqa.selenium.WebDriver;
 
-import common.BasePages;
-import common.PageGeneratorManager;
+import commons.BasePages;
+import commons.PageGeneratorManager;
 import pagesUI.user.LoginPageUI;
 
 public class LoginPageObject extends BasePages{

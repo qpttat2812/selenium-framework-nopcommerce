@@ -1,6 +1,6 @@
 package com.nopcommerce.admin;
 
-import common.BaseTest;
+import commons.BaseTest;
 
 public class Admin_01_SearchWithProductName extends BaseTest{
 

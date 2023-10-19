@@ -2,7 +2,7 @@ package pagesObject;
 
 import org.openqa.selenium.WebDriver;
 
-import common.BasePages;
+import commons.BasePages;
 import pagesUI.user.ChangePasswordPageUI;
 
 public class ChangePasswordPageObject extends BasePages{

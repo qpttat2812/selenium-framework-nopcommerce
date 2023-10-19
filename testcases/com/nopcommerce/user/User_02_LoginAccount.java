@@ -2,16 +2,15 @@ package com.nopcommerce.user;
 
 import org.testng.annotations.Test;
 
-import common.BaseTest;
-import common.GlobalConstants;
-import common.PageGeneratorManager;
+import commons.BaseTest;
+import commons.GlobalConstants;
+import commons.PageGeneratorManager;
 import pagesObject.HomePageObject;
 import pagesObject.LoginPageObject;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 
-import java.time.Duration;
 import java.util.Random;
 
 import org.openqa.selenium.WebDriver;
@@ -25,12 +24,10 @@ public class User_02_LoginAccount extends BaseTest {
 
 	String emailAddress, password;
 	
-	@Parameters("browser")
+	@Parameters({"browser", "url"})
 	@BeforeClass
-	public void BeforeClass(String browserName) {
-		driver = getBrowserName(browserName);
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
+	public void BeforeClass(String browserName, String pageURL) {
+		driver = getBrowserName(browserName, pageURL);
 
 		driver.get(GlobalConstants.USER_URL);
 		homePage = PageGeneratorManager.getHomePageObject(driver);

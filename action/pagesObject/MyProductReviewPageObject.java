@@ -2,7 +2,7 @@ package pagesObject;
 
 import org.openqa.selenium.WebDriver;
 
-import common.BasePages;
+import commons.BasePages;
 import pagesUI.user.MyProductReviewUI;
 
 public class MyProductReviewPageObject extends BasePages{
