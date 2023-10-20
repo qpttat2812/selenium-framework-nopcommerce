@@ -12,5 +12,13 @@
 	<classpathentry kind="lib" path="libraries/selenium-server-4.13.0.jar"/>
 	<classpathentry kind="lib" path="libraries/testng-7.8.0.jar"/>
 	<classpathentry kind="lib" path="libraries/webdrivermanager-5.5.3-fat.jar"/>
+	<classpathentry kind="lib" path="libLog4J/log4j-api-2.19.0.jar"/>
+	<classpathentry kind="lib" path="libLog4J/log4j-core-2.19.0.jar"/>
+	<classpathentry kind="lib" path="reportNG/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="reportNG/commons-io-2.6.jar"/>
+	<classpathentry kind="lib" path="reportNG/guice-3.0.jar"/>
+	<classpathentry kind="lib" path="reportNG/reportng-1.1.4.jar"/>
+	<classpathentry kind="lib" path="reportNG/reportng-1.1.4-sources.jar"/>
+	<classpathentry kind="lib" path="reportNG/velocity-1.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
