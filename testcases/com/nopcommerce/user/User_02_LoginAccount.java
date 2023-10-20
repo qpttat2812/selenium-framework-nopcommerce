@@ -29,7 +29,6 @@ public class User_02_LoginAccount extends BaseTest {
 	public void BeforeClass(String browserName, String pageURL) {
 		driver = getBrowserName(browserName, pageURL);
 
-		driver.get(GlobalConstants.USER_URL);
 		homePage = PageGeneratorManager.getHomePageObject(driver);
 		
 		emailAddress = User_01_RegisterNewAccount.emailAddress;

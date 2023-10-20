@@ -33,7 +33,6 @@ public class User_04_Search extends BaseTest{
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		
-		driver.get(GlobalConstants.USER_URL);
 		homePage = PageGeneratorManager.getHomePageObject(driver);
 		loginPage = homePage.clickOnLoginLink();
 		loginPage.inputToEmailTextbox(User_03_MyAccountInfo.newEmail);

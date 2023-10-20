@@ -71,7 +71,6 @@ public class User_03_MyAccountInfo extends BaseTest{
 		reviewTitle = "recommended";
 		reviewContent = "it's worth to buy.\nAll books of this author are good.";
 		
-		driver.get(GlobalConstants.USER_URL);
 		homePage = PageGeneratorManager.getHomePageObject(driver);
 		//login account
 		loginPage = homePage.clickOnLoginLink();
