@@ -10,7 +10,6 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import commons.BaseTest;
-import commons.GlobalConstants;
 import commons.PageGeneratorManager;
 import pagesObject.AddressPageObject;
 import pagesObject.BookProductPageObject;
@@ -119,12 +118,12 @@ public class User_03_MyAccountInfo extends BaseTest{
 		addressPage.selectCountryDropdownList(country);
 		addressPage.selectStateDropdownList(state);
 		addressPage.inputToCityTextbox(city);
-		addressPage.inputToAddreessITextbox(address_1);
+		addressPage.inputToAddressITextbox(address_1);
 		addressPage.inputToAddressIITextbox(address_2);
 		addressPage.inputToZipCodeTextbox(zipCode);
 		addressPage.inputToPhoneNumberTextbox(phoneNumber);
 		addressPage.inputToFaxNumberTextbox(faxNumber);
-		addressPage.clickOnSaveButoon();
+		addressPage.clickOnSaveButton();
 		
 		Assert.assertTrue(addressPage.isNotificationSuccessDisplayed());
 		addressPage.clickOnCloseButton();

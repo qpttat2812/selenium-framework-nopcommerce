@@ -10,7 +10,6 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import commons.BaseTest;
-import commons.GlobalConstants;
 import commons.PageGeneratorManager;
 import pagesObject.HomePageObject;
 import pagesObject.LoginPageObject;

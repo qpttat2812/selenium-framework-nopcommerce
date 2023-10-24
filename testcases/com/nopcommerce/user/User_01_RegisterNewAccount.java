@@ -3,7 +3,6 @@ package com.nopcommerce.user;
 import org.testng.annotations.Test;
 
 import commons.BaseTest;
-import commons.GlobalConstants;
 import commons.PageGeneratorManager;
 import pagesObject.HomePageObject;
 import pagesObject.RegisterPageObject;
@@ -41,49 +40,35 @@ public class User_01_RegisterNewAccount extends BaseTest {
 
 	@Test
 	public void Register_01_InputEmptyData() {
-		log.info("Register - Step 01: Click on <Register> button");
 		registerPage.clickOnRegisterButton();
 		
-		log.info("Register - Step 02: Verify error message is displayed at <First Name> textbox");
 		Assert.assertEquals(registerPage.getFirstNameErrorMessage(), "First name is required.");
 		
-		log.info("Register - Step 03: Verify error message is displayed at <Last Name> textbox");
 		Assert.assertEquals(registerPage.getLastNameErrorMessage(), "Last name is required");
 		
-		log.info("Register - Step 04: Verify error message is displayed at <Email> textbox");
 		Assert.assertEquals(registerPage.getEmailErrorMessage(), "Email is required");
 		
-		log.info("Register - Step 05: Verify error message is displayed at <Password> textbox");
 		Assert.assertEquals(registerPage.getPasswordErrorMessage(), "Password is required");
 		
-		log.info("Register - Step 06: Verify error message is displayed at <Confirm Password> textbox");
 		Assert.assertEquals(registerPage.getConfirmPasswordErrorMessage(), "Password is required");
 	}
 
 	@Test
 	public void Register_02_InputInvalidEmail() {
-		log.info("Register - Step 01: Navigate to Register page by clicking on Register link from Home Page");
 		registerPage = homePage.clickOnRegisterLink();
 		
-		log.info("Register - Step 02: Input to <First Name> textbox with value is " + firstName);
 		registerPage.inputToFirstNameTextbox(firstName);
 		
-		log.info("Register - Step 03: Input to <Last Name> textbox with value is " + lastName);
 		registerPage.inputToLastNameTextbox(lastName);
 		
-		log.info("Register - Step 05: Input to <Email> textbox with value is " + emailAddress);
 		registerPage.inputToEmailTextbox("123@123");
 		
-		log.info("Register - Step 06: Input to <Password> textbox with value is " + password);
 		registerPage.inputToPasswordTextbox("123123");
 		
-		log.info("Register - Step 07: Input to <Confirm Password> textbox with value is " + password);
 		registerPage.inputToConfirmPasswordTextbox("123123");
 		
-		log.info("Register - Step 08: Click on <Register> button");
 		registerPage.clickOnRegisterButton();
 
-		log.info("Register - Step 09: Verify error message is displayed at <Email> textbox.");
 		Assert.assertEquals(registerPage.getInvalidErrorMessageText(), "Wrong email");
 	}
 

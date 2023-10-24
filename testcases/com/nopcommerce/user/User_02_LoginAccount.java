@@ -3,7 +3,6 @@ package com.nopcommerce.user;
 import org.testng.annotations.Test;
 
 import commons.BaseTest;
-import commons.GlobalConstants;
 import commons.PageGeneratorManager;
 import pagesObject.HomePageObject;
 import pagesObject.LoginPageObject;

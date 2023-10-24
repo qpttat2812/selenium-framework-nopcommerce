@@ -2,26 +2,17 @@ package commons;
 
 import java.time.Duration;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.testng.Assert;
-import org.testng.Reporter;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseTest {
 	private WebDriver driver;
-	protected static Logger log;
-	
-	protected BaseTest() {
-		log = LogManager.getLogger(getClass());
-	}
 	
 	protected WebDriver getBrowserName(String browserName, String url) {
 		if (browserName.equals("firefox")) {
@@ -60,54 +51,8 @@ public class BaseTest {
 		return driver;
 	}
 	
-	protected boolean verifyTrue(boolean condition) {
-		boolean pass = true;
-		
-		try {
-			Assert.assertTrue(condition);
-			log.info("---------------------PASS----------------------");
-		} catch (Throwable e) {
-			pass = false;
-			log.info("---------------------FAILED----------------------");
-			
-			VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
-			Reporter.getCurrentTestResult().setThrowable(e);
-		}
-		
-		return pass;
-	}
-
-	protected boolean verifyFalse(boolean condition) {
-		boolean pass = true;
-		
-		try {
-			Assert.assertFalse(condition);
-			log.info("---------------------PASS----------------------");
-		} catch (Throwable e) {
-			pass = false;
-			log.info("---------------------FAILED----------------------");
-			
-			VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
-			Reporter.getCurrentTestResult().setThrowable(e);
-		}
-		
-		return pass;
-	}
-
-	protected boolean verifyEquals(Object actual, Object expected) {
-		boolean pass = true;
-		
-		try {
-			Assert.assertEquals(actual, expected);
-			log.info("---------------------PASS----------------------");
-		} catch (Throwable e) {
-			pass = false;
-			log.info("---------------------FAILED----------------------");
-			
-			VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
-			Reporter.getCurrentTestResult().setThrowable(e);
-		}
-		
-		return pass;
+	//create getter 
+	public WebDriver getDriver() {
+		return this.driver;
 	}
 }

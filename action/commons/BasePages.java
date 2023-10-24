@@ -393,7 +393,7 @@ public class BasePages {
 		return (String) js.executeScript("return document.URL;");
 	}
 
-	public void clickToElementByJS(WebDriver driver, String xpathLocator) {
+	public void clickOnElementByJS(WebDriver driver, String xpathLocator) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].click();", getElement(driver, xpathLocator));
 	}
