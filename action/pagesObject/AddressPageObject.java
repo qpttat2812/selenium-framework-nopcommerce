@@ -98,7 +98,7 @@ public class AddressPageObject extends BasePages {
 	}
 
 	@Step("Verify Notification Success Bar is displayed")
-	public boolean isNotificationSuccessDisplayed() {
+	public boolean isNotificationSuccessBarDisplayed() {
 		waitForElementVisibility(driver, AddressPageUI.NOTIFICATION_SUCCESS_TEXT);
 		return isElementDisplayed(driver, AddressPageUI.NOTIFICATION_SUCCESS_TEXT);
 	}

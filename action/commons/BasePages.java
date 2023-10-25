@@ -8,6 +8,7 @@ import java.util.Set;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -19,6 +20,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import io.qameta.allure.Step;
 import pagesUI.user.BasePageUI;
 
 public class BasePages {
@@ -561,15 +563,48 @@ public class BasePages {
 			return false;
 		}
 	}
+	
+	public Set<Cookie> getAllCookies(WebDriver driver) {
+		return driver.manage().getCookies();
+	}
+	
+	public void setCookie(WebDriver driver, Set<Cookie> cookies) {
+		for(Cookie cookie : cookies) {
+			driver.manage().addCookie(cookie);
+		}
+		sleepInSecond(5);
+	}
 
-	// common dynamic text in Xpath
-	public void clickOnSideBarPage(WebDriver driver, String... valuesForXpathLocator) {
+	/** 
+	 * Function for clicking on textlink at Sidebar
+	 * @param driver
+	 * @param valuesForXpathLocator - textlink names of Sidebar  
+	 */
+	@Step("Click on {1} link at Sidebar")
+	public void clickOnSideBarPage(WebDriver driver, String valuesForXpathLocator) {
 		waitForElementVisibility(driver, BasePageUI.DYNAMIC_SIDEBAR_MY_ACCOUNT_LINKS, valuesForXpathLocator);
 		clickOnElement(driver, BasePageUI.DYNAMIC_SIDEBAR_MY_ACCOUNT_LINKS, valuesForXpathLocator);
 	}
 
-	public void clickOnSearchLink(WebDriver driver, String... valuesForXpathLocator) {
+	/**
+	 *  Function for clicking on textlink at Footer
+	 * @param driver
+	 * @param valuesForXpathLocator - textlink names of Footer
+	 */
+	@Step("Click on {1} link at Footer")
+	public void clickOnFooterLink(WebDriver driver, String valuesForXpathLocator) {
 		waitForElementVisibility(driver, BasePageUI.DYNAMIC_FOOTER_LINKS, valuesForXpathLocator);
 		clickOnElement(driver, BasePageUI.DYNAMIC_FOOTER_LINKS, valuesForXpathLocator);
+	}
+	
+	/**
+	 * Function for clicking on tab name link
+	 * @param driver
+	 * @param valuesForXpathLocator - tab name 
+	 */
+	@Step("Click on {1} tab link")
+	public void clickOnProductTab(WebDriver driver, String valuesForXpathLocator) {
+		waitForElementVisibility(driver, BasePageUI.DYNAMIC_PRODUCT_TAB, valuesForXpathLocator);
+		clickOnElement(driver, BasePageUI.DYNAMIC_PRODUCT_TAB, valuesForXpathLocator);
 	}
 }

@@ -4,14 +4,18 @@
 	<parameter name="url" value="https://demo.nopcommerce.com/" />
 	
 	<listeners>
-		<listener class-name="AllureTestListener"/>
+		<listener class-name="reportConfig.AllureTestListener"/>
 	</listeners>
 	
 	<test name="RUN ON FIREFOX">
 		<parameter name="browser" value="firefox" />
-		<packages>
-			<package name="com.nopcommerce.user" />
-		</packages>
+		<classes>
+			<class name="com.nopcommerce.common.Common_01_RegisterAccountAndGetCookie"/>
+			<class name="com.nopcommerce.user.User_01_RegisterNewAccount"/>
+			<class name="com.nopcommerce.user.User_02_LoginAccount"/>
+			<class name="com.nopcommerce.user.User_03_MyAccountInfo"/>
+			<class name="com.nopcommerce.user.User_04_Search"/>
+		</classes>
 	</test>
 	
 <!--	<test name="RUN ON CHROME">-->

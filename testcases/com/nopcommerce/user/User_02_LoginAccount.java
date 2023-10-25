@@ -2,6 +2,8 @@ package com.nopcommerce.user;
 
 import org.testng.annotations.Test;
 
+import com.nopcommerce.common.Common_01_RegisterAccountAndGetCookie;
+
 import commons.BaseTest;
 import commons.PageGeneratorManager;
 import pagesObject.HomePageObject;
@@ -20,19 +22,20 @@ public class User_02_LoginAccount extends BaseTest {
 	private WebDriver driver;
 	private LoginPageObject loginPage;
 	private HomePageObject homePage;
-
-	String emailAddress, password;
+	private String invalidPassword, unregisteredEmail, validPassword, registeredEmail, registeredPassword;
 	
 	@Parameters({"browser", "url"})
 	@BeforeClass
 	public void BeforeClass(String browserName, String pageURL) {
+		invalidPassword = "123";
+		unregisteredEmail = "auto" + randomNumber() + "@yopmail.com";
+		validPassword = "222333";
+		registeredEmail = Common_01_RegisterAccountAndGetCookie.emailAddress;
+		registeredPassword = Common_01_RegisterAccountAndGetCookie.password;
+		
 		driver = getBrowserName(browserName, pageURL);
 
 		homePage = PageGeneratorManager.getHomePageObject(driver);
-		
-		emailAddress = User_01_RegisterNewAccount.emailAddress;
-		password = User_01_RegisterNewAccount.password;
-		
 		loginPage = homePage.clickOnLoginLink();
 	}
 
@@ -47,7 +50,7 @@ public class User_02_LoginAccount extends BaseTest {
 	public void Login_02_InvalidEmail() {
 		loginPage = homePage.clickOnLoginLink();
 		
-		loginPage.inputToEmailTextbox("123");
+		loginPage.inputToEmailTextbox(invalidPassword);
 		loginPage.clickOnLoginButton();
 		
 		Assert.assertEquals(loginPage.getEmailErrorMessage(), "Wrong email");
@@ -57,8 +60,8 @@ public class User_02_LoginAccount extends BaseTest {
 	public void Login_03_InputUnregisteredEmail() {
 		loginPage = homePage.clickOnLoginLink();
 
-		loginPage.inputToEmailTextbox("auto22@yopmail.com");
-		loginPage.inputToPasswordTextbox(password);
+		loginPage.inputToEmailTextbox(unregisteredEmail);
+		loginPage.inputToPasswordTextbox(validPassword);
 		loginPage.clickOnLoginButton();
 
 		Assert.assertEquals(loginPage.getInvalidErrorMessageText(), "Login was unsuccessful. Please correct the errors and try again.\nNo customer account found");
@@ -68,7 +71,7 @@ public class User_02_LoginAccount extends BaseTest {
 	public void Login_04_InputRegisteredEmailAndNoPassword() {
 		loginPage = homePage.clickOnLoginLink();
 
-		loginPage.inputToEmailTextbox(emailAddress);
+		loginPage.inputToEmailTextbox(registeredEmail);
 		loginPage.clickOnLoginButton();
 
 		Assert.assertEquals(loginPage.getInvalidErrorMessageText(), "Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");
@@ -78,8 +81,8 @@ public class User_02_LoginAccount extends BaseTest {
 	public void Login_05_InputRegisteredEmailAndWrongPassword() {
 		loginPage = homePage.clickOnLoginLink();
 
-		loginPage.inputToEmailTextbox(emailAddress);
-		loginPage.inputToPasswordTextbox("222111");
+		loginPage.inputToEmailTextbox(registeredEmail);
+		loginPage.inputToPasswordTextbox(validPassword);
 		loginPage.clickOnLoginButton();
 
 		Assert.assertEquals(loginPage.getInvalidErrorMessageText(), "Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");
@@ -89,11 +92,11 @@ public class User_02_LoginAccount extends BaseTest {
 	public void Login_06_InputRegisteredEmailAndPassword() {
 		loginPage = homePage.clickOnLoginLink();
 
-		loginPage.inputToEmailTextbox(emailAddress);
-		loginPage.inputToPasswordTextbox(password);
+		loginPage.inputToEmailTextbox(registeredEmail);
+		loginPage.inputToPasswordTextbox(registeredPassword);
 		homePage = loginPage.clickOnLoginButton();
 		
-		Assert.assertTrue(homePage.isMyAccountDisplayed());
+		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
 	}
 
 	public int randomNumber() {

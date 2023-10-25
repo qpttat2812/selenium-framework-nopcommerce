@@ -18,6 +18,7 @@ import pagesObject.HomePageObject;
 import pagesObject.LoginPageObject;
 import pagesObject.MyAccountPageObject;
 import pagesObject.MyProductReviewPageObject;
+import pagesObject.RegisterPageObject;
 
 public class User_03_MyAccountInfo extends BaseTest{
 	private WebDriver driver;
@@ -28,14 +29,15 @@ public class User_03_MyAccountInfo extends BaseTest{
 	private ChangePasswordPageObject changePasswordPage;
 	private BookProductPageObject bookProductPage;
 	private MyProductReviewPageObject myProductReviewPage;
+	private RegisterPageObject registerPage;
 	
-	private String firstName, lastName, companyName;
+	private String registeredFirstName, registeredLastName, companyName, newFirstName, newLastName;
 	private String dayOfBirth, monthOfBirth, yearOfBirth, gender;
 	private String country, state, city, phoneNumber, faxNumber, address_1, address_2, zipCode;
 	private String addressPageName;
 	private String changePasswordPageName;
-	private String oldPassword, loginEmail;
-	public static String newEmail, newPassword;
+	private String registeredPassword, registeredEmail;
+	private String newEmail, newPassword;
 	private String bookTitle;
 	private String reviewTitle;
 	private String reviewContent;
@@ -43,11 +45,14 @@ public class User_03_MyAccountInfo extends BaseTest{
 	@Parameters({"browser", "url"})
 	@BeforeClass
 	public void BeforeClass(String browserName, String pageURL) {
-		driver = getBrowserName(browserName, pageURL);
-		
-		firstName = "Auto";
-		lastName = "Test";
+		registeredEmail = "testtest" + randomNumber() + "@gmail.com";
+		registeredPassword = "111222";
+		registeredFirstName = "Auto";
+		registeredLastName = "Test";
+		newFirstName = "automation";
+		newLastName = "fc";
 		newEmail = "automate" + randomNumber() + "@yopmail.com";
+		newPassword = "22222223";
 		companyName = "Amazon";
 		dayOfBirth = "25";
 		monthOfBirth = "September";
@@ -61,20 +66,30 @@ public class User_03_MyAccountInfo extends BaseTest{
 		zipCode = "222333";
 		phoneNumber = "99333666";
 		faxNumber = "99333667";
-		oldPassword = User_01_RegisterNewAccount.password;
-		loginEmail = User_01_RegisterNewAccount.emailAddress;
-		newPassword = "22222223";
 		addressPageName = "Addresses";
 		changePasswordPageName = "Change password";
 		bookTitle = "Fahrenheit 451 by Ray Bradbury";
 		reviewTitle = "recommended";
 		reviewContent = "it's worth to buy.\nAll books of this author are good.";
 		
+		driver = getBrowserName(browserName, pageURL);
 		homePage = PageGeneratorManager.getHomePageObject(driver);
+		
+		//register account
+		registerPage = homePage.clickOnRegisterLink();
+		registerPage.inputToFirstNameTextbox(registeredFirstName);
+		registerPage.inputToLastNameTextbox(registeredLastName);
+		registerPage.inputToEmailTextbox(registeredEmail);
+		registerPage.inputToPasswordTextbox(registeredPassword);
+		registerPage.inputToConfirmPasswordTextbox(registeredPassword);
+		registerPage.clickOnRegisterButton();
+
+		Assert.assertEquals(registerPage.getRegisterSuccessfullyMessage(), "Your registration completed");
+		
 		//login account
 		loginPage = homePage.clickOnLoginLink();
-		loginPage.inputToEmailTextbox(loginEmail);
-		loginPage.inputToPasswordTextbox(oldPassword);
+		loginPage.inputToEmailTextbox(registeredEmail);
+		loginPage.inputToPasswordTextbox(registeredPassword);
 		homePage = loginPage.clickOnLoginButton();
 		myAccountPage = homePage.clickOnMyAccountLink();
 		
@@ -83,8 +98,8 @@ public class User_03_MyAccountInfo extends BaseTest{
 	 @Test 
 	public void MyAccount_01_UpdateCustomerInfo() {
 		myAccountPage.selectGenderRadioButton();
-		myAccountPage.updateFirstNameTextbox(firstName);
-		myAccountPage.updateLastNameTextbox(lastName);
+		myAccountPage.updateFirstNameTextbox(newFirstName);
+		myAccountPage.updateLastNameTextbox(newLastName);
 		myAccountPage.updateDayOfBirthDropdownList(dayOfBirth);
 		myAccountPage.updateMonthOfBirthDropdownList(monthOfBirth);
 		myAccountPage.updateYearOfBirthDropdownList(yearOfBirth);
@@ -93,11 +108,11 @@ public class User_03_MyAccountInfo extends BaseTest{
 		myAccountPage.clickOnSaveButton();
 		
 		//The customer info has been updated successfully.
-		Assert.assertTrue(myAccountPage.isNotificationSuccessDisplayed());
-		myAccountPage.closeNotificationSuccessDisplayed();
+		Assert.assertTrue(myAccountPage.isNotificationSuccessBarDisplayed());
+		myAccountPage.closeNotificationSuccessBar();
 		Assert.assertEquals(myAccountPage.getGenderValue("value"), gender);
-		Assert.assertEquals(myAccountPage.getFirstNameValue("value"), firstName);
-		Assert.assertEquals(myAccountPage.getLastNameValue("value"), lastName);
+		Assert.assertEquals(myAccountPage.getFirstNameValue("value"), newFirstName);
+		Assert.assertEquals(myAccountPage.getLastNameValue("value"), newLastName);
 		Assert.assertEquals(myAccountPage.getDayOfBirthValue(), dayOfBirth);
 		Assert.assertEquals(myAccountPage.getMonthOfBirthValue(), monthOfBirth);
 		Assert.assertEquals(myAccountPage.getYearOfBirthValue(), yearOfBirth);
@@ -111,8 +126,8 @@ public class User_03_MyAccountInfo extends BaseTest{
 		addressPage = PageGeneratorManager.getAddressPageObject(driver);
 		
 		addressPage.clickOnAddNewAddressButton();
-		addressPage.inputToFirstNameTextbox(firstName);
-		addressPage.inputToLastNameTextbox(lastName);
+		addressPage.inputToFirstNameTextbox(newFirstName);
+		addressPage.inputToLastNameTextbox(newLastName);
 		addressPage.inputToEmailTextbox(newEmail);
 		addressPage.inputToCompanyTextbox(companyName);
 		addressPage.selectCountryDropdownList(country);
@@ -125,10 +140,10 @@ public class User_03_MyAccountInfo extends BaseTest{
 		addressPage.inputToFaxNumberTextbox(faxNumber);
 		addressPage.clickOnSaveButton();
 		
-		Assert.assertTrue(addressPage.isNotificationSuccessDisplayed());
+		Assert.assertTrue(addressPage.isNotificationSuccessBarDisplayed());
 		addressPage.clickOnCloseButton();
-		Assert.assertEquals(addressPage.getNameTitle(), firstName + " " + lastName);
-		Assert.assertEquals(addressPage.getNameText(), firstName + " " + lastName);
+		Assert.assertEquals(addressPage.getNameTitle(), newFirstName + " " + newLastName);
+		Assert.assertEquals(addressPage.getNameText(), newFirstName + " " + newLastName);
 		Assert.assertTrue(addressPage.getEmailText().contains(newEmail));
 		Assert.assertTrue(addressPage.getPhoneNumberText().contains(phoneNumber));
 		Assert.assertTrue(addressPage.getFaxNumberText().contains(faxNumber));
@@ -146,19 +161,19 @@ public class User_03_MyAccountInfo extends BaseTest{
 		myAccountPage.clickOnSideBarPage(driver, changePasswordPageName);
 		changePasswordPage = PageGeneratorManager.getChangePasswordPageObject(driver);
 		
-		changePasswordPage.inputToOldPasswordTextbox(oldPassword);
+		changePasswordPage.inputToOldPasswordTextbox(registeredPassword);
 		changePasswordPage.inputToNewPasswordTextbox(newPassword);
 		changePasswordPage.inputToConfirmPasswordTextbox(newPassword);
 		changePasswordPage.clickOnChangePasswordButton();
 		
-		Assert.assertTrue(changePasswordPage.isNotificationSuccessDisplayed());
+		Assert.assertTrue(changePasswordPage.isNotificationSuccessBarDisplayed());
 		changePasswordPage.clickOnCloseButton();
 		
 		homePage.clickOnLogoutLink();
 		
 		loginPage = homePage.clickOnLoginLink();
 		loginPage.inputToEmailTextbox(newEmail);
-		loginPage.inputToPasswordTextbox(oldPassword);
+		loginPage.inputToPasswordTextbox(registeredPassword);
 		loginPage.clickOnLoginButton();
 		
 		Assert.assertTrue(loginPage.getInvalidErrorMessageText().contains("Login was unsuccessful"));
@@ -168,19 +183,19 @@ public class User_03_MyAccountInfo extends BaseTest{
 		loginPage.inputToPasswordTextbox(newPassword);
 		homePage = loginPage.clickOnLoginButton();
 		
-		Assert.assertTrue(homePage.isMyAccountDisplayed());
+		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
 	}
 	
 	@Test
 	public void MyAccount_04_MyProductReview() {
-		homePage.clickOnProductTab("Books");
+		homePage.clickOnProductTab(driver, "Books");
 		bookProductPage = PageGeneratorManager.getBookProductPageObject(driver);
 		
-		bookProductPage.clickOnBookTitle(bookTitle);
+		bookProductPage.clickOnBookTitleLink(bookTitle);
 		bookProductPage.clickOnAddReviewLink();
 		
-		bookProductPage.inputToReviewTitle(reviewTitle);
-		bookProductPage.inputToReviewContent(reviewContent);
+		bookProductPage.inputToReviewTitleTextbox(reviewTitle);
+		bookProductPage.inputToReviewContentTextArea(reviewContent);
 		bookProductPage.selectRatingLevelRadioButton("Good");
 		bookProductPage.clickOnSubmitReviewButton();
 		
