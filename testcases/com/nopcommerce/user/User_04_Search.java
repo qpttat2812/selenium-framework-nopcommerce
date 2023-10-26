@@ -145,8 +145,8 @@ public class User_04_Search extends BaseTest{
 		Assert.assertTrue(searchPage.isContainedExpectedItem("Apple MacBook Pro 13-inch"));
 	}
 	
-	@AfterClass
+	@AfterClass(alwaysRun = true)
 	public void AfterClass() {
-		driver.quit();
+		closeBrowserDriver();
 	}
 }

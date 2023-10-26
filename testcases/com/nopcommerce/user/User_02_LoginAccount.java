@@ -104,9 +104,9 @@ public class User_02_LoginAccount extends BaseTest {
 		return rnd.nextInt(999);
 	}
 
-	@AfterClass
+	@AfterClass(alwaysRun = true)
 	public void AfterClass() {
-		driver.quit();
+		closeBrowserDriver();
 	}
 
 }

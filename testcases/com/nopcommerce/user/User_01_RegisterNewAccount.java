@@ -118,9 +118,9 @@ public class User_01_RegisterNewAccount extends BaseTest {
 		Assert.assertEquals(registerPage.getConfirmPasswordErrorMessage(), "The password and confirmation password do not match.");
 	}
 
-	@AfterClass
+	@AfterClass(alwaysRun = true)
 	public void AfterClass() {
-		driver.quit();
+		closeBrowserDriver();
 	}
 
 }

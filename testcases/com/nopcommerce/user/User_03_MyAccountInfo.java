@@ -213,8 +213,8 @@ public class User_03_MyAccountInfo extends BaseTest{
 		return rnd.nextInt(9999);
 	}
 	
-	@AfterClass
+	@AfterClass(alwaysRun = true)
 	public void AfterClass() {
-		driver.quit();
+		closeBrowserDriver();
 	}
 }
