@@ -98,16 +98,16 @@ public class AddressPageObject extends BasePages {
 	}
 
 	@Step("Verify Notification Success Bar is displayed")
-	public boolean isNotificationSuccessBarDisplayed() {
+	public boolean isBarNotificationSuccessDisplayed() {
 		waitForElementVisibility(driver, AddressPageUI.NOTIFICATION_SUCCESS_TEXT);
 		return isElementDisplayed(driver, AddressPageUI.NOTIFICATION_SUCCESS_TEXT);
 	}
 
 	@Step("Click on Close icon on Notification Success Bar")
 	public void clickOnCloseButton() {
-		waitForElementVisibility(driver, AddressPageUI.CLOSE_BUTTON);
-		clickOnElement(driver, AddressPageUI.CLOSE_BUTTON);
-		waitForElementInvisibility(driver, AddressPageUI.CLOSE_BUTTON);
+		waitForElementClickable(driver, AddressPageUI.BAR_CLOSE_BUTTON);
+		clickOnElement(driver, AddressPageUI.BAR_CLOSE_BUTTON);
+		waitForElementInvisibility(driver, AddressPageUI.BAR_CLOSE_BUTTON);
 	}
 
 	@Step("Get Name value")

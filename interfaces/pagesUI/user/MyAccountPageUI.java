@@ -11,5 +11,5 @@ public class MyAccountPageUI {
 	public static final String COMPANY_NAME_TEXTBOX = "//input[@id='Company']";
 	public static final String SAVE_BUTTON = "//button[@id='save-info-button']";
 	public static final String NOTIFICATION_SUCCESS_TEXT = "//div[@class='bar-notification success']/p[@class='content']";
-	public static final String CLOSE_NOTIFICATION_SUCCESS_BUTTON = "//div[@class='bar-notification success']/span[@class='close']";
+	public static final String BAR_CLOSE_BUTTON = "//div[@class='bar-notification success']/span[@class='close']";
 }

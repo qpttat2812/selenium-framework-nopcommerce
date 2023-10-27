@@ -20,14 +20,17 @@ public class User_05_SortAndPaging extends BaseTest {
 	private HomePageObject homePage;
 	private ComputersPageObject computersPage;
 	private NotebooksPageObject notebooksPage;
-	private String productCategoryName = "Computers";
+	private String productCategoryName;
 	private List<String> itemListBeforeSortingByName, itemListAfterSortingByName;
 	private List<Double> itemListBeforeSortingByPrice, itemListAfterSortingByPrice;
-	private String defaultSortType = "Position";
+	private String defaultSortType;
 
 	@Parameters({ "browser", "url" })
 	@BeforeClass
 	public void BeforeClass(String browserName, String pageURL) {
+		productCategoryName = "Computers";
+		defaultSortType = "Position";
+		
 		driver = getBrowserName(browserName, pageURL);
 
 		homePage = PageGeneratorManager.getHomePageObject(driver);
@@ -41,7 +44,7 @@ public class User_05_SortAndPaging extends BaseTest {
 
 	@Test
 	public void SortAndPaging_01_SortWithNameAscending() {
-		itemListBeforeSortingByName = notebooksPage.getBeforeSortingListByNameWithAscendingOrder();
+		itemListBeforeSortingByName = notebooksPage.getItemListBeforeSortingByNameWithAscendingOrder();
 		notebooksPage.selectSortType("Name: A to Z");
 		itemListAfterSortingByName = notebooksPage.getItemListAfterSortingByName();
 
@@ -52,7 +55,7 @@ public class User_05_SortAndPaging extends BaseTest {
 	public void SortAndPaging_02_SortWithNameDescending() {
 		notebooksPage.selectSortType(defaultSortType);
 
-		itemListBeforeSortingByName = notebooksPage.getBeforeSortingListByNameWithDescendingOrder();
+		itemListBeforeSortingByName = notebooksPage.getItemListBeforeSortingByNameWithDescendingOrder();
 		notebooksPage.selectSortType("Name: Z to A");
 		itemListAfterSortingByName = notebooksPage.getItemListAfterSortingByName();
 
@@ -63,7 +66,7 @@ public class User_05_SortAndPaging extends BaseTest {
 	public void SortAndPaging_03_SortWithPriceAscending() {
 		notebooksPage.selectSortType(defaultSortType);
 
-		itemListBeforeSortingByPrice = notebooksPage.getBeforeSortingListByPriceWithAscendingOrder();
+		itemListBeforeSortingByPrice = notebooksPage.getItemListBeforeSortingByPriceWithAscendingOrder();
 		notebooksPage.selectSortType("Price: Low to High");
 		itemListAfterSortingByPrice = notebooksPage.getItemListAfterSortingByPrice();
 
@@ -74,7 +77,7 @@ public class User_05_SortAndPaging extends BaseTest {
 	public void SortAndPaging_04_SortWithPriceDescending() {
 		notebooksPage.selectSortType(defaultSortType);
 
-		itemListBeforeSortingByPrice = notebooksPage.getBeforeSortingListByPriceWithDescendingOrder();
+		itemListBeforeSortingByPrice = notebooksPage.getItemListBeforeSortingByPriceWithDescendingOrder();
 		notebooksPage.selectSortType("Price: High to Low");
 		itemListAfterSortingByPrice = notebooksPage.getItemListAfterSortingByPrice();
 

@@ -33,20 +33,20 @@ public class ChangePasswordPageObject extends BasePages{
 
 	@Step("Click on Change Password button")
 	public void clickOnChangePasswordButton() {
-		waitForElementVisibility(driver, ChangePasswordPageUI.CHANGE_PASSWORD_BUTTON);
+		waitForElementClickable(driver, ChangePasswordPageUI.CHANGE_PASSWORD_BUTTON);
 		clickOnElement(driver, ChangePasswordPageUI.CHANGE_PASSWORD_BUTTON);		
 	}
 
 	@Step("Verify Notification Success Bar is displayed")
-	public boolean isNotificationSuccessBarDisplayed() {
+	public boolean isBarNotificationSuccessDisplayed() {
 		waitForElementVisibility(driver, ChangePasswordPageUI.NOTIFICATION_SUCCESS_TEXT);
 		return isElementDisplayed(driver, ChangePasswordPageUI.NOTIFICATION_SUCCESS_TEXT);
 	}
 	
 	@Step("Click on Close button at Notification Success Bar")
 	public void clickOnCloseButton() {
-		waitForElementVisibility(driver, ChangePasswordPageUI.CLOSE_BUTTON);
-		clickOnElement(driver, ChangePasswordPageUI.CLOSE_BUTTON);
-		waitForElementInvisibility(driver, ChangePasswordPageUI.CLOSE_BUTTON);
+		waitForElementClickable(driver, ChangePasswordPageUI.BAR_CLOSE_BUTTON);
+		clickOnElement(driver, ChangePasswordPageUI.BAR_CLOSE_BUTTON);
+		waitForElementInvisibility(driver, ChangePasswordPageUI.BAR_CLOSE_BUTTON);
 	}
 }

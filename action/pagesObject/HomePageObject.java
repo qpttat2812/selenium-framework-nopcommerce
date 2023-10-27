@@ -47,4 +47,26 @@ public class HomePageObject extends BasePages{
 		clickOnElement(driver, HomePageUI.LOGOUT_LINK);
 		return PageGeneratorManager.getHomePageObject(driver);
 	}
+	
+	@Step("Click on Wishlist link")
+	public WishlistPageObject clickOnWishlistLink() {
+		waitForElementVisibility(driver, HomePageUI.WISHLIST_LINK);
+		clickOnElement(driver, HomePageUI.WISHLIST_LINK);
+		return PageGeneratorManager.getWishlistPageObject(driver);
+	}
+
+	public int getShoppingCartQuantity() {
+		waitForElementVisibility(driver, HomePageUI.SHOPPING_CART_QUANTITY_TEXT);
+		return Integer.valueOf(getTextElement(driver, HomePageUI.SHOPPING_CART_QUANTITY_TEXT).substring(1, 2));
+	}
+
+	public int getWishlistLinkQuantity() {
+		waitForElementVisibility(driver, HomePageUI.WISHLIST_QUANTITY_TEXT);
+		return Integer.valueOf(getTextElement(driver, HomePageUI.WISHLIST_QUANTITY_TEXT).substring(1, 2));
+	}
+	
+	public void clickOnHeaderLogo() {
+		waitForAllElementsVisibility(driver, HomePageUI.HEADER_LOGO_LINK);
+		clickOnElement(driver, HomePageUI.HEADER_LOGO_LINK);
+	}
 }

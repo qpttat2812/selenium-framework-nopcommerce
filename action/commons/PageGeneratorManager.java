@@ -2,17 +2,21 @@ package commons;
 
 import org.openqa.selenium.WebDriver;
 
+import pagesObject.AddToCartPageObject;
 import pagesObject.AddressPageObject;
-import pagesObject.BookProductPageObject;
+import pagesObject.BookDetailedPageObject;
+import pagesObject.BookPageObject;
 import pagesObject.ChangePasswordPageObject;
 import pagesObject.ComputersPageObject;
 import pagesObject.HomePageObject;
 import pagesObject.LoginPageObject;
 import pagesObject.MyAccountPageObject;
 import pagesObject.MyProductReviewPageObject;
+import pagesObject.NotebooksDetailedPageObject;
 import pagesObject.NotebooksPageObject;
 import pagesObject.RegisterPageObject;
 import pagesObject.SearchPageObject;
+import pagesObject.WishlistPageObject;
 
 public class PageGeneratorManager {
 	public static RegisterPageObject getRegisterPageObject(WebDriver driver) {
@@ -39,8 +43,12 @@ public class PageGeneratorManager {
 		return new ChangePasswordPageObject(driver);
 	}
 
-	public static BookProductPageObject getBookProductPageObject(WebDriver driver) {
-		return new BookProductPageObject(driver);
+	public static BookPageObject getBookPageObject(WebDriver driver) {
+		return new BookPageObject(driver);
+	}
+	
+	public static BookDetailedPageObject getBookDetailedPageObject(WebDriver driver) {
+		return new BookDetailedPageObject(driver);
 	}
 
 	public static MyProductReviewPageObject getMyProductReviewPageObject(WebDriver driver) {
@@ -57,5 +65,17 @@ public class PageGeneratorManager {
 	
 	public static NotebooksPageObject getNotebooksPageObject(WebDriver driver) {
 		return new NotebooksPageObject(driver);
+	}
+	
+	public static NotebooksDetailedPageObject getNotebooksDetailedPageObject(WebDriver driver) {
+		return new NotebooksDetailedPageObject(driver);
+	}
+	
+	public static WishlistPageObject getWishlistPageObject(WebDriver driver) {
+		return new WishlistPageObject(driver);
+	}
+	
+	public static AddToCartPageObject getAddToCartPageObject(WebDriver driver) {
+		return new AddToCartPageObject(driver);
 	}
 }

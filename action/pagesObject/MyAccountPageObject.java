@@ -63,20 +63,21 @@ public class MyAccountPageObject extends BasePages{
 	
 	@Step("Click on Save button")
 	public void clickOnSaveButton() {
-		waitForElementVisibility(driver, MyAccountPageUI.SAVE_BUTTON);
-		clickOnRadioButton(driver, MyAccountPageUI.SAVE_BUTTON);
+		waitForElementClickable(driver, MyAccountPageUI.SAVE_BUTTON);
+		clickOnElement(driver, MyAccountPageUI.SAVE_BUTTON);
 	}
 
 	@Step("Verify Notification Success Bar is displayed")
-	public boolean isNotificationSuccessBarDisplayed() {
+	public boolean isBarNotificationSuccessDisplayed() {
 		waitForElementVisibility(driver, MyAccountPageUI.NOTIFICATION_SUCCESS_TEXT);
 		return isElementDisplayed(driver, MyAccountPageUI.NOTIFICATION_SUCCESS_TEXT);
 	}
 	
 	@Step("Verify Notification Success Bar is displayed")
-	public void closeNotificationSuccessBar() {
-		waitForElementVisibility(driver, MyAccountPageUI.CLOSE_NOTIFICATION_SUCCESS_BUTTON);
-		clickOnElement(driver, MyAccountPageUI.CLOSE_NOTIFICATION_SUCCESS_BUTTON);
+	public void clickOnCloseButton() {
+		waitForElementClickable(driver, MyAccountPageUI.BAR_CLOSE_BUTTON);
+		clickOnElement(driver, MyAccountPageUI.BAR_CLOSE_BUTTON);
+		waitForElementInvisibility(driver, MyAccountPageUI.BAR_CLOSE_BUTTON);
 	}
 
 	@Step("Get Gender value")

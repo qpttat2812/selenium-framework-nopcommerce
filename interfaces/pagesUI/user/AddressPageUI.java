@@ -16,7 +16,7 @@ public class AddressPageUI {
 	public static final String FAX_NUMBER_TEXTBOX = "//input[@id='Address_FaxNumber']";
 	public static final String SAVE_BUTTON = "//button[contains(@class,'save-address-button')]";
 	public static final String NOTIFICATION_SUCCESS_TEXT = "//div[@class='bar-notification success']/p[@class='content']";
-	public static final String CLOSE_BUTTON = "//span[@class='close']";
+	public static final String BAR_CLOSE_BUTTON = "//div[@class='bar-notification success']//span[@class='close']";
 	public static final String NAME_TEXT = "//li[@class='name']";
 	public static final String NAME_TITLE = "//div[contains(@class,'address-item')]//strong";
 	public static final String EMAIL_TEXT = "//li[@class='email']";

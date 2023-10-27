@@ -5,6 +5,7 @@ import java.util.List;
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePages;
+import io.qameta.allure.Step;
 import pagesUI.user.NotebooksPageUI;
 
 public class NotebooksPageObject extends BasePages{
@@ -14,6 +15,7 @@ public class NotebooksPageObject extends BasePages{
 		this.driver = driver;
 	}
 	
+	@Step("Verify Notebook title is displayed")
 	public boolean isNoteBookPageDisplayed() {
 		waitForElementVisibility(driver, NotebooksPageUI.NOTEBOOK_TITLE);
 		return isElementDisplayed(driver, NotebooksPageUI.NOTEBOOK_TITLE);
@@ -25,19 +27,23 @@ public class NotebooksPageObject extends BasePages{
 		return getAllItemsBeforeSortingByName(driver, NotebooksPageUI.LIST_ITEM_TITLES);
 	}
 	
-	public List<String> getBeforeSortingListByNameWithAscendingOrder(){
+	@Step("Get Item List before clicking on sorting by name with ascending order")
+	public List<String> getItemListBeforeSortingByNameWithAscendingOrder(){
 		return sortAscendingByName(getItemListBeforeSortingByName());
 	}
 	
-	public List<String> getBeforeSortingListByNameWithDescendingOrder(){
+	@Step("Get Item List before clicking on sorting by name with descending order")
+	public List<String> getItemListBeforeSortingByNameWithDescendingOrder(){
 		return sortDescendingByName(getItemListBeforeSortingByName());
 	}
 
+	@Step("Select sort type")
 	public void selectSortType(String expectedSortType) {
 		waitForElementVisibility(driver, NotebooksPageUI.BASE_SORT_DROPDOWNLIST);
 		selectDefaultItemDropdownList(driver, NotebooksPageUI.BASE_SORT_DROPDOWNLIST, expectedSortType);
 	}
 	
+	@Step("Get Item List after sorting by name")
 	public List<String> getItemListAfterSortingByName(){
 		waitForElementInvisibility(driver, NotebooksPageUI.AJAX_PRODUCT_LOADING_ICON);
 		waitForAllElementsVisibility(driver, NotebooksPageUI.LIST_ITEM_TITLES);
@@ -50,26 +56,31 @@ public class NotebooksPageObject extends BasePages{
 		return getAllItemsBeforeSortingByPrice(driver, NotebooksPageUI.LIST_ITEM_PRICES);
 	}
 	
-	public List<Double> getBeforeSortingListByPriceWithAscendingOrder() {
+	@Step("Get Item List before clicking on sorting by price with ascending order")
+	public List<Double> getItemListBeforeSortingByPriceWithAscendingOrder() {
 		return sortAscendingByPrice(getItemListBeforeSortingByPrice());
 	}
 
-	public List<Double> getBeforeSortingListByPriceWithDescendingOrder() {
+	@Step("Get Item List before clicking on sorting by price with descending order")
+	public List<Double> getItemListBeforeSortingByPriceWithDescendingOrder() {
 		return sortDescendingByPrice(getItemListBeforeSortingByPrice());
 	}
 	
+	@Step("Get Item List after sorting by price")
 	public List<Double> getItemListAfterSortingByPrice(){
 		waitForElementInvisibility(driver, NotebooksPageUI.AJAX_PRODUCT_LOADING_ICON);
 		waitForAllElementsVisibility(driver, NotebooksPageUI.LIST_ITEM_PRICES);
 		return getAllItemsAfterSortingByPrice(driver, NotebooksPageUI.LIST_ITEM_PRICES);
 	}
 
+	@Step("Select display type")
 	public void selectDisplayType(String expectedType) {
 		waitForElementInvisibility(driver, NotebooksPageUI.AJAX_PRODUCT_LOADING_ICON);
 		waitForElementVisibility(driver, NotebooksPageUI.DISPLAY_TYPE_DROPDOWNLIST);
 		selectDefaultItemDropdownList(driver, NotebooksPageUI.DISPLAY_TYPE_DROPDOWNLIST, expectedType);
 	}
 
+	@Step("Verify Item Size is displayed correctly")
 	public boolean isItemSizeDisplayedCorrect(int expectedSize) {
 		waitForElementInvisibility(driver, NotebooksPageUI.AJAX_PRODUCT_LOADING_ICON);
 		waitForElementVisibility(driver, NotebooksPageUI.LIST_ITEMS_DISPLAY);
@@ -82,34 +93,38 @@ public class NotebooksPageObject extends BasePages{
 		}
 	}
 
+	@Step("Verify Next paging icon is displayed")
 	public boolean isNextPagingIconDisplayed() {
 		waitForElementInvisibility(driver, NotebooksPageUI.AJAX_PRODUCT_LOADING_ICON);
 		waitForElementVisibility(driver, NotebooksPageUI.NEXT_PAGING_ICON);
 		return isElementDisplayed(driver, NotebooksPageUI.NEXT_PAGING_ICON);
 	}
 
+	@Step("Verify Previous paging icon is displayed")
 	public boolean isPreviousPagingIconDisplayed() {
 		waitForElementInvisibility(driver, NotebooksPageUI.AJAX_PRODUCT_LOADING_ICON);
 		waitForElementVisibility(driver, NotebooksPageUI.PREVIOUS_PAGING_ICON);
 		return isElementDisplayed(driver, NotebooksPageUI.PREVIOUS_PAGING_ICON);
 	}
 	
+	@Step("Verify Next paging icon is undisplayed")
 	public boolean isNextPagingIconUndisplayed() {
-		waitForElementInvisibility(driver, NotebooksPageUI.AJAX_PRODUCT_LOADING_ICON);
 		return isElementUndisplayed(driver, NotebooksPageUI.NEXT_PAGING_ICON);
 	}
 	
+	@Step("Verify Previous paging icon is undisplayed")
 	public boolean isPreviousPagingIconUndisplayed() {
-		waitForElementInvisibility(driver, NotebooksPageUI.AJAX_PRODUCT_LOADING_ICON);
 		return isElementUndisplayed(driver, NotebooksPageUI.PREVIOUS_PAGING_ICON);
 	}
 
+	@Step("Click on Next page")
 	public void clickOnNextPage() {
 		waitForElementInvisibility(driver, NotebooksPageUI.AJAX_PRODUCT_LOADING_ICON);
 		waitForElementVisibility(driver, NotebooksPageUI.NEXT_PAGING_ICON);
 		clickOnElement(driver, NotebooksPageUI.NEXT_PAGING_ICON);
 	}
 	
+	@Step("Click on Previous page")
 	public void clickOnPreviousPage() {
 		waitForElementInvisibility(driver, NotebooksPageUI.AJAX_PRODUCT_LOADING_ICON);
 		waitForElementVisibility(driver, NotebooksPageUI.PREVIOUS_PAGING_ICON);

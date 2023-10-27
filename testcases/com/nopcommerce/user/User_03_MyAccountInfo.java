@@ -12,7 +12,8 @@ import org.testng.annotations.Test;
 import commons.BaseTest;
 import commons.PageGeneratorManager;
 import pagesObject.AddressPageObject;
-import pagesObject.BookProductPageObject;
+import pagesObject.BookDetailedPageObject;
+import pagesObject.BookPageObject;
 import pagesObject.ChangePasswordPageObject;
 import pagesObject.HomePageObject;
 import pagesObject.LoginPageObject;
@@ -27,9 +28,10 @@ public class User_03_MyAccountInfo extends BaseTest{
 	private AddressPageObject addressPage;
 	private LoginPageObject loginPage;
 	private ChangePasswordPageObject changePasswordPage;
-	private BookProductPageObject bookProductPage;
+	private BookPageObject bookPage;
 	private MyProductReviewPageObject myProductReviewPage;
 	private RegisterPageObject registerPage;
+	private BookDetailedPageObject bookDetailedPage;
 	
 	private String registeredFirstName, registeredLastName, companyName, newFirstName, newLastName;
 	private String dayOfBirth, monthOfBirth, yearOfBirth, gender;
@@ -108,8 +110,8 @@ public class User_03_MyAccountInfo extends BaseTest{
 		myAccountPage.clickOnSaveButton();
 		
 		//The customer info has been updated successfully.
-		Assert.assertTrue(myAccountPage.isNotificationSuccessBarDisplayed());
-		myAccountPage.closeNotificationSuccessBar();
+		Assert.assertTrue(myAccountPage.isBarNotificationSuccessDisplayed());
+		myAccountPage.clickOnCloseButton();
 		Assert.assertEquals(myAccountPage.getGenderValue("value"), gender);
 		Assert.assertEquals(myAccountPage.getFirstNameValue("value"), newFirstName);
 		Assert.assertEquals(myAccountPage.getLastNameValue("value"), newLastName);
@@ -122,7 +124,7 @@ public class User_03_MyAccountInfo extends BaseTest{
 	
 	 @Test 
 	public void MyAccount_02_AddAddressInfo() {
-		myAccountPage.clickOnSideBarPage(driver, addressPageName);
+		myAccountPage.clickOnSideBarMenu(driver, addressPageName);
 		addressPage = PageGeneratorManager.getAddressPageObject(driver);
 		
 		addressPage.clickOnAddNewAddressButton();
@@ -140,7 +142,7 @@ public class User_03_MyAccountInfo extends BaseTest{
 		addressPage.inputToFaxNumberTextbox(faxNumber);
 		addressPage.clickOnSaveButton();
 		
-		Assert.assertTrue(addressPage.isNotificationSuccessBarDisplayed());
+		Assert.assertTrue(addressPage.isBarNotificationSuccessDisplayed());
 		addressPage.clickOnCloseButton();
 		Assert.assertEquals(addressPage.getNameTitle(), newFirstName + " " + newLastName);
 		Assert.assertEquals(addressPage.getNameText(), newFirstName + " " + newLastName);
@@ -158,7 +160,7 @@ public class User_03_MyAccountInfo extends BaseTest{
 	
 	@Test
 	public void MyAccount_03_ChangePassword() {
-		myAccountPage.clickOnSideBarPage(driver, changePasswordPageName);
+		myAccountPage.clickOnSideBarMenu(driver, changePasswordPageName);
 		changePasswordPage = PageGeneratorManager.getChangePasswordPageObject(driver);
 		
 		changePasswordPage.inputToOldPasswordTextbox(registeredPassword);
@@ -166,7 +168,7 @@ public class User_03_MyAccountInfo extends BaseTest{
 		changePasswordPage.inputToConfirmPasswordTextbox(newPassword);
 		changePasswordPage.clickOnChangePasswordButton();
 		
-		Assert.assertTrue(changePasswordPage.isNotificationSuccessBarDisplayed());
+		Assert.assertTrue(changePasswordPage.isBarNotificationSuccessDisplayed());
 		changePasswordPage.clickOnCloseButton();
 		
 		homePage.clickOnLogoutLink();
@@ -189,18 +191,20 @@ public class User_03_MyAccountInfo extends BaseTest{
 	@Test
 	public void MyAccount_04_MyProductReview() {
 		homePage.clickOnProductTab(driver, "Books");
-		bookProductPage = PageGeneratorManager.getBookProductPageObject(driver);
+		bookPage = PageGeneratorManager.getBookPageObject(driver);
+		Assert.assertTrue(bookPage.isBookPageDisplayed());
 		
-		bookProductPage.clickOnBookTitleLink(bookTitle);
-		bookProductPage.clickOnAddReviewLink();
+		bookPage.clickOnProductTitleLink(driver, bookTitle);
+		bookDetailedPage = PageGeneratorManager.getBookDetailedPageObject(driver);
+		bookDetailedPage.clickOnAddReviewLink();
 		
-		bookProductPage.inputToReviewTitleTextbox(reviewTitle);
-		bookProductPage.inputToReviewContentTextArea(reviewContent);
-		bookProductPage.selectRatingLevelRadioButton("Good");
-		bookProductPage.clickOnSubmitReviewButton();
+		bookDetailedPage.inputToReviewTitleTextbox(reviewTitle);
+		bookDetailedPage.inputToReviewContentTextArea(reviewContent);
+		bookDetailedPage.selectRatingLevelRadioButton("Good");
+		bookDetailedPage.clickOnSubmitReviewButton();
 		
 		myAccountPage = homePage.clickOnMyAccountLink();
-		myAccountPage.clickOnSideBarPage(driver, "My product reviews");
+		myAccountPage.clickOnSideBarMenu(driver, "My product reviews");
 		myProductReviewPage = PageGeneratorManager.getMyProductReviewPageObject(driver);
 		
 		Assert.assertEquals(myProductReviewPage.getReviewTitleText(), reviewTitle);

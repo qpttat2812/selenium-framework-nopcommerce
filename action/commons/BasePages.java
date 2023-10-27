@@ -410,9 +410,14 @@ public class BasePages {
 		js.executeScript("arguments[0].click();", getElement(driver, xpathLocator));
 	}
 
-	public String getInnerTextByJS(WebDriver driver) {
+	public String getInnerHTMLContentByJS(WebDriver driver) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		return (String) js.executeScript("return document.documentElement.innerHTML;");
+	}
+	
+	public String getInnerTextByJS(WebDriver driver, WebElement element) {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		return (String) js.executeScript("return arguments[0].innerText;", element);
 	}
 
 	public String getTitleByJS(WebDriver driver) {
@@ -648,7 +653,7 @@ public class BasePages {
 	 * @param valuesForXpathLocator - textlink names of Sidebar
 	 */
 	@Step("Click on {1} link at Sidebar")
-	public void clickOnSideBarPage(WebDriver driver, String valuesForXpathLocator) {
+	public void clickOnSideBarMenu(WebDriver driver, String valuesForXpathLocator) {
 		waitForElementVisibility(driver, BasePageUI.DYNAMIC_SIDEBAR_MY_ACCOUNT_LINKS, valuesForXpathLocator);
 		clickOnElement(driver, BasePageUI.DYNAMIC_SIDEBAR_MY_ACCOUNT_LINKS, valuesForXpathLocator);
 	}
@@ -675,5 +680,30 @@ public class BasePages {
 	public void clickOnProductTab(WebDriver driver, String valuesForXpathLocator) {
 		waitForElementVisibility(driver, BasePageUI.DYNAMIC_PRODUCT_TAB, valuesForXpathLocator);
 		clickOnElement(driver, BasePageUI.DYNAMIC_PRODUCT_TAB, valuesForXpathLocator);
+	}
+	
+	/**
+	 * Fuction for clicking on product title
+	 * 
+	 * @param driver
+	 * @param productTitle
+	 */
+	@Step("Click on product title with value {0}")
+	public void clickOnProductTitleLink(WebDriver driver, String productTitle) {
+		waitForElementVisibility(driver, BasePageUI.DYNAMIC_PRODUCT_DETAILED_TITLE, productTitle);
+		clickOnElement(driver, BasePageUI.DYNAMIC_PRODUCT_DETAILED_TITLE, productTitle);
+	}
+	
+	/**
+	 * Function for clicking on Add to wishlist, Add to compare list, Email a friend 
+	 * Buttons in Product detail page
+	 * @param driver
+	 * @param productTitle
+	 * @param buttonName
+	 */
+	@Step("Click on {1} button of {0} item in product detailed page")
+	public void clickOnActionButton(WebDriver driver, String productTitle, String buttonName) {
+		waitForElementVisibility(driver, BasePageUI.DYNAMIC_ACTION_BUTTONS_IN_PRODUCT_DETAILED_PAGE, productTitle, buttonName);
+		clickOnElement(driver, BasePageUI.DYNAMIC_ACTION_BUTTONS_IN_PRODUCT_DETAILED_PAGE, productTitle, buttonName);
 	}
 }
