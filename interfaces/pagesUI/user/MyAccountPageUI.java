@@ -1,7 +1,6 @@
 package pagesUI.user;
 
 public class MyAccountPageUI {
-
 	public static final String FEMALE_GENDER = "//label[text()='Female']/preceding-sibling::input";
 	public static final String FIRST_NAME_TEXTBOX = "//input[@id='FirstName']";
 	public static final String LAST_NAME_TEXTBOX = "//input[@id='LastName']";

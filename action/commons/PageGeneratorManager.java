@@ -5,10 +5,12 @@ import org.openqa.selenium.WebDriver;
 import pagesObject.AddressPageObject;
 import pagesObject.BookProductPageObject;
 import pagesObject.ChangePasswordPageObject;
+import pagesObject.ComputersPageObject;
 import pagesObject.HomePageObject;
 import pagesObject.LoginPageObject;
 import pagesObject.MyAccountPageObject;
 import pagesObject.MyProductReviewPageObject;
+import pagesObject.NotebooksPageObject;
 import pagesObject.RegisterPageObject;
 import pagesObject.SearchPageObject;
 
@@ -47,5 +49,13 @@ public class PageGeneratorManager {
 	
 	public static SearchPageObject getSearchPageObject(WebDriver driver) {
 		return new SearchPageObject(driver);
+	}
+	
+	public static ComputersPageObject getComputersPageObject(WebDriver driver) {
+		return new ComputersPageObject(driver);
+	}
+	
+	public static NotebooksPageObject getNotebooksPageObject(WebDriver driver) {
+		return new NotebooksPageObject(driver);
 	}
 }

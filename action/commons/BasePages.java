@@ -3,6 +3,7 @@ package commons;
 import java.io.File;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -329,7 +330,16 @@ public class BasePages {
 	}
 
 	public boolean isElementDisplayed(WebDriver driver, String xpathLocator) {
-		return getElement(driver, xpathLocator).isDisplayed();
+		overrideTimeOut(driver, shortTimeOut);
+		if (!getElement(driver, xpathLocator).isDisplayed()) {
+			overrideTimeOut(driver, longTimeOut);
+			return false;
+		}
+		else {
+			overrideTimeOut(driver, longTimeOut);
+			return true;
+		}
+		 
 	}
 
 	public boolean isElementDisplayed(WebDriver driver, String xpathLocator, String... valuesForXpathLocator) {
@@ -548,37 +558,94 @@ public class BasePages {
 	private void overrideTimeOut(WebDriver driver, long timeOut) {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(timeOut));
 	}
-	
+
 	public boolean isElementUndisplayed(WebDriver driver, String xpathLocator) {
 		overrideTimeOut(driver, shortTimeOut);
 		List<WebElement> elements = getElements(driver, xpathLocator);
 		overrideTimeOut(driver, longTimeOut);
-		if(elements.size() == 0) {
+		if (elements.size() == 0) {
 			return true;
-		}
-		else if(elements.size() > 0 && !elements.get(0).isDisplayed()) {
+		} else if (elements.size() > 0 && !elements.get(0).isDisplayed()) {
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
-	
+
 	public Set<Cookie> getAllCookies(WebDriver driver) {
 		return driver.manage().getCookies();
 	}
-	
+
 	public void setCookie(WebDriver driver, Set<Cookie> cookies) {
-		for(Cookie cookie : cookies) {
+		for (Cookie cookie : cookies) {
 			driver.manage().addCookie(cookie);
 		}
 		sleepInSecond(5);
 	}
 
-	/** 
+	public List<String> getAllItemsBeforeSortingByName(WebDriver driver, String xpathLocator) {
+		List<WebElement> beforeSortingWebElementList = getElements(driver, xpathLocator);
+		List<String> beforeSortingProductList = new ArrayList<String>();
+		for (WebElement element : beforeSortingWebElementList) {
+			beforeSortingProductList.add(element.getText());
+		}
+		return beforeSortingProductList;
+	}
+
+	public List<String> getAllItemsAfterSortingByName(WebDriver driver, String xpathLocator) {
+		List<WebElement> afterSortingWebElementList = getElements(driver, xpathLocator);
+		List<String> afterSortingProductList = new ArrayList<String>();
+		for (WebElement element : afterSortingWebElementList) {
+			afterSortingProductList.add(element.getText());
+		}
+		return afterSortingProductList;
+	}
+
+	public List<String> sortAscendingByName(List<String> beforeSortingProductList) {
+		Collections.sort(beforeSortingProductList);
+		return beforeSortingProductList;
+	}
+
+	public List<String> sortDescendingByName(List<String> beforeSortingProductList) {
+		Collections.sort(beforeSortingProductList, Collections.reverseOrder());
+		return beforeSortingProductList;
+	}
+	
+	public List<Double> getAllItemsBeforeSortingByPrice(WebDriver driver, String xpathLocator) {
+		List<WebElement> beforeSortingWebElementList = getElements(driver, xpathLocator);
+		List<Double> beforeSortingPriceList = new ArrayList<Double>();
+		for (WebElement element : beforeSortingWebElementList) {
+			beforeSortingPriceList.add(Double.valueOf(element.getText().replace("$", "").replace(",", "")));
+		}
+		return beforeSortingPriceList;
+	}
+	
+	public List<Double> getAllItemsAfterSortingByPrice(WebDriver driver, String xpathLocator) {
+		List<WebElement> afterSortingWebElementList = getElements(driver, xpathLocator);
+		List<Double> afterSortingPriceList = new ArrayList<Double>();
+		for (WebElement element : afterSortingWebElementList) {
+			afterSortingPriceList.add(Double.valueOf(element.getText().replace("$", "").replace(",", "")));
+		}
+		return afterSortingPriceList;
+	}
+	
+	public List<Double> sortAscendingByPrice(List<Double> beforeSortingProductList) {
+		Collections.sort(beforeSortingProductList);
+		return beforeSortingProductList;
+	}
+
+	public List<Double> sortDescendingByPrice(List<Double> beforeSortingProductList) {
+		Collections.sort(beforeSortingProductList, Collections.reverseOrder());
+		return beforeSortingProductList;
+	}
+	
+	// -------------------- OTHER COMMON SPECIFIC FUNCTIONS IN NOPCOMMERCE -----------------------------
+
+	/**
 	 * Function for clicking on textlink at Sidebar
+	 * 
 	 * @param driver
-	 * @param valuesForXpathLocator - textlink names of Sidebar  
+	 * @param valuesForXpathLocator - textlink names of Sidebar
 	 */
 	@Step("Click on {1} link at Sidebar")
 	public void clickOnSideBarPage(WebDriver driver, String valuesForXpathLocator) {
@@ -587,7 +654,8 @@ public class BasePages {
 	}
 
 	/**
-	 *  Function for clicking on textlink at Footer
+	 * Function for clicking on textlink at Footer
+	 * 
 	 * @param driver
 	 * @param valuesForXpathLocator - textlink names of Footer
 	 */
@@ -596,11 +664,12 @@ public class BasePages {
 		waitForElementVisibility(driver, BasePageUI.DYNAMIC_FOOTER_LINKS, valuesForXpathLocator);
 		clickOnElement(driver, BasePageUI.DYNAMIC_FOOTER_LINKS, valuesForXpathLocator);
 	}
-	
+
 	/**
 	 * Function for clicking on tab name link
+	 * 
 	 * @param driver
-	 * @param valuesForXpathLocator - tab name 
+	 * @param valuesForXpathLocator - tab name
 	 */
 	@Step("Click on {1} tab link")
 	public void clickOnProductTab(WebDriver driver, String valuesForXpathLocator) {
