@@ -40,7 +40,7 @@ public class User_03_MyAccountInfo extends BaseTest{
 	private String changePasswordPageName;
 	private String registeredPassword, registeredEmail;
 	private String newEmail, newPassword;
-	private String bookTitle;
+	private String bookName;
 	private String reviewTitle;
 	private String reviewContent;
 	
@@ -70,7 +70,7 @@ public class User_03_MyAccountInfo extends BaseTest{
 		faxNumber = "99333667";
 		addressPageName = "Addresses";
 		changePasswordPageName = "Change password";
-		bookTitle = "Fahrenheit 451 by Ray Bradbury";
+		bookName = "Fahrenheit 451 by Ray Bradbury";
 		reviewTitle = "recommended";
 		reviewContent = "it's worth to buy.\nAll books of this author are good.";
 		
@@ -194,7 +194,7 @@ public class User_03_MyAccountInfo extends BaseTest{
 		bookPage = PageGeneratorManager.getBookPageObject(driver);
 		Assert.assertTrue(bookPage.isBookPageDisplayed());
 		
-		bookPage.clickOnProductTitleLink(driver, bookTitle);
+		bookPage.clickOnProductNameLink(driver, bookName);
 		bookDetailedPage = PageGeneratorManager.getBookDetailedPageObject(driver);
 		bookDetailedPage.clickOnAddReviewLink();
 		
@@ -209,7 +209,7 @@ public class User_03_MyAccountInfo extends BaseTest{
 		
 		Assert.assertEquals(myProductReviewPage.getReviewTitleText(), reviewTitle);
 		Assert.assertEquals(myProductReviewPage.getReviewText(), reviewContent);
-		Assert.assertEquals(myProductReviewPage.getBookReviewText(bookTitle), bookTitle);
+		Assert.assertEquals(myProductReviewPage.getBookReviewText(bookName), bookName);
 	}
 	
 	public int randomNumber() {

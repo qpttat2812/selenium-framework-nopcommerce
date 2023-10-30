@@ -54,17 +54,20 @@ public class HomePageObject extends BasePages{
 		clickOnElement(driver, HomePageUI.WISHLIST_LINK);
 		return PageGeneratorManager.getWishlistPageObject(driver);
 	}
-
+	
+	@Step("Get product quantity from cart")
 	public int getShoppingCartQuantity() {
 		waitForElementVisibility(driver, HomePageUI.SHOPPING_CART_QUANTITY_TEXT);
 		return Integer.valueOf(getTextElement(driver, HomePageUI.SHOPPING_CART_QUANTITY_TEXT).substring(1, 2));
 	}
 
+	@Step("Get quantity from wishlist")
 	public int getWishlistLinkQuantity() {
 		waitForElementVisibility(driver, HomePageUI.WISHLIST_QUANTITY_TEXT);
 		return Integer.valueOf(getTextElement(driver, HomePageUI.WISHLIST_QUANTITY_TEXT).substring(1, 2));
 	}
 	
+	@Step("Click on header logo")
 	public void clickOnHeaderLogo() {
 		waitForAllElementsVisibility(driver, HomePageUI.HEADER_LOGO_LINK);
 		clickOnElement(driver, HomePageUI.HEADER_LOGO_LINK);

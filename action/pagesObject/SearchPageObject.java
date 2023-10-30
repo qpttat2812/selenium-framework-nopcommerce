@@ -75,7 +75,7 @@ public class SearchPageObject extends BasePages{
 		selectDefaultItemDropdownList(driver, SearchPageUI.MANUFACTURER_DROPDOWNLIST, expectedItem);
 	}
 
-	
+	@Step("Verify expected item is displayed after searching")
 	public boolean isContainedExpectedItem(String expectedItem) {
 		List<String> itemList = getProductNameList();
 		boolean flag = false;

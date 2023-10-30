@@ -686,24 +686,36 @@ public class BasePages {
 	 * Fuction for clicking on product title
 	 * 
 	 * @param driver
-	 * @param productTitle
+	 * @param productName
 	 */
-	@Step("Click on product title with value {0}")
-	public void clickOnProductTitleLink(WebDriver driver, String productTitle) {
-		waitForElementVisibility(driver, BasePageUI.DYNAMIC_PRODUCT_DETAILED_TITLE, productTitle);
-		clickOnElement(driver, BasePageUI.DYNAMIC_PRODUCT_DETAILED_TITLE, productTitle);
+	@Step("Click on product name with value {0}")
+	public void clickOnProductNameLink(WebDriver driver, String productName) {
+		waitForElementVisibility(driver, BasePageUI.DYNAMIC_PRODUCT_NAME_IN_CATEGORY_PAGE, productName);
+		clickOnElement(driver, BasePageUI.DYNAMIC_PRODUCT_NAME_IN_CATEGORY_PAGE, productName);
 	}
 	
 	/**
 	 * Function for clicking on Add to wishlist, Add to compare list, Email a friend 
 	 * Buttons in Product detail page
 	 * @param driver
-	 * @param productTitle
+	 * @param productName
 	 * @param buttonName
 	 */
 	@Step("Click on {1} button of {0} item in product detailed page")
-	public void clickOnActionButton(WebDriver driver, String productTitle, String buttonName) {
-		waitForElementVisibility(driver, BasePageUI.DYNAMIC_ACTION_BUTTONS_IN_PRODUCT_DETAILED_PAGE, productTitle, buttonName);
-		clickOnElement(driver, BasePageUI.DYNAMIC_ACTION_BUTTONS_IN_PRODUCT_DETAILED_PAGE, productTitle, buttonName);
+	public void clickOnActionButton(WebDriver driver, String productName, String buttonName) {
+		waitForElementVisibility(driver, BasePageUI.DYNAMIC_ACTION_BUTTONS_IN_PRODUCT_DETAILED_PAGE, productName, buttonName);
+		clickOnElement(driver, BasePageUI.DYNAMIC_ACTION_BUTTONS_IN_PRODUCT_DETAILED_PAGE, productName, buttonName);
+	}
+	
+	/**
+	 * Function for getting product price in product detailed page
+	 * @param driver
+	 * @param productName
+	 * @return
+	 */
+	@Step("Get price of product in product detailed page")
+	public String getPriceOfProduct(WebDriver driver, String productName) {
+		waitForElementVisibility(driver, BasePageUI.DYNAMIC_PRODUCT_PRICE_TEXT, productName);
+		return getTextElement(driver, BasePageUI.DYNAMIC_PRODUCT_PRICE_TEXT, productName);
 	}
 }

@@ -78,6 +78,7 @@ public class BaseTest {
 
 	protected void closeBrowserDriver() {
 		String cmd = null;
+		
 		try {
 			String osName = System.getProperty("os.name").toLowerCase();
 			
@@ -113,6 +114,7 @@ public class BaseTest {
 			e.getMessage();
 		} finally {
 			try {
+				@SuppressWarnings("deprecation")
 				Process process = Runtime.getRuntime().exec(cmd);
 				process.waitFor();
 			} catch (IOException e) {

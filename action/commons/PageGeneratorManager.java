@@ -7,6 +7,7 @@ import pagesObject.AddressPageObject;
 import pagesObject.BookDetailedPageObject;
 import pagesObject.BookPageObject;
 import pagesObject.ChangePasswordPageObject;
+import pagesObject.CompareProductPageObject;
 import pagesObject.ComputersPageObject;
 import pagesObject.HomePageObject;
 import pagesObject.LoginPageObject;
@@ -14,6 +15,7 @@ import pagesObject.MyAccountPageObject;
 import pagesObject.MyProductReviewPageObject;
 import pagesObject.NotebooksDetailedPageObject;
 import pagesObject.NotebooksPageObject;
+import pagesObject.RecentProductViewPageObject;
 import pagesObject.RegisterPageObject;
 import pagesObject.SearchPageObject;
 import pagesObject.WishlistPageObject;
@@ -77,5 +79,13 @@ public class PageGeneratorManager {
 	
 	public static AddToCartPageObject getAddToCartPageObject(WebDriver driver) {
 		return new AddToCartPageObject(driver);
+	}
+	
+	public static CompareProductPageObject getCompareProductPageObject(WebDriver driver) {
+		return new CompareProductPageObject(driver);
+	}
+	
+	public static RecentProductViewPageObject getRecentProductViewPageObject(WebDriver driver) {
+		return new RecentProductViewPageObject(driver);
 	}
 }

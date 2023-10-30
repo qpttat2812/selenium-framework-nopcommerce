@@ -25,4 +25,11 @@ public class NotebooksDetailedPageObject extends BasePages{
 		clickOnElement(driver, NotebooksDetailedPageUI.BAR_CLOSE_BUTTON);
 		waitForElementInvisibility(driver, NotebooksDetailedPageUI.BAR_CLOSE_BUTTON);
 	}
+	
+	
+	@Step("Get product title at header in product detailed page")
+	public String getProductNameAtHeader() {
+		waitForElementVisibility(driver, NotebooksDetailedPageUI.PRODUCT_DETAILED_TITLE);
+		return getTextElement(driver, NotebooksDetailedPageUI.PRODUCT_DETAILED_TITLE);
+	}
 }

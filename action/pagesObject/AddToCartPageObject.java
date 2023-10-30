@@ -3,6 +3,7 @@ package pagesObject;
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePages;
+import io.qameta.allure.Step;
 
 public class AddToCartPageObject extends BasePages{
 	private WebDriver driver;
@@ -10,7 +11,8 @@ public class AddToCartPageObject extends BasePages{
 	public AddToCartPageObject(WebDriver driver) {
 		this.driver = driver;
 	}
-
+	
+	@Step("Get Product title")
 	public String getProductTitle() {
 		waitForElementInvisibility(driver, AddToCartPageUI.AJAX_LOADING_ICON);
 		waitForElementVisibility(driver, AddToCartPageUI.PRODUCT_TITLE);
