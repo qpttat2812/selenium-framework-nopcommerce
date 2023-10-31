@@ -96,4 +96,10 @@ public class RegisterPageObject extends BasePages{
 		waitForElementVisibility(driver, RegisterPageUI.CONFIRM_PASSWORD_TEXTBOX);
 		sendkeyToElement(driver, RegisterPageUI.CONFIRM_PASSWORD_TEXTBOX, password);
 	}
+
+	@Step("Verify Register Page title is displayed")
+	public boolean isRegisterPageTitleDisplayed() {
+		waitForElementVisibility(driver, RegisterPageUI.REGISTER_PAGE_TITLE);
+		return isElementDisplayed(driver, RegisterPageUI.REGISTER_PAGE_TITLE);
+	}
 }

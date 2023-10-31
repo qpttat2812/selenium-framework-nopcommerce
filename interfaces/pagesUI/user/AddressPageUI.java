@@ -27,4 +27,5 @@ public class AddressPageUI {
 	public static final String CITY_STATE_ZIPCODE_TEXT = "//li[@class='city-state-zip']";
 	public static final String COUNTRY_TEXT = "//li[@class='country']";
 	public static final String COMPANY_TEXT = "//li[@class='company']";
+	public static final String ADDRESS_TITLE = "//div[@class='page-title']/h1[text()='My account - Addresses']";
 }

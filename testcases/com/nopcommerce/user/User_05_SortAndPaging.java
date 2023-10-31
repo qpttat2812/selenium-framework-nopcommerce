@@ -34,10 +34,10 @@ public class User_05_SortAndPaging extends BaseTest {
 		driver = getBrowserName(browserName, pageURL);
 
 		homePage = PageGeneratorManager.getHomePageObject(driver);
-		homePage.clickOnProductTab(driver, productCategoryName);
+		homePage.clickOnProductTabLink(driver, productCategoryName);
 
 		computersPage = PageGeneratorManager.getComputersPageObject(driver);
-		notebooksPage = computersPage.clickOnNotebookSubCategory();
+		notebooksPage = computersPage.clickOnNotebooksLink();
 
 		Assert.assertTrue(notebooksPage.isNoteBookPageDisplayed());
 	}

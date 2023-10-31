@@ -9,6 +9,7 @@ import pagesObject.BookPageObject;
 import pagesObject.ChangePasswordPageObject;
 import pagesObject.CompareProductPageObject;
 import pagesObject.ComputersPageObject;
+import pagesObject.DesktopsPageObject;
 import pagesObject.HomePageObject;
 import pagesObject.LoginPageObject;
 import pagesObject.MyAccountPageObject;
@@ -87,5 +88,9 @@ public class PageGeneratorManager {
 	
 	public static RecentProductViewPageObject getRecentProductViewPageObject(WebDriver driver) {
 		return new RecentProductViewPageObject(driver);
+	}
+	
+	public static DesktopsPageObject getDesktopsPageObject(WebDriver driver) {
+		return new DesktopsPageObject(driver);
 	}
 }

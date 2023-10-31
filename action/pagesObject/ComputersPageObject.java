@@ -15,9 +15,22 @@ public class ComputersPageObject extends BasePages{
 	}
 	
 	@Step("Click on Notebook link from Computer page")
-	public NotebooksPageObject clickOnNotebookSubCategory() {
-		waitForElementClickable(driver, ComputersPageUI.NOTEBOOK_SUB_CATEGORY_LINK);
-		clickOnElement(driver, ComputersPageUI.NOTEBOOK_SUB_CATEGORY_LINK);
+	public NotebooksPageObject clickOnNotebooksLink() {
+		waitForElementClickable(driver, ComputersPageUI.NOTEBOOK_CATEGORY_LINK);
+		clickOnElement(driver, ComputersPageUI.NOTEBOOK_CATEGORY_LINK);
 		return PageGeneratorManager.getNotebooksPageObject(driver);
+	}
+	
+	@Step("Click on Desktop link from Computer page")
+	public DesktopsPageObject clickOnDesktopsLink() {
+		waitForElementClickable(driver, ComputersPageUI.DESKTOP_CATEGORY_LINK);
+		clickOnElement(driver, ComputersPageUI.DESKTOP_CATEGORY_LINK);
+		return PageGeneratorManager.getDesktopsPageObject(driver);
+	}
+
+	@Step("Verify Computers title is displayed")
+	public boolean isComputerPageTitleDisplayed() {
+		waitForElementVisibility(driver, ComputersPageUI.COMPUTER_PAGE_TITLE);
+		return isElementDisplayed(driver, ComputersPageUI.COMPUTER_PAGE_TITLE);
 	}
 }

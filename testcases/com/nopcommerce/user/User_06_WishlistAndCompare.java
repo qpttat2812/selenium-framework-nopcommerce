@@ -61,19 +61,22 @@ public class User_06_WishlistAndCompare extends BaseTest {
 
 		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
 
-		homePage.clickOnProductTab(driver, productCategoryName);
+		homePage.clickOnProductTabLink(driver, productCategoryName);
 		computersPage = PageGeneratorManager.getComputersPageObject(driver);
-		notebooksPage = computersPage.clickOnNotebookSubCategory();
+		
+		Assert.assertTrue(computersPage.isComputerPageTitleDisplayed());
+		
+		notebooksPage = computersPage.clickOnNotebooksLink();
 
 		Assert.assertTrue(notebooksPage.isNoteBookPageDisplayed());
 	}
 
 	@Test
 	public void WishlistAndCompare_01_AddToWishlist() {
-		notebooksPage.clickOnProductNameLink(driver, firstProductName);
+		notebooksPage.clickOnProductNameLinkOfEachCategory(driver, firstProductName);
 
 		notebooksDetailedPage = PageGeneratorManager.getNotebooksDetailedPageObject(driver);
-		notebooksDetailedPage.clickOnActionButton(driver, firstProductName, wishlistButton);
+		notebooksDetailedPage.clickOnActionButtonAtProductDetailedPage(driver, firstProductName, wishlistButton);
 
 		Assert.assertEquals(notebooksDetailedPage.getBarNotificationSuccessText(), expectedBarNotificationMessage);
 		notebooksDetailedPage.clickOnCloseButton();
@@ -102,16 +105,19 @@ public class User_06_WishlistAndCompare extends BaseTest {
 
 	@Test
 	public void WishlistAndCompare_03_RemoveProductFromWishlist() {
-		homePage.clickOnProductTab(driver, productCategoryName);
+		homePage.clickOnProductTabLink(driver, productCategoryName);
 		computersPage = PageGeneratorManager.getComputersPageObject(driver);
-		notebooksPage = computersPage.clickOnNotebookSubCategory();
+		
+		Assert.assertTrue(computersPage.isComputerPageTitleDisplayed());
+		
+		notebooksPage = computersPage.clickOnNotebooksLink();
 
 		Assert.assertTrue(notebooksPage.isNoteBookPageDisplayed());
 
-		notebooksPage.clickOnProductNameLink(driver, firstProductName);
+		notebooksPage.clickOnProductNameLinkOfEachCategory(driver, firstProductName);
 
 		notebooksDetailedPage = PageGeneratorManager.getNotebooksDetailedPageObject(driver);
-		notebooksDetailedPage.clickOnActionButton(driver, firstProductName, wishlistButton);
+		notebooksDetailedPage.clickOnActionButtonAtProductDetailedPage(driver, firstProductName, wishlistButton);
 
 		Assert.assertEquals(notebooksDetailedPage.getBarNotificationSuccessText(), expectedBarNotificationMessage);
 		notebooksDetailedPage.clickOnCloseButton();
@@ -125,34 +131,37 @@ public class User_06_WishlistAndCompare extends BaseTest {
 
 	@Test
 	public void WishlistAndCompare_04_AddProductToCompare() {
-		homePage.clickOnProductTab(driver, productCategoryName);
+		homePage.clickOnProductTabLink(driver, productCategoryName);
 		computersPage = PageGeneratorManager.getComputersPageObject(driver);
-		notebooksPage = computersPage.clickOnNotebookSubCategory();
+		
+		Assert.assertTrue(computersPage.isComputerPageTitleDisplayed());
+		
+		notebooksPage = computersPage.clickOnNotebooksLink();
 
 		Assert.assertTrue(notebooksPage.isNoteBookPageDisplayed());
 
-		notebooksPage.clickOnProductNameLink(driver, firstProductName);
+		notebooksPage.clickOnProductNameLinkOfEachCategory(driver, firstProductName);
 
 		notebooksDetailedPage = PageGeneratorManager.getNotebooksDetailedPageObject(driver);
 		Assert.assertEquals(notebooksDetailedPage.getProductNameAtHeader(), firstProductName);
 		
-		notebooksDetailedPage.clickOnActionButton(driver, firstProductName, compareButton);
+		notebooksDetailedPage.clickOnActionButtonAtProductDetailedPage(driver, firstProductName, compareButton);
 		Assert.assertEquals(notebooksDetailedPage.getBarNotificationSuccessText(), barNotificationSuccessMessage);
 		notebooksDetailedPage.clickOnCloseButton();
-		firstProductPrice = notebooksDetailedPage.getPriceOfProduct(driver, firstProductName);
+		firstProductPrice = notebooksDetailedPage.getPriceOfProductAtProductDetailedPage(driver, firstProductName);
 		
 		notebooksDetailedPage.backBrowser(driver);
 		
 		notebooksPage = PageGeneratorManager.getNotebooksPageObject(driver);
-		notebooksPage.clickOnProductNameLink(driver, secondProductName);
+		notebooksPage.clickOnProductNameLinkOfEachCategory(driver, secondProductName);
 		
 		notebooksDetailedPage = PageGeneratorManager.getNotebooksDetailedPageObject(driver);
 		Assert.assertEquals(notebooksDetailedPage.getProductNameAtHeader(), secondProductName);
 		
-		notebooksDetailedPage.clickOnActionButton(driver, secondProductName, compareButton);
+		notebooksDetailedPage.clickOnActionButtonAtProductDetailedPage(driver, secondProductName, compareButton);
 		Assert.assertEquals(notebooksDetailedPage.getBarNotificationSuccessText(), barNotificationSuccessMessage);
 		notebooksDetailedPage.clickOnCloseButton();
-		secondProductPrice = notebooksDetailedPage.getPriceOfProduct(driver, secondProductName);
+		secondProductPrice = notebooksDetailedPage.getPriceOfProductAtProductDetailedPage(driver, secondProductName);
 		
 		notebooksDetailedPage.clickOnFooterLink(driver, pageName);
 		compareProductPage = PageGeneratorManager.getCompareProductPageObject(driver);
@@ -173,14 +182,17 @@ public class User_06_WishlistAndCompare extends BaseTest {
 		String fourthProductName = "Asus N551JK-XO076H Laptop";
 		String fifthProductName = "Samsung Series 9 NP900X4C Premium Ultrabook";
 		
-		homePage.clickOnProductTab(driver, productCategoryName);
+		homePage.clickOnProductTabLink(driver, productCategoryName);
 		computersPage = PageGeneratorManager.getComputersPageObject(driver);
-		notebooksPage = computersPage.clickOnNotebookSubCategory();
+		
+		Assert.assertTrue(computersPage.isComputerPageTitleDisplayed());
+		
+		notebooksPage = computersPage.clickOnNotebooksLink();
 
 		Assert.assertTrue(notebooksPage.isNoteBookPageDisplayed());
 		
 		//click on first product and back to category page
-		notebooksPage.clickOnProductNameLink(driver, firstProductName);
+		notebooksPage.clickOnProductNameLinkOfEachCategory(driver, firstProductName);
 		notebooksDetailedPage = PageGeneratorManager.getNotebooksDetailedPageObject(driver);
 		Assert.assertEquals(notebooksDetailedPage.getProductNameAtHeader(), firstProductName);
 		notebooksDetailedPage.backBrowser(driver);
@@ -189,7 +201,7 @@ public class User_06_WishlistAndCompare extends BaseTest {
 		
 		//click on second product and back to category page
 		notebooksPage = PageGeneratorManager.getNotebooksPageObject(driver);
-		notebooksPage.clickOnProductNameLink(driver, secondProductName);
+		notebooksPage.clickOnProductNameLinkOfEachCategory(driver, secondProductName);
 		notebooksDetailedPage = PageGeneratorManager.getNotebooksDetailedPageObject(driver);
 		Assert.assertEquals(notebooksDetailedPage.getProductNameAtHeader(), secondProductName);
 		notebooksDetailedPage.backBrowser(driver);
@@ -198,7 +210,7 @@ public class User_06_WishlistAndCompare extends BaseTest {
 		
 		//click on third product and back to category page
 		notebooksPage = PageGeneratorManager.getNotebooksPageObject(driver);
-		notebooksPage.clickOnProductNameLink(driver, thirdProductName);
+		notebooksPage.clickOnProductNameLinkOfEachCategory(driver, thirdProductName);
 		notebooksDetailedPage = PageGeneratorManager.getNotebooksDetailedPageObject(driver);
 		Assert.assertEquals(notebooksDetailedPage.getProductNameAtHeader(), thirdProductName);
 		notebooksDetailedPage.backBrowser(driver);
@@ -207,7 +219,7 @@ public class User_06_WishlistAndCompare extends BaseTest {
 		
 		//click on fourth product and back to category page
 		notebooksPage = PageGeneratorManager.getNotebooksPageObject(driver);
-		notebooksPage.clickOnProductNameLink(driver, fourthProductName);
+		notebooksPage.clickOnProductNameLinkOfEachCategory(driver, fourthProductName);
 		notebooksDetailedPage = PageGeneratorManager.getNotebooksDetailedPageObject(driver);
 		Assert.assertEquals(notebooksDetailedPage.getProductNameAtHeader(), fourthProductName);
 		notebooksDetailedPage.backBrowser(driver);
@@ -216,7 +228,7 @@ public class User_06_WishlistAndCompare extends BaseTest {
 		
 		//click on fifth product
 		notebooksPage = PageGeneratorManager.getNotebooksPageObject(driver);
-		notebooksPage.clickOnProductNameLink(driver, fifthProductName);
+		notebooksPage.clickOnProductNameLinkOfEachCategory(driver, fifthProductName);
 		notebooksDetailedPage = PageGeneratorManager.getNotebooksDetailedPageObject(driver);
 		Assert.assertEquals(notebooksDetailedPage.getProductNameAtHeader(), fifthProductName);
 		

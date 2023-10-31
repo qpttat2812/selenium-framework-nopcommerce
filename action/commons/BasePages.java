@@ -677,19 +677,19 @@ public class BasePages {
 	 * @param valuesForXpathLocator - tab name
 	 */
 	@Step("Click on {1} tab link")
-	public void clickOnProductTab(WebDriver driver, String valuesForXpathLocator) {
+	public void clickOnProductTabLink(WebDriver driver, String valuesForXpathLocator) {
 		waitForElementVisibility(driver, BasePageUI.DYNAMIC_PRODUCT_TAB, valuesForXpathLocator);
 		clickOnElement(driver, BasePageUI.DYNAMIC_PRODUCT_TAB, valuesForXpathLocator);
 	}
 	
 	/**
-	 * Fuction for clicking on product title
+	 * Fuction for clicking on product title in Sub Category page
 	 * 
 	 * @param driver
 	 * @param productName
 	 */
 	@Step("Click on product name with value {0}")
-	public void clickOnProductNameLink(WebDriver driver, String productName) {
+	public void clickOnProductNameLinkOfEachCategory(WebDriver driver, String productName) {
 		waitForElementVisibility(driver, BasePageUI.DYNAMIC_PRODUCT_NAME_IN_CATEGORY_PAGE, productName);
 		clickOnElement(driver, BasePageUI.DYNAMIC_PRODUCT_NAME_IN_CATEGORY_PAGE, productName);
 	}
@@ -702,7 +702,7 @@ public class BasePages {
 	 * @param buttonName
 	 */
 	@Step("Click on {1} button of {0} item in product detailed page")
-	public void clickOnActionButton(WebDriver driver, String productName, String buttonName) {
+	public void clickOnActionButtonAtProductDetailedPage(WebDriver driver, String productName, String buttonName) {
 		waitForElementVisibility(driver, BasePageUI.DYNAMIC_ACTION_BUTTONS_IN_PRODUCT_DETAILED_PAGE, productName, buttonName);
 		clickOnElement(driver, BasePageUI.DYNAMIC_ACTION_BUTTONS_IN_PRODUCT_DETAILED_PAGE, productName, buttonName);
 	}
@@ -714,8 +714,20 @@ public class BasePages {
 	 * @return
 	 */
 	@Step("Get price of product in product detailed page")
-	public String getPriceOfProduct(WebDriver driver, String productName) {
+	public String getPriceOfProductAtProductDetailedPage(WebDriver driver, String productName) {
 		waitForElementVisibility(driver, BasePageUI.DYNAMIC_PRODUCT_PRICE_TEXT, productName);
 		return getTextElement(driver, BasePageUI.DYNAMIC_PRODUCT_PRICE_TEXT, productName);
+	}
+	
+	/**
+	 * Function for verify Product Name displayed in product detailed page
+	 * @param driver
+	 * @param productName
+	 * @return
+	 */
+	@Step("Verify product name is displayed at Product Detailed page")
+	public boolean isProductNameOfDetailedPageDisplayed(WebDriver driver, String productName) {
+		waitForElementVisibility(driver, BasePageUI.DYNAMIC_PRODUCT_NAME_AT_PRODUCT_DETAILED_PAGE, productName);
+		return isElementDisplayed(driver, BasePageUI.DYNAMIC_PRODUCT_NAME_AT_PRODUCT_DETAILED_PAGE, productName);
 	}
 }

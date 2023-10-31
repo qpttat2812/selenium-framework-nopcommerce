@@ -9,4 +9,5 @@ public class HomePageUI {
 	public static final String SHOPPING_CART_QUANTITY_TEXT = "//a[@class='ico-cart']/span[@class='cart-qty']";
 	public static final String WISHLIST_QUANTITY_TEXT = "//a[@class='ico-wishlist']/span[@class='wishlist-qty']";
 	public static final String HEADER_LOGO_LINK = "//div[@class='header-logo']";
+	public static final String WELCOME_TEXT = "//div[@class='topic-block-title']/h2[text()='Welcome to our store']";
 }

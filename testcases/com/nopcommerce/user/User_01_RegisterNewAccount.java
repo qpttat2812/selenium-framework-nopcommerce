@@ -39,7 +39,10 @@ public class User_01_RegisterNewAccount extends BaseTest {
 		driver = getBrowserName(browserName, pageURL);
 		
 		homePage = PageGeneratorManager.getHomePageObject(driver);
+		Assert.assertTrue(homePage.isHomePageTitleDisplayed());
+		
 		registerPage = homePage.clickOnRegisterLink();
+		Assert.assertTrue(registerPage.isRegisterPageTitleDisplayed());
 	}
 
 	@Test
@@ -47,30 +50,22 @@ public class User_01_RegisterNewAccount extends BaseTest {
 		registerPage.clickOnRegisterButton();
 		
 		Assert.assertEquals(registerPage.getFirstNameErrorMessage(), "First name is required.");
-		
 		Assert.assertEquals(registerPage.getLastNameErrorMessage(), "Last name is required.");
-		
 		Assert.assertEquals(registerPage.getEmailErrorMessage(), "Email is required.");
-		
 		Assert.assertEquals(registerPage.getPasswordErrorMessage(), "Password is required.");
-		
 		Assert.assertEquals(registerPage.getConfirmPasswordErrorMessage(), "Password is required.");
 	}
 
 	@Test
 	public void Register_02_InputInvalidEmail() {
 		registerPage = homePage.clickOnRegisterLink();
+		Assert.assertTrue(registerPage.isRegisterPageTitleDisplayed());
 		
 		registerPage.inputToFirstNameTextbox(firstName);
-		
 		registerPage.inputToLastNameTextbox(lastName);
-		
 		registerPage.inputToEmailTextbox(invalidEmail);
-		
 		registerPage.inputToPasswordTextbox(validPassword);
-		
 		registerPage.inputToConfirmPasswordTextbox(validPassword);
-		
 		registerPage.clickOnRegisterButton();
 
 		Assert.assertEquals(registerPage.getInvalidErrorMessage(), "Wrong email");
@@ -79,7 +74,8 @@ public class User_01_RegisterNewAccount extends BaseTest {
 	@Test
 	public void Register_03_InputExistedEmail() {
 		registerPage = homePage.clickOnRegisterLink();
-
+		Assert.assertTrue(registerPage.isRegisterPageTitleDisplayed());
+		
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
 		registerPage.inputToEmailTextbox(registeredEmail);
@@ -93,7 +89,8 @@ public class User_01_RegisterNewAccount extends BaseTest {
 	@Test
 	public void Register_04_InputPasswordLessThanSixCharacters() {
 		registerPage = homePage.clickOnRegisterLink();
-
+		Assert.assertTrue(registerPage.isRegisterPageTitleDisplayed());
+		
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
 		registerPage.inputToEmailTextbox(validEmail);
@@ -107,7 +104,8 @@ public class User_01_RegisterNewAccount extends BaseTest {
 	@Test
 	public void Register_05_InputConfirmPasswordNotMatchPassword() {
 		registerPage = homePage.clickOnRegisterLink();
-
+		Assert.assertTrue(registerPage.isRegisterPageTitleDisplayed());
+		
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
 		registerPage.inputToEmailTextbox(validEmail);

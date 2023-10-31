@@ -75,10 +75,14 @@ public class User_03_MyAccountInfo extends BaseTest{
 		reviewContent = "it's worth to buy.\nAll books of this author are good.";
 		
 		driver = getBrowserName(browserName, pageURL);
+		
 		homePage = PageGeneratorManager.getHomePageObject(driver);
+		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
 		
 		//register account
 		registerPage = homePage.clickOnRegisterLink();
+		Assert.assertTrue(registerPage.isRegisterPageTitleDisplayed());
+		
 		registerPage.inputToFirstNameTextbox(registeredFirstName);
 		registerPage.inputToLastNameTextbox(registeredLastName);
 		registerPage.inputToEmailTextbox(registeredEmail);
@@ -90,11 +94,17 @@ public class User_03_MyAccountInfo extends BaseTest{
 		
 		//login account
 		loginPage = homePage.clickOnLoginLink();
+		Assert.assertTrue(loginPage.isLoginPageTitleDisplayed());
+		
 		loginPage.inputToEmailTextbox(registeredEmail);
 		loginPage.inputToPasswordTextbox(registeredPassword);
 		homePage = loginPage.clickOnLoginButton();
+		
+		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
+		
 		myAccountPage = homePage.clickOnMyAccountLink();
 		
+		Assert.assertTrue(myAccountPage.isMyAccountPageTitleDisplayed());
 	}
 	
 	 @Test 
@@ -112,6 +122,7 @@ public class User_03_MyAccountInfo extends BaseTest{
 		//The customer info has been updated successfully.
 		Assert.assertTrue(myAccountPage.isBarNotificationSuccessDisplayed());
 		myAccountPage.clickOnCloseButton();
+		
 		Assert.assertEquals(myAccountPage.getGenderValue("value"), gender);
 		Assert.assertEquals(myAccountPage.getFirstNameValue("value"), newFirstName);
 		Assert.assertEquals(myAccountPage.getLastNameValue("value"), newLastName);
@@ -125,7 +136,9 @@ public class User_03_MyAccountInfo extends BaseTest{
 	 @Test 
 	public void MyAccount_02_AddAddressInfo() {
 		myAccountPage.clickOnSideBarMenu(driver, addressPageName);
+		
 		addressPage = PageGeneratorManager.getAddressPageObject(driver);
+		Assert.assertTrue(addressPage.isAddressPageTitleDisplayed());
 		
 		addressPage.clickOnAddNewAddressButton();
 		addressPage.inputToFirstNameTextbox(newFirstName);
@@ -144,6 +157,7 @@ public class User_03_MyAccountInfo extends BaseTest{
 		
 		Assert.assertTrue(addressPage.isBarNotificationSuccessDisplayed());
 		addressPage.clickOnCloseButton();
+		
 		Assert.assertEquals(addressPage.getNameTitle(), newFirstName + " " + newLastName);
 		Assert.assertEquals(addressPage.getNameText(), newFirstName + " " + newLastName);
 		Assert.assertTrue(addressPage.getEmailText().contains(newEmail));
@@ -161,7 +175,9 @@ public class User_03_MyAccountInfo extends BaseTest{
 	@Test
 	public void MyAccount_03_ChangePassword() {
 		myAccountPage.clickOnSideBarMenu(driver, changePasswordPageName);
+		
 		changePasswordPage = PageGeneratorManager.getChangePasswordPageObject(driver);
+		Assert.assertTrue(changePasswordPage.isChangePasswordPageTitleDisplayed());
 		
 		changePasswordPage.inputToOldPasswordTextbox(registeredPassword);
 		changePasswordPage.inputToNewPasswordTextbox(newPassword);
@@ -174,6 +190,8 @@ public class User_03_MyAccountInfo extends BaseTest{
 		homePage.clickOnLogoutLink();
 		
 		loginPage = homePage.clickOnLoginLink();
+		Assert.assertTrue(loginPage.isLoginPageTitleDisplayed());
+		
 		loginPage.inputToEmailTextbox(newEmail);
 		loginPage.inputToPasswordTextbox(registeredPassword);
 		loginPage.clickOnLoginButton();
@@ -181,6 +199,8 @@ public class User_03_MyAccountInfo extends BaseTest{
 		Assert.assertTrue(loginPage.getInvalidErrorMessageText().contains("Login was unsuccessful"));
 		
 		loginPage = homePage.clickOnLoginLink();
+		Assert.assertTrue(loginPage.isLoginPageTitleDisplayed());
+		
 		loginPage.inputToEmailTextbox(newEmail);
 		loginPage.inputToPasswordTextbox(newPassword);
 		homePage = loginPage.clickOnLoginButton();
@@ -190,13 +210,16 @@ public class User_03_MyAccountInfo extends BaseTest{
 	
 	@Test
 	public void MyAccount_04_MyProductReview() {
-		homePage.clickOnProductTab(driver, "Books");
+		homePage.clickOnProductTabLink(driver, "Books");
 		bookPage = PageGeneratorManager.getBookPageObject(driver);
 		Assert.assertTrue(bookPage.isBookPageDisplayed());
 		
-		bookPage.clickOnProductNameLink(driver, bookName);
+		bookPage.clickOnProductNameLinkOfEachCategory(driver, bookName);
 		bookDetailedPage = PageGeneratorManager.getBookDetailedPageObject(driver);
+		Assert.assertTrue(bookDetailedPage.isProductNameOfDetailedPageDisplayed(driver, bookName));
+		
 		bookDetailedPage.clickOnAddReviewLink();
+		Assert.assertTrue(bookDetailedPage.isReviewTitleDisplayed());
 		
 		bookDetailedPage.inputToReviewTitleTextbox(reviewTitle);
 		bookDetailedPage.inputToReviewContentTextArea(reviewContent);
@@ -204,9 +227,11 @@ public class User_03_MyAccountInfo extends BaseTest{
 		bookDetailedPage.clickOnSubmitReviewButton();
 		
 		myAccountPage = homePage.clickOnMyAccountLink();
-		myAccountPage.clickOnSideBarMenu(driver, "My product reviews");
-		myProductReviewPage = PageGeneratorManager.getMyProductReviewPageObject(driver);
+		Assert.assertTrue(myAccountPage.isMyAccountPageTitleDisplayed());
 		
+		myAccountPage.clickOnSideBarMenu(driver, "My product reviews");
+		
+		myProductReviewPage = PageGeneratorManager.getMyProductReviewPageObject(driver);
 		Assert.assertEquals(myProductReviewPage.getReviewTitleText(), reviewTitle);
 		Assert.assertEquals(myProductReviewPage.getReviewText(), reviewContent);
 		Assert.assertEquals(myProductReviewPage.getBookReviewText(bookName), bookName);

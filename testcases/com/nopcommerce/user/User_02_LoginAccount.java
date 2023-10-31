@@ -36,7 +36,10 @@ public class User_02_LoginAccount extends BaseTest {
 		driver = getBrowserName(browserName, pageURL);
 
 		homePage = PageGeneratorManager.getHomePageObject(driver);
+		Assert.assertTrue(homePage.isHomePageTitleDisplayed());
+		
 		loginPage = homePage.clickOnLoginLink();
+		Assert.assertTrue(loginPage.isLoginPageTitleDisplayed());
 	}
 
 	@Test
@@ -49,6 +52,7 @@ public class User_02_LoginAccount extends BaseTest {
 	@Test
 	public void Login_02_InvalidEmail() {
 		loginPage = homePage.clickOnLoginLink();
+		Assert.assertTrue(loginPage.isLoginPageTitleDisplayed());
 		
 		loginPage.inputToEmailTextbox(invalidPassword);
 		loginPage.clickOnLoginButton();
@@ -59,7 +63,8 @@ public class User_02_LoginAccount extends BaseTest {
 	@Test
 	public void Login_03_InputUnregisteredEmail() {
 		loginPage = homePage.clickOnLoginLink();
-
+		Assert.assertTrue(loginPage.isLoginPageTitleDisplayed());
+		
 		loginPage.inputToEmailTextbox(unregisteredEmail);
 		loginPage.inputToPasswordTextbox(validPassword);
 		loginPage.clickOnLoginButton();
@@ -70,7 +75,8 @@ public class User_02_LoginAccount extends BaseTest {
 	@Test
 	public void Login_04_InputRegisteredEmailAndNoPassword() {
 		loginPage = homePage.clickOnLoginLink();
-
+		Assert.assertTrue(loginPage.isLoginPageTitleDisplayed());
+		
 		loginPage.inputToEmailTextbox(registeredEmail);
 		loginPage.clickOnLoginButton();
 
@@ -80,7 +86,8 @@ public class User_02_LoginAccount extends BaseTest {
 	@Test
 	public void Login_05_InputRegisteredEmailAndWrongPassword() {
 		loginPage = homePage.clickOnLoginLink();
-
+		Assert.assertTrue(loginPage.isLoginPageTitleDisplayed());
+		
 		loginPage.inputToEmailTextbox(registeredEmail);
 		loginPage.inputToPasswordTextbox(validPassword);
 		loginPage.clickOnLoginButton();
@@ -91,7 +98,8 @@ public class User_02_LoginAccount extends BaseTest {
 	@Test
 	public void Login_06_InputRegisteredEmailAndPassword() {
 		loginPage = homePage.clickOnLoginLink();
-
+		Assert.assertTrue(loginPage.isLoginPageTitleDisplayed());
+		
 		loginPage.inputToEmailTextbox(registeredEmail);
 		loginPage.inputToPasswordTextbox(registeredPassword);
 		homePage = loginPage.clickOnLoginButton();

@@ -44,4 +44,10 @@ public class LoginPageObject extends BasePages{
 		waitForElementVisibility(driver, LoginPageUI.INVALID_ERROR_MESSAGE);
 		return getTextElement(driver, LoginPageUI.INVALID_ERROR_MESSAGE);
 	}
+
+	@Step("Verify Login page title is displayed")
+	public boolean isLoginPageTitleDisplayed() {
+		waitForElementVisibility(driver, LoginPageUI.LOGIN_WELCOME_TEXT);
+		return isElementDisplayed(driver, LoginPageUI.LOGIN_WELCOME_TEXT);
+	}
 }

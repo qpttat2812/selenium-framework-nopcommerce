@@ -187,4 +187,10 @@ public class AddressPageObject extends BasePages {
 		waitForElementVisibility(driver, AddressPageUI.COMPANY_TEXT);
 		return getTextElement(driver, AddressPageUI.COMPANY_TEXT);
 	}
+	
+	@Step("Verify Address Title is displayed")
+	public boolean isAddressPageTitleDisplayed() {
+		waitForElementVisibility(driver, AddressPageUI.ADDRESS_TITLE);
+		return isElementDisplayed(driver, AddressPageUI.ADDRESS_TITLE);
+	}
 }

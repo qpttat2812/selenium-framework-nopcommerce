@@ -127,4 +127,10 @@ public class MyAccountPageObject extends BasePages{
 		waitForElementVisibility(driver, MyAccountPageUI.COMPANY_NAME_TEXTBOX);
 		return getAttributeValue(driver, MyAccountPageUI.COMPANY_NAME_TEXTBOX, value);
 	}
+
+	@Step("Verify My Account page title is displayed")
+	public boolean isMyAccountPageTitleDisplayed() {
+		waitForElementVisibility(driver, MyAccountPageUI.MY_ACCOUNT_PAGE_TITLE);
+		return isElementDisplayed(driver, MyAccountPageUI.MY_ACCOUNT_PAGE_TITLE);
+	}
 }

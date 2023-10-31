@@ -49,4 +49,10 @@ public class ChangePasswordPageObject extends BasePages{
 		clickOnElement(driver, ChangePasswordPageUI.BAR_CLOSE_BUTTON);
 		waitForElementInvisibility(driver, ChangePasswordPageUI.BAR_CLOSE_BUTTON);
 	}
+
+	@Step("Verify Change Password title is displayed")
+	public boolean isChangePasswordPageTitleDisplayed() {
+		waitForElementVisibility(driver, ChangePasswordPageUI.CHANGE_PASSWORD_TITLE);
+		return isElementDisplayed(driver, ChangePasswordPageUI.CHANGE_PASSWORD_TITLE);
+	}
 }

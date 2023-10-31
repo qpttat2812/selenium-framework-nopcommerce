@@ -72,4 +72,10 @@ public class HomePageObject extends BasePages{
 		waitForAllElementsVisibility(driver, HomePageUI.HEADER_LOGO_LINK);
 		clickOnElement(driver, HomePageUI.HEADER_LOGO_LINK);
 	}
+
+	@Step("Verify Home Page title is displayed")
+	public boolean isHomePageTitleDisplayed() {
+		waitForElementVisibility(driver, HomePageUI.WELCOME_TEXT);
+		return isElementDisplayed(driver, HomePageUI.WELCOME_TEXT);
+	}
 }
