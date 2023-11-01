@@ -43,9 +43,9 @@ public class BookDetailedPageObject extends BasePages{
 		clickOnElement(driver, BookDetailedPageUI.SUBMIT_REVIEW_BUTTON);
 	}
 
-	@Step("Verify Review title is displayed")
-	public boolean isReviewTitleDisplayed() {
-		// TODO Auto-generated method stub
-		return false;
+	@Step("Get Review title of product")
+	public String getReviewProductTitle() {
+		waitForElementVisibility(driver, BookDetailedPageUI.REVIEW_PRODUCT_TITLE);
+		return getTextElement(driver, BookDetailedPageUI.REVIEW_PRODUCT_TITLE);
 	}
 }

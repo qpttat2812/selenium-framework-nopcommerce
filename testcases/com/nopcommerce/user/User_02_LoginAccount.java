@@ -22,14 +22,12 @@ public class User_02_LoginAccount extends BaseTest {
 	private WebDriver driver;
 	private LoginPageObject loginPage;
 	private HomePageObject homePage;
-	private String invalidPassword, unregisteredEmail, validPassword, registeredEmail, registeredPassword;
+	private String unregisteredEmail, registeredEmail, registeredPassword;
 	
 	@Parameters({"browser", "url"})
 	@BeforeClass
 	public void BeforeClass(String browserName, String pageURL) {
-		invalidPassword = "123";
 		unregisteredEmail = "auto" + randomNumber() + "@yopmail.com";
-		validPassword = "222333";
 		registeredEmail = Common_01_RegisterAccountAndGetCookie.emailAddress;
 		registeredPassword = Common_01_RegisterAccountAndGetCookie.password;
 		
@@ -54,7 +52,7 @@ public class User_02_LoginAccount extends BaseTest {
 		loginPage = homePage.clickOnLoginLink();
 		Assert.assertTrue(loginPage.isLoginPageTitleDisplayed());
 		
-		loginPage.inputToEmailTextbox(invalidPassword);
+		loginPage.inputToEmailTextbox("123");
 		loginPage.clickOnLoginButton();
 		
 		Assert.assertEquals(loginPage.getEmailErrorMessage(), "Wrong email");
@@ -66,7 +64,7 @@ public class User_02_LoginAccount extends BaseTest {
 		Assert.assertTrue(loginPage.isLoginPageTitleDisplayed());
 		
 		loginPage.inputToEmailTextbox(unregisteredEmail);
-		loginPage.inputToPasswordTextbox(validPassword);
+		loginPage.inputToPasswordTextbox("222333");
 		loginPage.clickOnLoginButton();
 
 		Assert.assertEquals(loginPage.getInvalidErrorMessageText(), "Login was unsuccessful. Please correct the errors and try again.\nNo customer account found");
@@ -89,7 +87,7 @@ public class User_02_LoginAccount extends BaseTest {
 		Assert.assertTrue(loginPage.isLoginPageTitleDisplayed());
 		
 		loginPage.inputToEmailTextbox(registeredEmail);
-		loginPage.inputToPasswordTextbox(validPassword);
+		loginPage.inputToPasswordTextbox("222333");
 		loginPage.clickOnLoginButton();
 
 		Assert.assertEquals(loginPage.getInvalidErrorMessageText(), "Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");

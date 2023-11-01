@@ -41,7 +41,7 @@ public class User_07_Orders extends BaseTest{
 		
 		
 		desktopsPage = computersPage.clickOnDesktopsLink();
-		desktopsPage.clickOnProductNameLinkOfEachCategory(driver, productName);
+		desktopsPage.clickOnProductNameLinkAtSubCategory(driver, productName);
 	}
 	
 	@Test

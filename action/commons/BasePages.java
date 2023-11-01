@@ -689,9 +689,9 @@ public class BasePages {
 	 * @param productName
 	 */
 	@Step("Click on product name with value {0}")
-	public void clickOnProductNameLinkOfEachCategory(WebDriver driver, String productName) {
-		waitForElementVisibility(driver, BasePageUI.DYNAMIC_PRODUCT_NAME_IN_CATEGORY_PAGE, productName);
-		clickOnElement(driver, BasePageUI.DYNAMIC_PRODUCT_NAME_IN_CATEGORY_PAGE, productName);
+	public void clickOnProductNameLinkAtSubCategory(WebDriver driver, String productName) {
+		waitForElementVisibility(driver, BasePageUI.DYNAMIC_PRODUCT_NAME_IN_SUB_CATEGORY_PAGE, productName);
+		clickOnElement(driver, BasePageUI.DYNAMIC_PRODUCT_NAME_IN_SUB_CATEGORY_PAGE, productName);
 	}
 	
 	/**

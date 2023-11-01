@@ -86,4 +86,10 @@ public class SearchPageObject extends BasePages{
 		}
 		return flag;
 	}
+	
+	@Step("Verify Search Page title is displayed")
+	public boolean isSearchPageTitleDisplayed() {
+		waitForElementVisibility(driver, SearchPageUI.SEARCH_PAGE_TITLE);
+		return isElementDisplayed(driver, SearchPageUI.SEARCH_PAGE_TITLE);
+	}
 }

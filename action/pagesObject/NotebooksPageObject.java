@@ -16,7 +16,7 @@ public class NotebooksPageObject extends BasePages{
 	}
 	
 	@Step("Verify Notebook title is displayed")
-	public boolean isNoteBookPageDisplayed() {
+	public boolean isNoteBookPageTitleDisplayed() {
 		waitForElementVisibility(driver, NotebooksPageUI.NOTEBOOK_TITLE);
 		return isElementDisplayed(driver, NotebooksPageUI.NOTEBOOK_TITLE);
 	}

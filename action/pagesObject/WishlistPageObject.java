@@ -14,10 +14,10 @@ public class WishlistPageObject extends BasePages{
 		this.driver = driver;
 	}
 
-	@Step("Get Product title in wishlist page")
-	public String getProductTitle() {
-		waitForElementVisibility(driver, WishlistPageUI.PRODUCT_TITLE);
-		return getTextElement(driver, WishlistPageUI.PRODUCT_TITLE);
+	@Step("Get Product name in wishlist page")
+	public String getWishlistProductName() {
+		waitForElementVisibility(driver, WishlistPageUI.WISHLIST_PRODUCT_NAME);
+		return getTextElement(driver, WishlistPageUI.WISHLIST_PRODUCT_NAME);
 	}
 	
 	@Step("Click on wishlist sharing url")
@@ -47,7 +47,7 @@ public class WishlistPageObject extends BasePages{
 
 	@Step("Verify product is undisplayed")
 	public boolean isProductUndisplayed() {
-		return isElementUndisplayed(driver, WishlistPageUI.PRODUCT_TITLE);
+		return isElementUndisplayed(driver, WishlistPageUI.WISHLIST_PRODUCT_NAME);
 	}
 
 	@Step("Click on Remove icon")
@@ -60,5 +60,11 @@ public class WishlistPageObject extends BasePages{
 	public boolean isWishlistPageEmpty() {
 		waitForElementInvisibility(driver, WishlistPageUI.AJAX_LOADING_ICON);
 		return isElementDisplayed(driver, WishlistPageUI.WISHLIST_EMPTY_MESSAGE);
+	}
+
+	@Step("Verify Wishlist title is displayed")
+	public boolean isWishlistPageTitleDisplayed() {
+		waitForElementVisibility(driver, WishlistPageUI.WISHLIST_TITLE);
+		return isElementDisplayed(driver, WishlistPageUI.WISHLIST_TITLE);
 	}
 }

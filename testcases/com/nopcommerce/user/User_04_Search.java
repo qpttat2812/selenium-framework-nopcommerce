@@ -35,6 +35,8 @@ public class User_04_Search extends BaseTest {
 		driver = getBrowserName(browserName, pageURl);
 
 		homePage = PageGeneratorManager.getHomePageObject(driver);
+		Assert.assertTrue(homePage.isHomePageTitleDisplayed());
+		
 		loginPage = homePage.clickOnLoginLink();
 		loginPage.setCookie(driver, Common_01_RegisterAccountAndGetCookie.loggedCookies);
 		loginPage.refreshBrowser(driver);
@@ -42,7 +44,9 @@ public class User_04_Search extends BaseTest {
 		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
 
 		homePage.clickOnFooterLink(driver, pageName);
+		
 		searchPage = PageGeneratorManager.getSearchPageObject(driver);
+		Assert.assertTrue(searchPage.isSearchPageTitleDisplayed());
 	}
 
 	@Test
@@ -54,10 +58,14 @@ public class User_04_Search extends BaseTest {
 
 	@Test
 	public void Search_02_InputNotExistedData() {
+		String searchKeyword = "Macbook Pro 2050";
+		
 		homePage.clickOnFooterLink(driver, pageName);
+		
 		searchPage = PageGeneratorManager.getSearchPageObject(driver);
-
-		searchPage.inputToSearchTextbox("Macbook Pro 2050");
+		Assert.assertTrue(searchPage.isSearchPageTitleDisplayed());
+		
+		searchPage.inputToSearchTextbox(searchKeyword);
 		searchPage.clickOnSearchButton();
 
 		Assert.assertEquals(searchPage.getSearchErrorMessage(), "No products were found that matched your criteria.");
@@ -65,32 +73,42 @@ public class User_04_Search extends BaseTest {
 
 	@Test
 	public void Search_03_InputRelativeKeyword() {
+		String searchKeyword = "Lenovo";
+		
 		homePage.clickOnFooterLink(driver, pageName);
+		
 		searchPage = PageGeneratorManager.getSearchPageObject(driver);
-
-		searchPage.inputToSearchTextbox("Lenovo");
+		Assert.assertTrue(searchPage.isSearchPageTitleDisplayed());
+		
+		searchPage.inputToSearchTextbox(searchKeyword);
 		searchPage.clickOnSearchButton();
 
 		Assert.assertEquals(searchPage.getProductQuantityValue(), 2);
-		Assert.assertTrue(searchPage.isContainedExpectedItem("Lenovo"));
+		Assert.assertTrue(searchPage.isContainedExpectedItem(searchKeyword));
 	}
 
 	@Test
 	public void Search_04_InputAbsoluteKeyword() {
+		String searchKeyword = "Lenovo IdeaCentre 600 All-in-One PC";
+		
 		homePage.clickOnFooterLink(driver, pageName);
+		
 		searchPage = PageGeneratorManager.getSearchPageObject(driver);
+		Assert.assertTrue(searchPage.isSearchPageTitleDisplayed());
 
-		searchPage.inputToSearchTextbox("Lenovo IdeaCentre 600 All-in-One PC");
+		searchPage.inputToSearchTextbox(searchKeyword);
 		searchPage.clickOnSearchButton();
 
 		Assert.assertEquals(searchPage.getProductQuantityValue(), 1);
-		Assert.assertTrue(searchPage.isContainedExpectedItem("Lenovo IdeaCentre 600 All-in-One PC"));
+		Assert.assertTrue(searchPage.isContainedExpectedItem(searchKeyword));
 	}
 
 	@Test
 	public void Search_05_AdvancedSearchWithParentCategories() {
 		homePage.clickOnFooterLink(driver, pageName);
+		
 		searchPage = PageGeneratorManager.getSearchPageObject(driver);
+		Assert.assertTrue(searchPage.isSearchPageTitleDisplayed());
 
 		searchPage.inputToSearchTextbox(appleProduct);
 		searchPage.clickOnAdvancedSearchCheckbox();
@@ -103,7 +121,9 @@ public class User_04_Search extends BaseTest {
 	@Test
 	public void Search_06_AdvancedSearchWithSubCategories() {
 		homePage.clickOnFooterLink(driver, pageName);
+		
 		searchPage = PageGeneratorManager.getSearchPageObject(driver);
+		Assert.assertTrue(searchPage.isSearchPageTitleDisplayed());
 
 		searchPage.inputToSearchTextbox(appleProduct);
 		searchPage.clickOnAdvancedSearchCheckbox();
@@ -118,7 +138,9 @@ public class User_04_Search extends BaseTest {
 	@Test
 	public void Search_07_AdvancedSearchWithIncorrectManufacturer() {
 		homePage.clickOnFooterLink(driver, pageName);
+		
 		searchPage = PageGeneratorManager.getSearchPageObject(driver);
+		Assert.assertTrue(searchPage.isSearchPageTitleDisplayed());
 
 		searchPage.inputToSearchTextbox(appleProduct);
 		searchPage.clickOnAdvancedSearchCheckbox();
@@ -133,7 +155,9 @@ public class User_04_Search extends BaseTest {
 	@Test
 	public void Search_08_AdvancedSearchWithCorrectManufacturer() {
 		homePage.clickOnFooterLink(driver, pageName);
+		
 		searchPage = PageGeneratorManager.getSearchPageObject(driver);
+		Assert.assertTrue(searchPage.isSearchPageTitleDisplayed());
 
 		searchPage.inputToSearchTextbox(appleProduct);
 		searchPage.clickOnAdvancedSearchCheckbox();

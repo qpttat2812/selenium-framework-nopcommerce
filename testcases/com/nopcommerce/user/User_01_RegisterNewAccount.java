@@ -20,8 +20,7 @@ public class User_01_RegisterNewAccount extends BaseTest {
 	private WebDriver driver;
 	private RegisterPageObject registerPage;
 	private HomePageObject homePage;
-	private String firstName, lastName, registeredEmail, registeredPassword, validPassword, validEmail;
-	private String  invalidEmail, invalidPassword, noMatchconfirmPassword;
+	private String firstName, lastName, registeredEmail, registeredPassword;
 	
 	@Parameters({"browser", "url"})
 	@BeforeClass
@@ -29,11 +28,6 @@ public class User_01_RegisterNewAccount extends BaseTest {
 		firstName = Common_01_RegisterAccountAndGetCookie.firstName;
 		lastName = Common_01_RegisterAccountAndGetCookie.lastName;
 		registeredEmail = Common_01_RegisterAccountAndGetCookie.emailAddress;
-		invalidEmail = "123@123";
-		validEmail = "auto111@gmail.com";
-		validPassword = "12345678";
-		invalidPassword = "123";
-		noMatchconfirmPassword = "1234561";
 		registeredPassword = Common_01_RegisterAccountAndGetCookie.password;
 		
 		driver = getBrowserName(browserName, pageURL);
@@ -63,9 +57,9 @@ public class User_01_RegisterNewAccount extends BaseTest {
 		
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
-		registerPage.inputToEmailTextbox(invalidEmail);
-		registerPage.inputToPasswordTextbox(validPassword);
-		registerPage.inputToConfirmPasswordTextbox(validPassword);
+		registerPage.inputToEmailTextbox("123@123");
+		registerPage.inputToPasswordTextbox("12345678");
+		registerPage.inputToConfirmPasswordTextbox("12345678");
 		registerPage.clickOnRegisterButton();
 
 		Assert.assertEquals(registerPage.getInvalidErrorMessage(), "Wrong email");
@@ -93,9 +87,9 @@ public class User_01_RegisterNewAccount extends BaseTest {
 		
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
-		registerPage.inputToEmailTextbox(validEmail);
-		registerPage.inputToPasswordTextbox(invalidPassword);
-		registerPage.inputToConfirmPasswordTextbox(invalidPassword);
+		registerPage.inputToEmailTextbox("auto111@gmail.com");
+		registerPage.inputToPasswordTextbox("123");
+		registerPage.inputToConfirmPasswordTextbox("123");
 		registerPage.clickOnRegisterButton();
 
 		Assert.assertEquals(registerPage.getPasswordErrorMessage(), "Password must meet the following rules:\nmust have at least 6 characters");
@@ -108,9 +102,9 @@ public class User_01_RegisterNewAccount extends BaseTest {
 		
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
-		registerPage.inputToEmailTextbox(validEmail);
-		registerPage.inputToPasswordTextbox(validPassword);
-		registerPage.inputToConfirmPasswordTextbox(noMatchconfirmPassword);
+		registerPage.inputToEmailTextbox("auto111@gmail.com");
+		registerPage.inputToPasswordTextbox("12345678");
+		registerPage.inputToConfirmPasswordTextbox("1234561");
 		registerPage.clickOnRegisterButton();
 
 		Assert.assertEquals(registerPage.getConfirmPasswordErrorMessage(), "The password and confirmation password do not match.");

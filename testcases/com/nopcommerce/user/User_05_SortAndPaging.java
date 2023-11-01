@@ -9,10 +9,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import com.nopcommerce.common.Common_01_RegisterAccountAndGetCookie;
+
 import commons.BaseTest;
 import commons.PageGeneratorManager;
 import pagesObject.ComputersPageObject;
 import pagesObject.HomePageObject;
+import pagesObject.LoginPageObject;
 import pagesObject.NotebooksPageObject;
 
 public class User_05_SortAndPaging extends BaseTest {
@@ -20,6 +23,7 @@ public class User_05_SortAndPaging extends BaseTest {
 	private HomePageObject homePage;
 	private ComputersPageObject computersPage;
 	private NotebooksPageObject notebooksPage;
+	private LoginPageObject loginPage;
 	private String productCategoryName;
 	private List<String> itemListBeforeSortingByName, itemListAfterSortingByName;
 	private List<Double> itemListBeforeSortingByPrice, itemListAfterSortingByPrice;
@@ -32,14 +36,23 @@ public class User_05_SortAndPaging extends BaseTest {
 		defaultSortType = "Position";
 		
 		driver = getBrowserName(browserName, pageURL);
-
+		
 		homePage = PageGeneratorManager.getHomePageObject(driver);
+		Assert.assertTrue(homePage.isHomePageTitleDisplayed());
+		
+		loginPage = homePage.clickOnLoginLink();
+		loginPage.setCookie(driver, Common_01_RegisterAccountAndGetCookie.loggedCookies);
+		loginPage.refreshBrowser(driver);
+
+		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
+		
 		homePage.clickOnProductTabLink(driver, productCategoryName);
 
 		computersPage = PageGeneratorManager.getComputersPageObject(driver);
+		Assert.assertTrue(computersPage.isComputersPageTitleDisplayed());
+		
 		notebooksPage = computersPage.clickOnNotebooksLink();
-
-		Assert.assertTrue(notebooksPage.isNoteBookPageDisplayed());
+		Assert.assertTrue(notebooksPage.isNoteBookPageTitleDisplayed());
 	}
 
 	@Test
@@ -86,12 +99,10 @@ public class User_05_SortAndPaging extends BaseTest {
 
 	@Test
 	public void SortAndPaging_05_DisplayThreeProductsInPage() {
-		int expectedSize = 3;
-
 		notebooksPage.selectSortType(defaultSortType);
 
 		notebooksPage.selectDisplayType("3");
-		Assert.assertTrue(notebooksPage.isItemSizeDisplayedCorrect(expectedSize));
+		Assert.assertTrue(notebooksPage.isItemSizeDisplayedCorrect(3));
 		Assert.assertTrue(notebooksPage.isNextPagingIconDisplayed());
 		
 		notebooksPage.clickOnNextPage();
@@ -100,22 +111,18 @@ public class User_05_SortAndPaging extends BaseTest {
 
 	@Test
 	public void SortAndPaging_06_DisplaySixProductsInPage() {
-		int expectedSize = 6;
-
 		notebooksPage.selectDisplayType("6");
 
-		Assert.assertTrue(notebooksPage.isItemSizeDisplayedCorrect(expectedSize));
+		Assert.assertTrue(notebooksPage.isItemSizeDisplayedCorrect(6));
 		Assert.assertTrue(notebooksPage.isNextPagingIconUndisplayed());
 		Assert.assertTrue(notebooksPage.isPreviousPagingIconUndisplayed());
 	}
 
 	@Test
 	public void SortAndPaging_07_DisplayNineProductsInPage() {
-		int expectedSize = 9;
-
 		notebooksPage.selectDisplayType("9");
 
-		Assert.assertTrue(notebooksPage.isItemSizeDisplayedCorrect(expectedSize));
+		Assert.assertTrue(notebooksPage.isItemSizeDisplayedCorrect(9));
 		Assert.assertTrue(notebooksPage.isNextPagingIconUndisplayed());
 		Assert.assertTrue(notebooksPage.isPreviousPagingIconUndisplayed());
 	}

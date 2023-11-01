@@ -12,10 +12,16 @@ public class AddToCartPageObject extends BasePages{
 		this.driver = driver;
 	}
 	
-	@Step("Get Product title")
-	public String getProductTitle() {
+	@Step("Get Product name")
+	public String getAddToCartProductName() {
 		waitForElementInvisibility(driver, AddToCartPageUI.AJAX_LOADING_ICON);
-		waitForElementVisibility(driver, AddToCartPageUI.PRODUCT_TITLE);
-		return getTextElement(driver, AddToCartPageUI.PRODUCT_TITLE);
+		waitForElementVisibility(driver, AddToCartPageUI.ADD_TO_CART_PRODUCT_NAME);
+		return getTextElement(driver, AddToCartPageUI.ADD_TO_CART_PRODUCT_NAME);
+	}
+
+	@Step("Get Page title of Add to cart page")
+	public boolean isAddToCartPageTitleDisplayed() {
+		waitForElementVisibility(driver, AddToCartPageUI.ADD_TO_CART_TITLE);
+		return isElementDisplayed(driver, AddToCartPageUI.ADD_TO_CART_TITLE);
 	}
 }

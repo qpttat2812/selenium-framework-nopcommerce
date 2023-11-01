@@ -29,7 +29,7 @@ public class ComputersPageObject extends BasePages{
 	}
 
 	@Step("Verify Computers title is displayed")
-	public boolean isComputerPageTitleDisplayed() {
+	public boolean isComputersPageTitleDisplayed() {
 		waitForElementVisibility(driver, ComputersPageUI.COMPUTER_PAGE_TITLE);
 		return isElementDisplayed(driver, ComputersPageUI.COMPUTER_PAGE_TITLE);
 	}

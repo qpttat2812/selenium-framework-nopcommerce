@@ -77,7 +77,7 @@ public class User_03_MyAccountInfo extends BaseTest{
 		driver = getBrowserName(browserName, pageURL);
 		
 		homePage = PageGeneratorManager.getHomePageObject(driver);
-		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
+		Assert.assertTrue(homePage.isHomePageTitleDisplayed());
 		
 		//register account
 		registerPage = homePage.clickOnRegisterLink();
@@ -103,7 +103,6 @@ public class User_03_MyAccountInfo extends BaseTest{
 		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
 		
 		myAccountPage = homePage.clickOnMyAccountLink();
-		
 		Assert.assertTrue(myAccountPage.isMyAccountPageTitleDisplayed());
 	}
 	
@@ -210,16 +209,18 @@ public class User_03_MyAccountInfo extends BaseTest{
 	
 	@Test
 	public void MyAccount_04_MyProductReview() {
+		String expectedReviewProductTitle = "Product reviews for ";
+		
 		homePage.clickOnProductTabLink(driver, "Books");
 		bookPage = PageGeneratorManager.getBookPageObject(driver);
 		Assert.assertTrue(bookPage.isBookPageDisplayed());
 		
-		bookPage.clickOnProductNameLinkOfEachCategory(driver, bookName);
+		bookPage.clickOnProductNameLinkAtSubCategory(driver, bookName);
 		bookDetailedPage = PageGeneratorManager.getBookDetailedPageObject(driver);
 		Assert.assertTrue(bookDetailedPage.isProductNameOfDetailedPageDisplayed(driver, bookName));
 		
 		bookDetailedPage.clickOnAddReviewLink();
-		Assert.assertTrue(bookDetailedPage.isReviewTitleDisplayed());
+		Assert.assertEquals(bookDetailedPage.getReviewProductTitle(), expectedReviewProductTitle + bookName);
 		
 		bookDetailedPage.inputToReviewTitleTextbox(reviewTitle);
 		bookDetailedPage.inputToReviewContentTextArea(reviewContent);
