@@ -25,13 +25,13 @@ public class RecentProductViewPageObject extends BasePages{
 		return getElementSize(driver, RecentProductViewPageUI.RECENT_PRODUCT_LIST_SIZE);
 	}
 
-	@Step("Get Product name")
+	@Step("Get Product Name value")
 	public String getProductNameText(String expectedProductName) {
 		waitForElementVisibility(driver, RecentProductViewPageUI.DYNAMIC_RECENT_PRODUCT_NAME_TEXT, expectedProductName);
 		return getTextElement(driver, RecentProductViewPageUI.DYNAMIC_RECENT_PRODUCT_NAME_TEXT, expectedProductName);
 	}
 	
-	@Step("Get Product price value")
+	@Step("Get Product Price value")
 	public String getProductPriceValue(String expectedProductName) {
 		waitForElementVisibility(driver, RecentProductViewPageUI.DYNAMIC_RECENT_PRODUCT_NAME_TEXT, expectedProductName);
 		return getTextElement(driver, RecentProductViewPageUI.DYNAMIC_RECENT_PRODUCT_NAME_TEXT, expectedProductName);

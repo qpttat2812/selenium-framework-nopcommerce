@@ -3,6 +3,7 @@ package commons;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.Random;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -123,5 +124,10 @@ public class BaseTest {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	protected int getRandomNumber() {
+		Random rnd = new Random();
+		return rnd.nextInt(99999);
 	}
 }

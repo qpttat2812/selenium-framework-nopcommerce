@@ -14,7 +14,7 @@ public class LoginPageObject extends BasePages{
 		this.driver = driver;
 	}
 
-	@Step("Click on Login button")
+	@Step("Click on 'Login' button")
 	public HomePageObject clickOnLoginButton() {
 		waitForElementClickable(driver, LoginPageUI.LOGIN_BUTTON);
 		clickOnElement(driver, LoginPageUI.LOGIN_BUTTON);
@@ -27,27 +27,21 @@ public class LoginPageObject extends BasePages{
 		return getTextElement(driver, LoginPageUI.EMAIL_ERROR_MESSAGE);
 	}
 
-	@Step("Input to Email textbox with value {0}")
+	@Step("Input to 'Email' textbox with value {0}")
 	public void inputToEmailTextbox(String email) {
 		waitForElementClickable(driver, LoginPageUI.EMAIL_TEXTBOX);
 		sendkeyToElement(driver, LoginPageUI.EMAIL_TEXTBOX, email);
 	}
 
-	@Step("Input to Password textbox with value {0}")
+	@Step("Input to 'Password' textbox with value {0}")
 	public void inputToPasswordTextbox(String password) {
 		waitForElementClickable(driver, LoginPageUI.PASSWORD_TEXTBOX);
 		sendkeyToElement(driver, LoginPageUI.PASSWORD_TEXTBOX, password);
 	}
 
-	@Step("Get Invalid error message text")
+	@Step("Get invalid error message message")
 	public String getInvalidErrorMessageText() {
 		waitForElementVisibility(driver, LoginPageUI.INVALID_ERROR_MESSAGE);
 		return getTextElement(driver, LoginPageUI.INVALID_ERROR_MESSAGE);
-	}
-
-	@Step("Verify Login page title is displayed")
-	public boolean isLoginPageTitleDisplayed() {
-		waitForElementVisibility(driver, LoginPageUI.LOGIN_WELCOME_TEXT);
-		return isElementDisplayed(driver, LoginPageUI.LOGIN_WELCOME_TEXT);
 	}
 }

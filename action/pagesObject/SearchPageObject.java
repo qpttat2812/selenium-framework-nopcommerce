@@ -15,7 +15,7 @@ public class SearchPageObject extends BasePages{
 		this.driver = driver;
 	}
 
-	@Step("Click on Search button")
+	@Step("Click on 'Search' button")
 	public void clickOnSearchButton() {
 		waitForElementClickable(driver, SearchPageUI.SEARCH_BUTTON);
 		clickOnElement(driver, SearchPageUI.SEARCH_BUTTON);
@@ -33,7 +33,7 @@ public class SearchPageObject extends BasePages{
 		return getTextElement(driver, SearchPageUI.SEARCH_ERROR_MESSAGE);
 	}
 
-	@Step("Input to Search textbox")
+	@Step("Input to 'Search' textbox")
 	public void inputToSearchTextbox(String searchKeyword) {
 		waitForElementVisibility(driver, SearchPageUI.SEARCH_TEXTBOX);
 		sendkeyToElement(driver, SearchPageUI.SEARCH_TEXTBOX, searchKeyword);
@@ -51,25 +51,25 @@ public class SearchPageObject extends BasePages{
 		return getAllTextElements(driver, SearchPageUI.SEARCHED_PRODUCT_LIST_TITLE);
 	}
 
-	@Step("Click on Advanced search checkbox")
+	@Step("Click on 'Advanced Search' checkbox")
 	public void clickOnAdvancedSearchCheckbox() {
 		waitForElementVisibility(driver, SearchPageUI.ADVANCED_SEARCH_CHECKBOX);
 		clickOnElement(driver, SearchPageUI.ADVANCED_SEARCH_CHECKBOX);
 	}
 
-	@Step("Select Search category dropdownlist")
+	@Step("Select 'Search Category' dropdownlist")
 	public void selectSearchCategoryDropdownlist(String expectedItem) {
 		waitForElementVisibility(driver, SearchPageUI.SEARCH_CATEGORY_DROPDOWNLIST);
 		selectDefaultItemDropdownList(driver, SearchPageUI.SEARCH_CATEGORY_DROPDOWNLIST, expectedItem);
 	}
 
-	@Step("Click on Search sub category checkbox")
+	@Step("Click on 'Search Sub Category' checkbox")
 	public void clickOnSearchSubCategoryCheckbox() {
 		waitForElementVisibility(driver, SearchPageUI.SEARCH_SUB_CATEGORY_CHECKBOX);
 		clickOnElement(driver, SearchPageUI.SEARCH_SUB_CATEGORY_CHECKBOX);
 	}
 
-	@Step("Select Manufacturer dropdownlist")
+	@Step("Select 'Manufacturer' dropdownlist")
 	public void selectOnManufacturerDropdownlist(String expectedItem) {
 		waitForElementVisibility(driver, SearchPageUI.MANUFACTURER_DROPDOWNLIST);
 		selectDefaultItemDropdownList(driver, SearchPageUI.MANUFACTURER_DROPDOWNLIST, expectedItem);
@@ -85,11 +85,5 @@ public class SearchPageObject extends BasePages{
 			}
 		}
 		return flag;
-	}
-	
-	@Step("Verify Search Page title is displayed")
-	public boolean isSearchPageTitleDisplayed() {
-		waitForElementVisibility(driver, SearchPageUI.SEARCH_PAGE_TITLE);
-		return isElementDisplayed(driver, SearchPageUI.SEARCH_PAGE_TITLE);
 	}
 }

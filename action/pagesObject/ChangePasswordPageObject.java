@@ -13,46 +13,40 @@ public class ChangePasswordPageObject extends BasePages{
 		this.driver = driver;
 	}
 
-	@Step("Input to Old password textbox with value {0}")
+	@Step("Input to 'Old Password' textbox with value {0}")
 	public void inputToOldPasswordTextbox(String oldPassword) {
 		waitForElementVisibility(driver, ChangePasswordPageUI.OLD_PASSWORD_TEXTBOX);
 		sendkeyToElement(driver, ChangePasswordPageUI.OLD_PASSWORD_TEXTBOX, oldPassword);
 	}
 
-	@Step("Input to New password textbox with value {0}")
+	@Step("Input to 'New Password' textbox with value {0}")
 	public void inputToNewPasswordTextbox(String newPassword) {
 		waitForElementVisibility(driver, ChangePasswordPageUI.NEW_PASSWORD_TEXTBOX);
 		sendkeyToElement(driver, ChangePasswordPageUI.NEW_PASSWORD_TEXTBOX, newPassword);
 	}
 
-	@Step("Input to Confirm password textbox with value {0}")
+	@Step("Input to 'Confirm Password' textbox with value {0}")
 	public void inputToConfirmPasswordTextbox(String newPassword) {
 		waitForElementVisibility(driver, ChangePasswordPageUI.CONFIRM_NEW_PASSWORD_TEXTBOX);
 		sendkeyToElement(driver, ChangePasswordPageUI.CONFIRM_NEW_PASSWORD_TEXTBOX, newPassword);		
 	}
 
-	@Step("Click on Change Password button")
+	@Step("Click on 'Change Password' button")
 	public void clickOnChangePasswordButton() {
 		waitForElementClickable(driver, ChangePasswordPageUI.CHANGE_PASSWORD_BUTTON);
 		clickOnElement(driver, ChangePasswordPageUI.CHANGE_PASSWORD_BUTTON);		
 	}
 
 	@Step("Verify Notification Success Bar is displayed")
-	public boolean isBarNotificationSuccessDisplayed() {
-		waitForElementVisibility(driver, ChangePasswordPageUI.NOTIFICATION_SUCCESS_TEXT);
-		return isElementDisplayed(driver, ChangePasswordPageUI.NOTIFICATION_SUCCESS_TEXT);
+	public String getBarNotificationSuccessMessage() {
+		waitForElementVisibility(driver, ChangePasswordPageUI.NOTIFICATION_SUCCESS_MESSAGE);
+		return getTextElement(driver, ChangePasswordPageUI.NOTIFICATION_SUCCESS_MESSAGE);
 	}
 	
 	@Step("Click on Close button at Notification Success Bar")
-	public void clickOnCloseButton() {
+	public void clickOnCloseButtonInBar() {
 		waitForElementClickable(driver, ChangePasswordPageUI.BAR_CLOSE_BUTTON);
 		clickOnElement(driver, ChangePasswordPageUI.BAR_CLOSE_BUTTON);
 		waitForElementInvisibility(driver, ChangePasswordPageUI.BAR_CLOSE_BUTTON);
-	}
-
-	@Step("Verify Change Password title is displayed")
-	public boolean isChangePasswordPageTitleDisplayed() {
-		waitForElementVisibility(driver, ChangePasswordPageUI.CHANGE_PASSWORD_TITLE);
-		return isElementDisplayed(driver, ChangePasswordPageUI.CHANGE_PASSWORD_TITLE);
 	}
 }

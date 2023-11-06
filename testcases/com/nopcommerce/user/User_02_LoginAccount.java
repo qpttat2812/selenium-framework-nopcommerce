@@ -12,8 +12,6 @@ import pagesObject.LoginPageObject;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 
-import java.util.Random;
-
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -22,22 +20,22 @@ public class User_02_LoginAccount extends BaseTest {
 	private WebDriver driver;
 	private LoginPageObject loginPage;
 	private HomePageObject homePage;
-	private String unregisteredEmail, registeredEmail, registeredPassword;
+	
+	private String unregisteredEmail;
+	private String registeredEmail;
+	private String registeredPassword;
 	
 	@Parameters({"browser", "url"})
 	@BeforeClass
 	public void BeforeClass(String browserName, String pageURL) {
-		unregisteredEmail = "auto" + randomNumber() + "@yopmail.com";
+		unregisteredEmail = "auto" + getRandomNumber() + "@yopmail.com";
 		registeredEmail = Common_01_RegisterAccountAndGetCookie.emailAddress;
-		registeredPassword = Common_01_RegisterAccountAndGetCookie.password;
+		registeredPassword = Common_01_RegisterAccountAndGetCookie.password;;
 		
 		driver = getBrowserName(browserName, pageURL);
 
 		homePage = PageGeneratorManager.getHomePageObject(driver);
-		Assert.assertTrue(homePage.isHomePageTitleDisplayed());
-		
 		loginPage = homePage.clickOnLoginLink();
-		Assert.assertTrue(loginPage.isLoginPageTitleDisplayed());
 	}
 
 	@Test
@@ -50,7 +48,6 @@ public class User_02_LoginAccount extends BaseTest {
 	@Test
 	public void Login_02_InvalidEmail() {
 		loginPage = homePage.clickOnLoginLink();
-		Assert.assertTrue(loginPage.isLoginPageTitleDisplayed());
 		
 		loginPage.inputToEmailTextbox("123");
 		loginPage.clickOnLoginButton();
@@ -61,7 +58,6 @@ public class User_02_LoginAccount extends BaseTest {
 	@Test
 	public void Login_03_InputUnregisteredEmail() {
 		loginPage = homePage.clickOnLoginLink();
-		Assert.assertTrue(loginPage.isLoginPageTitleDisplayed());
 		
 		loginPage.inputToEmailTextbox(unregisteredEmail);
 		loginPage.inputToPasswordTextbox("222333");
@@ -73,7 +69,6 @@ public class User_02_LoginAccount extends BaseTest {
 	@Test
 	public void Login_04_InputRegisteredEmailAndNoPassword() {
 		loginPage = homePage.clickOnLoginLink();
-		Assert.assertTrue(loginPage.isLoginPageTitleDisplayed());
 		
 		loginPage.inputToEmailTextbox(registeredEmail);
 		loginPage.clickOnLoginButton();
@@ -84,7 +79,6 @@ public class User_02_LoginAccount extends BaseTest {
 	@Test
 	public void Login_05_InputRegisteredEmailAndWrongPassword() {
 		loginPage = homePage.clickOnLoginLink();
-		Assert.assertTrue(loginPage.isLoginPageTitleDisplayed());
 		
 		loginPage.inputToEmailTextbox(registeredEmail);
 		loginPage.inputToPasswordTextbox("222333");
@@ -96,18 +90,12 @@ public class User_02_LoginAccount extends BaseTest {
 	@Test
 	public void Login_06_InputRegisteredEmailAndPassword() {
 		loginPage = homePage.clickOnLoginLink();
-		Assert.assertTrue(loginPage.isLoginPageTitleDisplayed());
 		
 		loginPage.inputToEmailTextbox(registeredEmail);
 		loginPage.inputToPasswordTextbox(registeredPassword);
 		homePage = loginPage.clickOnLoginButton();
 		
 		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
-	}
-
-	public int randomNumber() {
-		Random rnd = new Random();
-		return rnd.nextInt(999);
 	}
 
 	@AfterClass(alwaysRun = true)

@@ -10,5 +10,4 @@ public class SearchPageUI {
 	public static final String SEARCH_CATEGORY_DROPDOWNLIST = "//select[@id='cid']";
 	public static final String SEARCH_SUB_CATEGORY_CHECKBOX = "//input[@id='isc']";
 	public static final String MANUFACTURER_DROPDOWNLIST = "//select[@id='mid']";
-	public static final String SEARCH_PAGE_TITLE = "//div[@class='page-title']/h1[text()='Search']";
 }

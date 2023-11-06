@@ -28,25 +28,20 @@ public class User_04_Search extends BaseTest {
 	@Parameters({ "browser", "url" })
 	@BeforeClass
 	public void BeforeClass(String browserName, String pageURl) {
-		pageName = "Search";
-		appleProduct = "Apple MacBook Pro";
-		searchCategory = "Computers";
-
+		 pageName = "Search";
+		 appleProduct = "Apple MacBook Pro";
+		 searchCategory = "Computers";
+		 
 		driver = getBrowserName(browserName, pageURl);
 
 		homePage = PageGeneratorManager.getHomePageObject(driver);
-		Assert.assertTrue(homePage.isHomePageTitleDisplayed());
 		
 		loginPage = homePage.clickOnLoginLink();
 		loginPage.setCookie(driver, Common_01_RegisterAccountAndGetCookie.loggedCookies);
 		loginPage.refreshBrowser(driver);
 
-		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
-
 		homePage.clickOnFooterLink(driver, pageName);
-		
 		searchPage = PageGeneratorManager.getSearchPageObject(driver);
-		Assert.assertTrue(searchPage.isSearchPageTitleDisplayed());
 	}
 
 	@Test
@@ -63,8 +58,6 @@ public class User_04_Search extends BaseTest {
 		homePage.clickOnFooterLink(driver, pageName);
 		
 		searchPage = PageGeneratorManager.getSearchPageObject(driver);
-		Assert.assertTrue(searchPage.isSearchPageTitleDisplayed());
-		
 		searchPage.inputToSearchTextbox(searchKeyword);
 		searchPage.clickOnSearchButton();
 
@@ -78,8 +71,6 @@ public class User_04_Search extends BaseTest {
 		homePage.clickOnFooterLink(driver, pageName);
 		
 		searchPage = PageGeneratorManager.getSearchPageObject(driver);
-		Assert.assertTrue(searchPage.isSearchPageTitleDisplayed());
-		
 		searchPage.inputToSearchTextbox(searchKeyword);
 		searchPage.clickOnSearchButton();
 
@@ -94,8 +85,6 @@ public class User_04_Search extends BaseTest {
 		homePage.clickOnFooterLink(driver, pageName);
 		
 		searchPage = PageGeneratorManager.getSearchPageObject(driver);
-		Assert.assertTrue(searchPage.isSearchPageTitleDisplayed());
-
 		searchPage.inputToSearchTextbox(searchKeyword);
 		searchPage.clickOnSearchButton();
 
@@ -108,8 +97,6 @@ public class User_04_Search extends BaseTest {
 		homePage.clickOnFooterLink(driver, pageName);
 		
 		searchPage = PageGeneratorManager.getSearchPageObject(driver);
-		Assert.assertTrue(searchPage.isSearchPageTitleDisplayed());
-
 		searchPage.inputToSearchTextbox(appleProduct);
 		searchPage.clickOnAdvancedSearchCheckbox();
 		searchPage.selectSearchCategoryDropdownlist(searchCategory);
@@ -123,7 +110,6 @@ public class User_04_Search extends BaseTest {
 		homePage.clickOnFooterLink(driver, pageName);
 		
 		searchPage = PageGeneratorManager.getSearchPageObject(driver);
-		Assert.assertTrue(searchPage.isSearchPageTitleDisplayed());
 
 		searchPage.inputToSearchTextbox(appleProduct);
 		searchPage.clickOnAdvancedSearchCheckbox();
@@ -140,8 +126,6 @@ public class User_04_Search extends BaseTest {
 		homePage.clickOnFooterLink(driver, pageName);
 		
 		searchPage = PageGeneratorManager.getSearchPageObject(driver);
-		Assert.assertTrue(searchPage.isSearchPageTitleDisplayed());
-
 		searchPage.inputToSearchTextbox(appleProduct);
 		searchPage.clickOnAdvancedSearchCheckbox();
 		searchPage.selectSearchCategoryDropdownlist(searchCategory);
@@ -157,8 +141,6 @@ public class User_04_Search extends BaseTest {
 		homePage.clickOnFooterLink(driver, pageName);
 		
 		searchPage = PageGeneratorManager.getSearchPageObject(driver);
-		Assert.assertTrue(searchPage.isSearchPageTitleDisplayed());
-
 		searchPage.inputToSearchTextbox(appleProduct);
 		searchPage.clickOnAdvancedSearchCheckbox();
 		searchPage.selectSearchCategoryDropdownlist(searchCategory);

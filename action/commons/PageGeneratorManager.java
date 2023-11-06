@@ -17,6 +17,7 @@ import pagesObject.MyAccountPageObject;
 import pagesObject.MyProductReviewPageObject;
 import pagesObject.NotebooksDetailedPageObject;
 import pagesObject.NotebooksPageObject;
+import pagesObject.ProductReviewsPageObject;
 import pagesObject.RecentProductViewPageObject;
 import pagesObject.RegisterPageObject;
 import pagesObject.SearchPageObject;
@@ -97,5 +98,9 @@ public class PageGeneratorManager {
 
 	public static DesktopsDetailedPageObject getDesktopsDetailedPageObject(WebDriver driver) {
 		return new DesktopsDetailedPageObject(driver);
+	}
+	
+	public static ProductReviewsPageObject getProductReviewsPageObject(WebDriver driver) {
+		return new ProductReviewsPageObject(driver);
 	}
 }

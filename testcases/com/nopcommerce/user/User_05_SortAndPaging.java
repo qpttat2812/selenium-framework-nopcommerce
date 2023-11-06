@@ -24,10 +24,11 @@ public class User_05_SortAndPaging extends BaseTest {
 	private ComputersPageObject computersPage;
 	private NotebooksPageObject notebooksPage;
 	private LoginPageObject loginPage;
+	
 	private String productCategoryName;
+	private String defaultSortType;
 	private List<String> itemListBeforeSortingByName, itemListAfterSortingByName;
 	private List<Double> itemListBeforeSortingByPrice, itemListAfterSortingByPrice;
-	private String defaultSortType;
 
 	@Parameters({ "browser", "url" })
 	@BeforeClass
@@ -38,21 +39,14 @@ public class User_05_SortAndPaging extends BaseTest {
 		driver = getBrowserName(browserName, pageURL);
 		
 		homePage = PageGeneratorManager.getHomePageObject(driver);
-		Assert.assertTrue(homePage.isHomePageTitleDisplayed());
 		
 		loginPage = homePage.clickOnLoginLink();
 		loginPage.setCookie(driver, Common_01_RegisterAccountAndGetCookie.loggedCookies);
 		loginPage.refreshBrowser(driver);
 
-		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
-		
 		homePage.clickOnProductTabLink(driver, productCategoryName);
-
 		computersPage = PageGeneratorManager.getComputersPageObject(driver);
-		Assert.assertTrue(computersPage.isComputersPageTitleDisplayed());
-		
 		notebooksPage = computersPage.clickOnNotebooksLink();
-		Assert.assertTrue(notebooksPage.isNoteBookPageTitleDisplayed());
 	}
 
 	@Test

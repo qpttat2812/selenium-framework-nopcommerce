@@ -1,4 +1,4 @@
-package pagesObject;
+package pagesUI.user;
 
 public class AddToCartPageUI {
 	public static final String ADD_TO_CART_PRODUCT_NAME = "//table[@class='cart']//a[@class='product-name']";

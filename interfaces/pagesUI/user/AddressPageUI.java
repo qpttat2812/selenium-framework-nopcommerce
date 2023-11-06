@@ -9,13 +9,13 @@ public class AddressPageUI {
 	public static final String COUNTRY_DROPDOWNLIST = "//select[@id='Address_CountryId']";
 	public static final String STATE_DROPDOWNLIST = "//select[@id='Address_StateProvinceId']";
 	public static final String CITY_TEXTBOX = "//input[@id='Address_City']";
-	public static final String ADDRESS_I_TEXTBOX = "//input[@id='Address_Address1']";
-	public static final String ADDRESS_II_TEXTBOX = "//input[@id='Address_Address2']";
+	public static final String FIRST_ADDRESS_TEXTBOX = "//input[@id='Address_Address1']";
+	public static final String SECOND_ADDRESS_TEXTBOX = "//input[@id='Address_Address2']";
 	public static final String ZIPCODE_TEXTBOX = "//input[@id='Address_ZipPostalCode']";
 	public static final String PHONE_NUMBER_TEXTBOX = "//input[@id='Address_PhoneNumber']";
 	public static final String FAX_NUMBER_TEXTBOX = "//input[@id='Address_FaxNumber']";
 	public static final String SAVE_BUTTON = "//button[contains(@class,'save-address-button')]";
-	public static final String NOTIFICATION_SUCCESS_TEXT = "//div[@class='bar-notification success']/p[@class='content']";
+	public static final String NOTIFICATION_SUCCESS_MESSAGE = "//div[@class='bar-notification success']/p[@class='content']";
 	public static final String BAR_CLOSE_BUTTON = "//div[@class='bar-notification success']//span[@class='close']";
 	public static final String NAME_TEXT = "//li[@class='name']";
 	public static final String NAME_TITLE = "//div[contains(@class,'address-item')]//strong";
@@ -27,5 +27,4 @@ public class AddressPageUI {
 	public static final String CITY_STATE_ZIPCODE_TEXT = "//li[@class='city-state-zip']";
 	public static final String COUNTRY_TEXT = "//li[@class='country']";
 	public static final String COMPANY_TEXT = "//li[@class='company']";
-	public static final String ADDRESS_TITLE = "//div[@class='page-title']/h1[text()='My account - Addresses']";
 }

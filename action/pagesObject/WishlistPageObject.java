@@ -14,31 +14,31 @@ public class WishlistPageObject extends BasePages{
 		this.driver = driver;
 	}
 
-	@Step("Get Product name in wishlist page")
+	@Step("Get Product name of Wishlist page")
 	public String getWishlistProductName() {
 		waitForElementVisibility(driver, WishlistPageUI.WISHLIST_PRODUCT_NAME);
 		return getTextElement(driver, WishlistPageUI.WISHLIST_PRODUCT_NAME);
 	}
 	
-	@Step("Click on wishlist sharing url")
+	@Step("Click on 'Wishlist Sharing Url'")
 	public void clickOnWishlistSharingURL() {
 		waitForElementVisibility(driver, WishlistPageUI.WISHLIST_SHARING_URL);
 		clickOnElement(driver, WishlistPageUI.WISHLIST_SHARING_URL);
 	}
 	
-	@Step("Get Wishlist sharing title")
+	@Step("Get Wishlist Sharing Title")
 	public String getWishlistSharingTitle() {
 		waitForElementVisibility(driver, WishlistPageUI.WISHLIST_SHARING_TITLE);
 		return getTextElement(driver, WishlistPageUI.WISHLIST_SHARING_TITLE);
 	}
 
-	@Step("Check on Add to cart checkbox")
+	@Step("Check on 'Add to cart' checkbox")
 	public void checkOnAddToCartCheckbox() {
 		waitForElementVisibility(driver, WishlistPageUI.ADD_TO_CART_CHECKBOX);
 		checkOnCheckbox(driver, WishlistPageUI.ADD_TO_CART_CHECKBOX);
 	}
 
-	@Step("Click On Add to cart button")
+	@Step("Click On 'Add to cart' button")
 	public AddToCartPageObject clickOnAddToCartButton() {
 		waitForElementClickable(driver, WishlistPageUI.ADD_TO_CART_BUTTON);
 		clickOnElement(driver, WishlistPageUI.ADD_TO_CART_BUTTON);
@@ -50,7 +50,7 @@ public class WishlistPageObject extends BasePages{
 		return isElementUndisplayed(driver, WishlistPageUI.WISHLIST_PRODUCT_NAME);
 	}
 
-	@Step("Click on Remove icon")
+	@Step("Click on 'Remove' icon")
 	public void clickOnRemoveIcon() {
 		waitForElementVisibility(driver, WishlistPageUI.REMOVE_WISHLIST_PRODUCT_ICON);
 		clickOnElement(driver, WishlistPageUI.REMOVE_WISHLIST_PRODUCT_ICON);
@@ -60,11 +60,5 @@ public class WishlistPageObject extends BasePages{
 	public boolean isWishlistPageEmpty() {
 		waitForElementInvisibility(driver, WishlistPageUI.AJAX_LOADING_ICON);
 		return isElementDisplayed(driver, WishlistPageUI.WISHLIST_EMPTY_MESSAGE);
-	}
-
-	@Step("Verify Wishlist title is displayed")
-	public boolean isWishlistPageTitleDisplayed() {
-		waitForElementVisibility(driver, WishlistPageUI.WISHLIST_TITLE);
-		return isElementDisplayed(driver, WishlistPageUI.WISHLIST_TITLE);
 	}
 }

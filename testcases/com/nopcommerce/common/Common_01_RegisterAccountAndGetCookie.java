@@ -20,6 +20,7 @@ public class Common_01_RegisterAccountAndGetCookie extends BaseTest {
 	private RegisterPageObject registerPage;
 	private HomePageObject homePage;
 	private LoginPageObject loginPage;
+	
 	public static Set<Cookie> loggedCookies;
 	public static String firstName, lastName, emailAddress, password;
 	

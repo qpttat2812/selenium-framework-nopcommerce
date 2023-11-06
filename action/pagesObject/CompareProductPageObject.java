@@ -16,16 +16,10 @@ public class CompareProductPageObject extends BasePages {
 		this.driver = driver;
 	}
 
-	@Step("Verify Product Title of Comparison page is displayed")
-	public boolean isComparedProductTitleDisplayed() {
-		waitForElementVisibility(driver, CompareProductPageUI.COMPARE_PRODUCT_TITLE);
-		return isElementDisplayed(driver, CompareProductPageUI.COMPARE_PRODUCT_TITLE);
-	}
-
 	@Step("Get Product Name text")
 	public String getProductNameText(String expectedProductName) {
-		waitForElementVisibility(driver, CompareProductPageUI.COMPARE_PRODUCT_NAME_LIST);
-		List<WebElement> elements = getElements(driver, CompareProductPageUI.COMPARE_PRODUCT_NAME_LIST);
+		waitForElementVisibility(driver, CompareProductPageUI.PRODUCT_NAME_LIST);
+		List<WebElement> elements = getElements(driver, CompareProductPageUI.PRODUCT_NAME_LIST);
 		String productName = "";
 
 		for (WebElement element : elements) {
@@ -38,9 +32,9 @@ public class CompareProductPageObject extends BasePages {
 	
 	@Step("Get Product Price value with product name is {0}")
 	public String getProductPriceText(String expectedProductName) {
-		waitForElementVisibility(driver, CompareProductPageUI.COMPARE_PRODUCT_NAME_LIST);
+		waitForElementVisibility(driver, CompareProductPageUI.PRODUCT_NAME_LIST);
 		int productIndex = 0;
-		List<WebElement> elements = getElements(driver, CompareProductPageUI.COMPARE_PRODUCT_NAME_LIST);
+		List<WebElement> elements = getElements(driver, CompareProductPageUI.PRODUCT_NAME_LIST);
 		
 		for(int i = 0; i < elements.size(); i++) {
 			if(elements.get(i).getText().equals(expectedProductName)) {
@@ -51,20 +45,20 @@ public class CompareProductPageObject extends BasePages {
 		return getTextElement(driver, CompareProductPageUI.DYNAMIC_COMPARE_PRODUCT_PRICE, String.valueOf(productIndex));
 	}
 	
-	@Step("Click on Clear list button")
+	@Step("Click on 'Clear' list button")
 	public void clickClearListButton() {
-		waitForElementClickable(driver, CompareProductPageUI.COMPARE_CLEAR_LIST_BUTTON);
-		clickOnElement(driver, CompareProductPageUI.COMPARE_CLEAR_LIST_BUTTON);
+		waitForElementClickable(driver, CompareProductPageUI.CLEAR_LIST_BUTTON);
+		clickOnElement(driver, CompareProductPageUI.CLEAR_LIST_BUTTON);
 	}
 
 	@Step("Get Text when there's no product in Compare Product Page")
 	public String getCompareEmptyProductText() {
-		waitForElementVisibility(driver, CompareProductPageUI.COMPARE_EMPTY_PRODUCT_MESSSAGE);
-		return getTextElement(driver, CompareProductPageUI.COMPARE_EMPTY_PRODUCT_MESSSAGE);
+		waitForElementVisibility(driver, CompareProductPageUI.EMPTY_PRODUCT_MESSSAGE);
+		return getTextElement(driver, CompareProductPageUI.EMPTY_PRODUCT_MESSSAGE);
 	}
 	
 	@Step("Verify Products in Compare product page is undisplayed")
 	public boolean isCompareProductUndisplayed() {
-		return isElementUndisplayed(driver, CompareProductPageUI.COMPARE_PRODUCT_NAME_LIST);
+		return isElementUndisplayed(driver, CompareProductPageUI.PRODUCT_NAME_LIST);
 	}
 }

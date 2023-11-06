@@ -88,7 +88,7 @@ public class User_07_Orders extends BaseTest {
 		desktopsDetailedPage.selectHddRadioButton();
 		desktopsDetailedPage.selectOsRadioButton();
 		desktopsDetailedPage.checkOnSoftwareCheckbox();
-		desktopsDetailedPage.inputToQuantityTextbox();
+		desktopsDetailedPage.inputQuantityToTextbox();
 
 		Assert.assertTrue(desktopsDetailedPage.isSubTotalPriceDisplayedCorrect());
 
@@ -122,7 +122,36 @@ public class User_07_Orders extends BaseTest {
 
 	@Test
 	public void Orders_04_UpdateShoppingCart() {
+		String desktopsName = "Lenovo IdeaCentre 600 All-in-One PC";
 		
+		homePage.clickOnProductTabLink(driver, productTab);
+		
+		computersPage = PageGeneratorManager.getComputersPageObject(driver);
+		Assert.assertTrue(computersPage.isComputersPageTitleDisplayed());
+		
+		desktopsPage = computersPage.clickOnDesktopsLink();
+		Assert.assertTrue(desktopsPage.isDesktopsPageTitleDisplayed());
+		
+		desktopsPage.clickOnProductNameLinkAtSubCategory(driver, desktopsName);
+		
+		desktopsDetailedPage = PageGeneratorManager.getDesktopsDetailedPageObject(driver);
+		Assert.assertTrue(desktopsDetailedPage.isProductNameOfDetailedPageDisplayed(driver, desktopsName));
+		
+		desktopsDetailedPage.clickOnAddToCartButton();
+		float desktopsPrice = desktopsDetailedPage.getPriceOfProductAtProductDetailedPage(driver, desktopsName);
+		
+		Assert.assertEquals(homePage.getBarNotificationSuccessText(), "The product has been added to your shopping cart");
+		desktopsDetailedPage.clickOnCloseButton();
+		
+		Assert.assertEquals(homePage.getShoppingCartQuantity(), 1);
+		
+		addToCartPage = homePage.clickOnShoppingCartLink();
+		Assert.assertTrue(addToCartPage.isAddToCartPageTitleDisplayed());
+		
+		addToCartPage.inputQuantityToTextBox();
+		addToCartPage.clickOnUpdateCartButton();
+		
+		Assert.assert
 	}
 
 	@Test
