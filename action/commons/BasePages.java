@@ -3,7 +3,6 @@ package commons;
 import java.io.File;
 import java.time.Duration;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -588,62 +587,6 @@ public class BasePages {
 		sleepInSecond(5);
 	}
 
-	public List<String> getAllItemsBeforeSortingByName(WebDriver driver, String xpathLocator) {
-		List<WebElement> beforeSortingWebElementList = getElements(driver, xpathLocator);
-		List<String> beforeSortingProductList = new ArrayList<String>();
-		for (WebElement element : beforeSortingWebElementList) {
-			beforeSortingProductList.add(element.getText());
-		}
-		return beforeSortingProductList;
-	}
-
-	public List<String> getAllItemsAfterSortingByName(WebDriver driver, String xpathLocator) {
-		List<WebElement> afterSortingWebElementList = getElements(driver, xpathLocator);
-		List<String> afterSortingProductList = new ArrayList<String>();
-		for (WebElement element : afterSortingWebElementList) {
-			afterSortingProductList.add(element.getText());
-		}
-		return afterSortingProductList;
-	}
-
-	public List<String> sortAscendingByName(List<String> beforeSortingProductList) {
-		Collections.sort(beforeSortingProductList);
-		return beforeSortingProductList;
-	}
-
-	public List<String> sortDescendingByName(List<String> beforeSortingProductList) {
-		Collections.sort(beforeSortingProductList, Collections.reverseOrder());
-		return beforeSortingProductList;
-	}
-	
-	public List<Double> getAllItemsBeforeSortingByPrice(WebDriver driver, String xpathLocator) {
-		List<WebElement> beforeSortingWebElementList = getElements(driver, xpathLocator);
-		List<Double> beforeSortingPriceList = new ArrayList<Double>();
-		for (WebElement element : beforeSortingWebElementList) {
-			beforeSortingPriceList.add(Double.valueOf(element.getText().replace("$", "").replace(",", "")));
-		}
-		return beforeSortingPriceList;
-	}
-	
-	public List<Double> getAllItemsAfterSortingByPrice(WebDriver driver, String xpathLocator) {
-		List<WebElement> afterSortingWebElementList = getElements(driver, xpathLocator);
-		List<Double> afterSortingPriceList = new ArrayList<Double>();
-		for (WebElement element : afterSortingWebElementList) {
-			afterSortingPriceList.add(Double.valueOf(element.getText().replace("$", "").replace(",", "")));
-		}
-		return afterSortingPriceList;
-	}
-	
-	public List<Double> sortAscendingByPrice(List<Double> beforeSortingProductList) {
-		Collections.sort(beforeSortingProductList);
-		return beforeSortingProductList;
-	}
-
-	public List<Double> sortDescendingByPrice(List<Double> beforeSortingProductList) {
-		Collections.sort(beforeSortingProductList, Collections.reverseOrder());
-		return beforeSortingProductList;
-	}
-	
 	// -------------------- OTHER COMMON SPECIFIC FUNCTIONS IN NOPCOMMERCE -----------------------------
 
 	/**

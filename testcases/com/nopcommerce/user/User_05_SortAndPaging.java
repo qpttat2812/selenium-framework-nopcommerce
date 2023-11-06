@@ -26,15 +26,13 @@ public class User_05_SortAndPaging extends BaseTest {
 	private LoginPageObject loginPage;
 	
 	private String productCategoryName;
-	private String defaultSortType;
 	private List<String> itemListBeforeSortingByName, itemListAfterSortingByName;
-	private List<Double> itemListBeforeSortingByPrice, itemListAfterSortingByPrice;
+	private List<Float> itemListBeforeSortingByPrice, itemListAfterSortingByPrice;
 
 	@Parameters({ "browser", "url" })
 	@BeforeClass
 	public void BeforeClass(String browserName, String pageURL) {
 		productCategoryName = "Computers";
-		defaultSortType = "Position";
 		
 		driver = getBrowserName(browserName, pageURL);
 		
@@ -51,50 +49,38 @@ public class User_05_SortAndPaging extends BaseTest {
 
 	@Test
 	public void SortAndPaging_01_SortWithNameAscending() {
-		itemListBeforeSortingByName = notebooksPage.getItemListBeforeSortingByNameWithAscendingOrder();
-		notebooksPage.selectSortType("Name: A to Z");
-		itemListAfterSortingByName = notebooksPage.getItemListAfterSortingByName();
+		itemListBeforeSortingByName = notebooksPage.getBeforeListByProductNameAndSort("Name: A to Z");
+		itemListAfterSortingByName = notebooksPage.getAfterSortListByProductName();
 
 		Assert.assertEquals(itemListAfterSortingByName, itemListBeforeSortingByName);
 	}
 
 	@Test
 	public void SortAndPaging_02_SortWithNameDescending() {
-		notebooksPage.selectSortType(defaultSortType);
-
-		itemListBeforeSortingByName = notebooksPage.getItemListBeforeSortingByNameWithDescendingOrder();
-		notebooksPage.selectSortType("Name: Z to A");
-		itemListAfterSortingByName = notebooksPage.getItemListAfterSortingByName();
+		itemListBeforeSortingByName = notebooksPage.getBeforeListByProductNameAndSort("Name: Z to A");
+		itemListAfterSortingByName = notebooksPage.getAfterSortListByProductName();
 
 		Assert.assertEquals(itemListAfterSortingByName, itemListBeforeSortingByName);
 	}
 
 	@Test
 	public void SortAndPaging_03_SortWithPriceAscending() {
-		notebooksPage.selectSortType(defaultSortType);
-
-		itemListBeforeSortingByPrice = notebooksPage.getItemListBeforeSortingByPriceWithAscendingOrder();
-		notebooksPage.selectSortType("Price: Low to High");
-		itemListAfterSortingByPrice = notebooksPage.getItemListAfterSortingByPrice();
+		itemListBeforeSortingByPrice = notebooksPage.getBeforeListByProductPriceAndSort("Price: Low to High");
+		itemListAfterSortingByPrice = notebooksPage.getAfterSortListByProductPrice();
 
 		Assert.assertEquals(itemListAfterSortingByPrice, itemListBeforeSortingByPrice);
 	}
 
 	@Test
 	public void SortAndPaging_04_SortWithPriceDescending() {
-		notebooksPage.selectSortType(defaultSortType);
-
-		itemListBeforeSortingByPrice = notebooksPage.getItemListBeforeSortingByPriceWithDescendingOrder();
-		notebooksPage.selectSortType("Price: High to Low");
-		itemListAfterSortingByPrice = notebooksPage.getItemListAfterSortingByPrice();
+		itemListBeforeSortingByPrice = notebooksPage.getBeforeListByProductPriceAndSort("Price: High to Low");
+		itemListAfterSortingByPrice = notebooksPage.getAfterSortListByProductPrice();
 
 		Assert.assertEquals(itemListAfterSortingByPrice, itemListBeforeSortingByPrice);
 	}
 
 	@Test
 	public void SortAndPaging_05_DisplayThreeProductsInPage() {
-		notebooksPage.selectSortType(defaultSortType);
-
 		notebooksPage.selectDisplayType("3");
 		Assert.assertTrue(notebooksPage.isItemSizeDisplayedCorrect(3));
 		Assert.assertTrue(notebooksPage.isNextPagingIconDisplayed());

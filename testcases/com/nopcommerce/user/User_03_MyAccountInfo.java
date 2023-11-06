@@ -10,13 +10,14 @@ import org.testng.annotations.Test;
 import commons.BaseTest;
 import commons.PageGeneratorManager;
 import pagesObject.AddressPageObject;
-import pagesObject.BookDetailedPageObject;
-import pagesObject.BookPageObject;
 import pagesObject.ChangePasswordPageObject;
+import pagesObject.ComputersPageObject;
 import pagesObject.HomePageObject;
 import pagesObject.LoginPageObject;
 import pagesObject.MyAccountPageObject;
 import pagesObject.MyProductReviewPageObject;
+import pagesObject.NotebooksDetailedPageObject;
+import pagesObject.NotebooksPageObject;
 import pagesObject.ProductReviewsPageObject;
 import pagesObject.RegisterPageObject;
 
@@ -27,11 +28,12 @@ public class User_03_MyAccountInfo extends BaseTest{
 	private AddressPageObject addressPage;
 	private LoginPageObject loginPage;
 	private ChangePasswordPageObject changePasswordPage;
-	private BookPageObject bookPage;
 	private MyProductReviewPageObject myProductReviewPage;
 	private RegisterPageObject registerPage;
-	private BookDetailedPageObject bookDetailedPage;
 	private ProductReviewsPageObject productReviewsPage;
+	private ComputersPageObject computersPage;
+	private NotebooksPageObject notebooksPage;
+	private NotebooksDetailedPageObject notebooksDetailedPage;
 	
 	private String registeredFirstName;
 	private String registeredLastName;
@@ -56,7 +58,7 @@ public class User_03_MyAccountInfo extends BaseTest{
 	private String registeredEmail;
 	private String newEmail;
 	private String newPassword;
-	private String bookName;
+	private String notebookName;
 	private String reviewTitle;
 	private String reviewContent;
 	
@@ -86,9 +88,9 @@ public class User_03_MyAccountInfo extends BaseTest{
 		registeredEmail = "testtest" + getRandomNumber() + "@gmail.com";
 		newEmail = "automate" + getRandomNumber() + "@yopmail.com";
 		newPassword = "22222223";
-		bookName = "Fahrenheit 451 by Ray Bradbury";
+		notebookName = "Apple MacBook Pro 13-inch";
 		reviewTitle  = "recommended";
-		reviewContent = "it's worth to buy.\nAll books of this author are good.";
+		reviewContent = "it's worth to buy.\nGood notebook for programming";
 		
 		driver = getBrowserName(browserName, pageURL);
 		
@@ -211,14 +213,15 @@ public class User_03_MyAccountInfo extends BaseTest{
 	
 	@Test
 	public void MyAccount_04_MyProductReview() {
-		homePage.clickOnProductTabLink(driver, "Books");
+		homePage.clickOnProductTabLink(driver, "Computers");
 		
-		bookPage = PageGeneratorManager.getBookPageObject(driver);
-		bookPage.clickOnProductNameLinkAtSubCategory(driver, bookName);
+		computersPage = PageGeneratorManager.getComputersPageObject(driver);
+		notebooksPage = computersPage.clickOnNotebooksLink();
+		notebooksPage.clickOnProductNameLinkAtSubCategory(driver, notebookName);
 		
-		bookDetailedPage = PageGeneratorManager.getBookDetailedPageObject(driver);
-		productReviewsPage = bookDetailedPage.clickOnAddReviewLink();
-		Assert.assertEquals(productReviewsPage.getReviewProductTitle(), "Product reviews for " + bookName);
+		notebooksDetailedPage = PageGeneratorManager.getNotebooksDetailedPageObject(driver);
+		productReviewsPage = notebooksDetailedPage.clickOnAddReviewLink();
+		Assert.assertEquals(productReviewsPage.getReviewProductTitle(), "Product reviews for " + notebookName);
 		
 		productReviewsPage.inputToReviewTitleTextbox(reviewTitle);
 		productReviewsPage.inputToReviewContentTextArea(reviewContent);
@@ -233,7 +236,7 @@ public class User_03_MyAccountInfo extends BaseTest{
 		
 		Assert.assertEquals(myProductReviewPage.getReviewTitleText(), reviewTitle);
 		Assert.assertEquals(myProductReviewPage.getReviewText(), reviewContent);
-		Assert.assertEquals(myProductReviewPage.getBookReviewText(bookName), bookName);
+		Assert.assertEquals(myProductReviewPage.getProductReviewText(notebookName), notebookName);
 	}
 	
 	@AfterClass(alwaysRun = true)

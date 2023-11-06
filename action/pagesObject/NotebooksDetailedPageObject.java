@@ -3,6 +3,7 @@ package pagesObject;
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePages;
+import commons.PageGeneratorManager;
 import io.qameta.allure.Step;
 import pagesUI.user.NotebooksDetailedPageUI;
 
@@ -36,5 +37,12 @@ public class NotebooksDetailedPageObject extends BasePages{
 	public String getPriceOfProduct(String productName) {
 		waitForElementVisibility(driver, NotebooksDetailedPageUI.DYNAMIC_PRODUCT_PRICE_VALUE, productName);
 		return getTextElement(driver, NotebooksDetailedPageUI.DYNAMIC_PRODUCT_PRICE_VALUE, productName);
+	}
+	
+	@Step("Click on 'Add Your Review' textlink")
+	public ProductReviewsPageObject clickOnAddReviewLink() {
+		waitForElementVisibility(driver, NotebooksDetailedPageUI.ADD_REVIEW_LINK);
+		clickOnElement(driver, NotebooksDetailedPageUI.ADD_REVIEW_LINK);
+		return PageGeneratorManager.getProductReviewsPageObject(driver);
 	}
 }

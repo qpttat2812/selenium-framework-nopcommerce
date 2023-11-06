@@ -25,10 +25,10 @@ public class MyProductReviewPageObject extends BasePages{
 		return getTextElement(driver, MyProductReviewUI.REVIEWED_CONTENT); 
 	}
 
-	@Step("Get Book review value")
-	public String getBookReviewText(String bookName) {
-		waitForElementVisibility(driver, MyProductReviewUI.REVIEWED_PRODUCT, bookName); 
-		return getTextElement(driver, MyProductReviewUI.REVIEWED_PRODUCT, bookName); 
+	@Step("Get Product Name that is reviewed with value {0}")
+	public String getProductReviewText(String productName) {
+		waitForElementVisibility(driver, MyProductReviewUI.REVIEWED_PRODUCT, productName); 
+		return getTextElement(driver, MyProductReviewUI.REVIEWED_PRODUCT, productName); 
 	}
 	
 }
