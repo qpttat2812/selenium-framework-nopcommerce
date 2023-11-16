@@ -8,6 +8,7 @@ import commons.BaseTest;
 import commons.PageGeneratorManager;
 import pagesObject.HomePageObject;
 import pagesObject.LoginPageObject;
+import utilities.DataHelper;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
@@ -20,15 +21,20 @@ public class User_02_LoginAccount extends BaseTest {
 	private WebDriver driver;
 	private LoginPageObject loginPage;
 	private HomePageObject homePage;
+	private DataHelper dataFake;
 	
 	private String unregisteredEmail;
+	private String unregisteredPassword;
 	private String registeredEmail;
 	private String registeredPassword;
 	
 	@Parameters({"browser", "url"})
 	@BeforeClass
 	public void BeforeClass(String browserName, String pageURL) {
-		unregisteredEmail = "auto" + getRandomNumber() + "@yopmail.com";
+		dataFake = DataHelper.getData();
+		
+		unregisteredEmail = dataFake.getEmailAddress();
+		unregisteredPassword = dataFake.getPassword();
 		registeredEmail = Common_01_RegisterAccountAndGetCookie.emailAddress;
 		registeredPassword = Common_01_RegisterAccountAndGetCookie.password;;
 		
@@ -60,7 +66,7 @@ public class User_02_LoginAccount extends BaseTest {
 		loginPage = homePage.clickOnLoginLink();
 		
 		loginPage.inputToEmailTextbox(unregisteredEmail);
-		loginPage.inputToPasswordTextbox("222333");
+		loginPage.inputToPasswordTextbox(unregisteredPassword);
 		loginPage.clickOnLoginButton();
 
 		Assert.assertEquals(loginPage.getInvalidErrorMessageText(), "Login was unsuccessful. Please correct the errors and try again.\nNo customer account found");
@@ -81,7 +87,7 @@ public class User_02_LoginAccount extends BaseTest {
 		loginPage = homePage.clickOnLoginLink();
 		
 		loginPage.inputToEmailTextbox(registeredEmail);
-		loginPage.inputToPasswordTextbox("222333");
+		loginPage.inputToPasswordTextbox(unregisteredPassword);
 		loginPage.clickOnLoginButton();
 
 		Assert.assertEquals(loginPage.getInvalidErrorMessageText(), "Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");

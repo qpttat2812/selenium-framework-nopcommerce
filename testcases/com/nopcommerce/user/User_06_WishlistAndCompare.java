@@ -85,7 +85,7 @@ public class User_06_WishlistAndCompare extends BaseTest {
 
 		notebooksDetailedPage = PageGeneratorManager.getNotebooksDetailedPageObject(driver);
 		notebooksDetailedPage.clickOnActionButton(firstProductName, wishlistButton);
-		Assert.assertEquals(notebooksDetailedPage.getBarNotificationSuccessText(), expectedBarNotificationMessage);
+		Assert.assertEquals(notebooksDetailedPage.getBarNotificationSuccessMessage(), expectedBarNotificationMessage);
 		notebooksDetailedPage.clickOnCloseButton();
 
 		wishlistPage = homePage.clickOnWishlistLink();
@@ -122,7 +122,7 @@ public class User_06_WishlistAndCompare extends BaseTest {
 		
 		notebooksDetailedPage = PageGeneratorManager.getNotebooksDetailedPageObject(driver);
 		notebooksDetailedPage.clickOnActionButton(firstProductName, wishlistButton);
-		Assert.assertEquals(notebooksDetailedPage.getBarNotificationSuccessText(), expectedBarNotificationMessage);
+		Assert.assertEquals(notebooksDetailedPage.getBarNotificationSuccessMessage(), expectedBarNotificationMessage);
 		notebooksDetailedPage.clickOnCloseButton();
 
 		wishlistPage = homePage.clickOnWishlistLink();
@@ -144,7 +144,7 @@ public class User_06_WishlistAndCompare extends BaseTest {
 		//first product
 		notebooksDetailedPage = PageGeneratorManager.getNotebooksDetailedPageObject(driver);
 		notebooksDetailedPage.clickOnActionButton(firstProductName, compareButton);
-		Assert.assertEquals(notebooksDetailedPage.getBarNotificationSuccessText(), barNotificationSuccessMessage);
+		Assert.assertEquals(notebooksDetailedPage.getBarNotificationSuccessMessage(), barNotificationSuccessMessage);
 		notebooksDetailedPage.clickOnCloseButton();
 		
 		firstProductPrice = notebooksDetailedPage.getPriceOfProduct(firstProductName);
@@ -157,7 +157,7 @@ public class User_06_WishlistAndCompare extends BaseTest {
 		
 		notebooksDetailedPage = PageGeneratorManager.getNotebooksDetailedPageObject(driver);
 		notebooksDetailedPage.clickOnActionButton(secondProductName, compareButton);
-		Assert.assertEquals(notebooksDetailedPage.getBarNotificationSuccessText(), barNotificationSuccessMessage);
+		Assert.assertEquals(notebooksDetailedPage.getBarNotificationSuccessMessage(), barNotificationSuccessMessage);
 		notebooksDetailedPage.clickOnCloseButton();
 		
 		secondProductPrice = notebooksDetailedPage.getPriceOfProduct(secondProductName);

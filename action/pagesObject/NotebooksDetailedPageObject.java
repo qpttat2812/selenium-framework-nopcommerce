@@ -15,7 +15,7 @@ public class NotebooksDetailedPageObject extends BasePages{
 	}
 	
 	@Step("Get Bar notification success message")
-	public String getBarNotificationSuccessText() {
+	public String getBarNotificationSuccessMessage() {
 		waitForElementVisibility(driver, NotebooksDetailedPageUI.BAR_NOTIFICATION_SUCCESS_MESSSAGE);
 		return getTextElement(driver, NotebooksDetailedPageUI.BAR_NOTIFICATION_SUCCESS_MESSSAGE);
 	}
@@ -44,5 +44,24 @@ public class NotebooksDetailedPageObject extends BasePages{
 		waitForElementVisibility(driver, NotebooksDetailedPageUI.ADD_REVIEW_LINK);
 		clickOnElement(driver, NotebooksDetailedPageUI.ADD_REVIEW_LINK);
 		return PageGeneratorManager.getProductReviewsPageObject(driver);
+	}
+
+	@Step("Click on 'Add to cart' button")
+	public void clickOnAddToCartButton() {
+		waitForElementClickable(driver, NotebooksDetailedPageUI.ADD_TO_CART_BUTTON);
+		clickOnElement(driver, NotebooksDetailedPageUI.ADD_TO_CART_BUTTON);
+	}
+
+	@Step("Get Notebooks SKU value")
+	public String getProductSKUValue() {
+		waitForElementVisibility(driver, NotebooksDetailedPageUI.PRODUCT_SKU);
+		return getTextElement(driver, NotebooksDetailedPageUI.PRODUCT_SKU);
+	}
+
+	@Step("Get Notebooks unit price value")
+	public float getProductUnitPriceValue() {
+		waitForElementVisibility(driver, NotebooksDetailedPageUI.PRODUCT_UNIT_PRICE_VALUE);
+		String price = getTextElement(driver, NotebooksDetailedPageUI.PRODUCT_UNIT_PRICE_VALUE).replace("$", "").replace(",", "");
+		return Float.valueOf(price);
 	}
 }

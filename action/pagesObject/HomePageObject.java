@@ -66,4 +66,42 @@ public class HomePageObject extends BasePages{
 		waitForElementVisibility(driver, HomePageUI.WISHLIST_QUANTITY_VALUE);
 		return Integer.valueOf(getTextElement(driver, HomePageUI.WISHLIST_QUANTITY_VALUE).substring(1, 2));
 	}
+
+	@Step("Get Summary Message in Minicart")
+	public String getMiniCartSummaryMessage() {
+		waitForElementPresence(driver, HomePageUI.COUNT_IN_MINICART_VALUE);
+		System.out.println(getTextElement(driver, HomePageUI.COUNT_IN_MINICART_VALUE));
+		return getInnerTextByJS(driver, getElement(driver, HomePageUI.COUNT_IN_MINICART_VALUE));
+	}
+
+	@Step("Get selected components info in Minicart")
+	public String getMiniCartProductInfo() {
+		waitForElementPresence(driver, HomePageUI.MINICART_COMPONENT_ITEM_INFO);
+		return getInnerTextByJS(driver, getElement(driver, HomePageUI.MINICART_COMPONENT_ITEM_INFO));
+	}
+
+	@Step("Get unit price of product in Minicart")
+	public String getMiniCartUnitPriceInfo() {
+		waitForElementPresence(driver, HomePageUI.MINICART_UNIT_PRICE_VALUE);
+		return getInnerTextByJS(driver, getElement(driver, HomePageUI.MINICART_UNIT_PRICE_VALUE));
+	}
+
+	@Step("Get quantity of product in Minicart")
+	public String getMiniCartQuantityInfo() {
+		waitForElementPresence(driver, HomePageUI.MINICART_QUANTITY_VALUE);
+		return getInnerTextByJS(driver, getElement(driver, HomePageUI.MINICART_QUANTITY_VALUE));
+	}
+
+	@Step("Get sub-total price of product in Minicart")
+	public String getMiniCartSubTotalPriceValue() {
+		waitForElementPresence(driver, HomePageUI.MINICART_SUB_TOTAL_PRICE_VALUE);
+		return getInnerTextByJS(driver, getElement(driver, HomePageUI.MINICART_SUB_TOTAL_PRICE_VALUE));
+	}
+
+	@Step("Click On Shopping Cart link")
+	public AddToCartPageObject clickOnShoppingCartLink() {
+		waitForElementVisibility(driver, HomePageUI.SHOPPING_CART_LINK);
+		clickOnElement(driver, HomePageUI.SHOPPING_CART_LINK);
+		return PageGeneratorManager.getAddToCartPageObject(driver);
+	}
 }

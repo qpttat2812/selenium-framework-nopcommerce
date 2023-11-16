@@ -20,6 +20,7 @@ import pagesObject.NotebooksDetailedPageObject;
 import pagesObject.NotebooksPageObject;
 import pagesObject.ProductReviewsPageObject;
 import pagesObject.RegisterPageObject;
+import utilities.DataHelper;
 
 public class User_03_MyAccountInfo extends BaseTest{
 	private WebDriver driver;
@@ -34,6 +35,7 @@ public class User_03_MyAccountInfo extends BaseTest{
 	private ComputersPageObject computersPage;
 	private NotebooksPageObject notebooksPage;
 	private NotebooksDetailedPageObject notebooksDetailedPage;
+	private DataHelper dataFake;
 	
 	private String registeredFirstName;
 	private String registeredLastName;
@@ -65,29 +67,31 @@ public class User_03_MyAccountInfo extends BaseTest{
 	@Parameters({"browser", "url"})
 	@BeforeClass
 	public void BeforeClass(String browserName, String pageURL) {
-		registeredFirstName = "Auto";
-		registeredLastName = "Test";
-		companyName  = "AirBnB";
-		newFirstName = "automation";
-		newLastName = "fc";
+		dataFake = DataHelper.getData();
+		
+		registeredFirstName = dataFake.getFirstName();
+		registeredLastName = dataFake.getLastName();
+		companyName  = dataFake.getCompany();
+		newFirstName = dataFake.getFirstName();
+		newLastName = dataFake.getLastName();
 		dayOfBirth = "25"; 
 		monthOfBirth = "September"; 
 		yearOfBirth = "2001";
 		genderValue = "F";
 		country = "United States"; 
 		state = "Alaska";
-		city = "Helsinki"; 
-		phoneNumber = "99333666"; 
-		faxNumber = "99333667"; 
-		firstAddress = "Tampere"; 
-		secondAddress = "Turku"; 
-		zipCode = "222333";
+		city = dataFake.getCity(); 
+		phoneNumber = dataFake.getPhoneNumber();
+		faxNumber = dataFake.getFaxNumber();
+		firstAddress = dataFake.getAddress();
+		secondAddress = dataFake.getAddress();
+		zipCode = dataFake.getZipCode();
 		addressPageName = "Addresses";
 		changePasswordPageName = "Change password";
-		registeredPassword = "111222"; 
-		registeredEmail = "testtest" + getRandomNumber() + "@gmail.com";
-		newEmail = "automate" + getRandomNumber() + "@yopmail.com";
-		newPassword = "22222223";
+		registeredPassword = dataFake.getPassword();
+		registeredEmail = dataFake.getEmailAddress();
+		newEmail = dataFake.getEmailAddress();
+		newPassword = dataFake.getPassword();
 		notebookName = "Apple MacBook Pro 13-inch";
 		reviewTitle  = "recommended";
 		reviewContent = "it's worth to buy.\nGood notebook for programming";

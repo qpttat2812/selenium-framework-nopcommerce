@@ -13,49 +13,49 @@ public class MyAccountPageObject extends BasePages{
 		this.driver = driver;
 	}
 	
-	@Step("Select 'Gender' radio button with {0} value")
+	@Step("Select 'Gender' radio button with value is {0}")
 	public void selectGenderRadioButton(String expectedGender) {
 		waitForElementVisibility(driver, MyAccountPageUI.FEMALE_GENDER_RADIO_BUTTON, expectedGender);
 		clickOnRadioButton(driver, MyAccountPageUI.FEMALE_GENDER_RADIO_BUTTON, expectedGender);
 	}
 	
-	@Step("Update 'First Name' textbox with value {0}")
+	@Step("Update 'First Name' textbox with value is {0}")
 	public void updateFirstNameTextbox(String firstName) {
 		waitForElementVisibility(driver, MyAccountPageUI.FIRST_NAME_TEXTBOX);
 		sendkeyToElement(driver, MyAccountPageUI.FIRST_NAME_TEXTBOX, firstName);
 	}
 	
-	@Step("Update 'Last Name' textbox with value {0}")
+	@Step("Update 'Last Name' textbox with value is {0}")
 	public void updateLastNameTextbox(String lastName) {
 		waitForElementVisibility(driver, MyAccountPageUI.LAST_NAME_TEXTBOX);
 		sendkeyToElement(driver, MyAccountPageUI.LAST_NAME_TEXTBOX, lastName);
 	}
 	
-	@Step("Select 'Day Of Birth' dropdownlist with value {0}")
+	@Step("Select 'Day Of Birth' dropdownlist with value is {0}")
 	public void updateDayOfBirthDropdownList(String expectedDay) {
 		waitForElementVisibility(driver, MyAccountPageUI.DAY_OF_BIRTH_DROPDOWNLIST);
 		selectDefaultItemInDropdownList(driver, MyAccountPageUI.DAY_OF_BIRTH_DROPDOWNLIST, expectedDay);
 	}
 	
-	@Step("Select 'Month Of Birth' dropdownlist with value {0}")
+	@Step("Select 'Month Of Birth' dropdownlist with value is {0}")
 	public void updateMonthOfBirthDropdownList(String expectedMonth) {
 		waitForElementVisibility(driver, MyAccountPageUI.MONTH_OF_BIRTH_DROPDOWNLIST);
 		selectDefaultItemInDropdownList(driver, MyAccountPageUI.MONTH_OF_BIRTH_DROPDOWNLIST, expectedMonth);
 	}
 	
-	@Step("Update 'Year Of Birth' dropdownlist with value {0}")
+	@Step("Update 'Year Of Birth' dropdownlist with value is {0}")
 	public void updateYearOfBirthDropdownList(String expectedYear) {
 		waitForElementVisibility(driver, MyAccountPageUI.YEAR_OF_BIRTH_DROPDOWNLIST);
 		selectDefaultItemInDropdownList(driver, MyAccountPageUI.YEAR_OF_BIRTH_DROPDOWNLIST, expectedYear);
 	}
 	
-	@Step("Update 'Email' textbox with value {0}")
+	@Step("Update 'Email' textbox with value is {0}")
 	public void updateEmailTextbox(String email) {
 		waitForElementVisibility(driver, MyAccountPageUI.EMAIL_TEXTBOX);
 		sendkeyToElement(driver, MyAccountPageUI.EMAIL_TEXTBOX, email);
 	}
 	
-	@Step("Update 'Company Name' textbox with value {0}")
+	@Step("Update 'Company Name' textbox with value is {0}")
 	public void updateCompanyNameTextbox(String companyName) {
 		waitForElementVisibility(driver, MyAccountPageUI.COMPANY_NAME_TEXTBOX);
 		sendkeyToElement(driver, MyAccountPageUI.COMPANY_NAME_TEXTBOX, companyName);

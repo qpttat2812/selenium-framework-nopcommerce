@@ -4,9 +4,8 @@ import org.openqa.selenium.WebDriver;
 
 import pagesObject.AddToCartPageObject;
 import pagesObject.AddressPageObject;
-import pagesObject.BookDetailedPageObject;
-import pagesObject.BookPageObject;
 import pagesObject.ChangePasswordPageObject;
+import pagesObject.CheckoutPageObject;
 import pagesObject.CompareProductPageObject;
 import pagesObject.ComputersPageObject;
 import pagesObject.DesktopsDetailedPageObject;
@@ -17,6 +16,7 @@ import pagesObject.MyAccountPageObject;
 import pagesObject.MyProductReviewPageObject;
 import pagesObject.NotebooksDetailedPageObject;
 import pagesObject.NotebooksPageObject;
+import pagesObject.OrdersPageObject;
 import pagesObject.ProductReviewsPageObject;
 import pagesObject.RecentProductViewPageObject;
 import pagesObject.RegisterPageObject;
@@ -46,14 +46,6 @@ public class PageGeneratorManager {
 	
 	public static ChangePasswordPageObject getChangePasswordPageObject(WebDriver driver) {
 		return new ChangePasswordPageObject(driver);
-	}
-
-	public static BookPageObject getBookPageObject(WebDriver driver) {
-		return new BookPageObject(driver);
-	}
-	
-	public static BookDetailedPageObject getBookDetailedPageObject(WebDriver driver) {
-		return new BookDetailedPageObject(driver);
 	}
 
 	public static MyProductReviewPageObject getMyProductReviewPageObject(WebDriver driver) {
@@ -102,5 +94,13 @@ public class PageGeneratorManager {
 	
 	public static ProductReviewsPageObject getProductReviewsPageObject(WebDriver driver) {
 		return new ProductReviewsPageObject(driver);
+	}
+	
+	public static CheckoutPageObject getCheckoutPageObject(WebDriver driver) {
+		return new CheckoutPageObject(driver);
+	}
+
+	public static OrdersPageObject getOrdersPageObject(WebDriver driver) {
+		return new OrdersPageObject(driver);
 	}
 }

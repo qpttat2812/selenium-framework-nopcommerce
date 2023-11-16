@@ -18,7 +18,7 @@ public class NotebooksPageObject extends BasePages {
 		this.driver = driver;
 	}
 
-	@Step("Get product name list and select sort type with value {0}")
+	@Step("Get product name list and select sort type with value is {0}")
 	public List<String> getBeforeListByProductNameAndSort(String expectedSortType) {
 		waitForElementInvisibility(driver, NotebooksPageUI.AJAX_PRODUCT_LOADING_ICON);
 
@@ -54,7 +54,7 @@ public class NotebooksPageObject extends BasePages {
 		return afterList;
 	}
 
-	@Step("Get product price list and select sort type with value {0}")
+	@Step("Get product price list and select sort type with value is {0}")
 	public List<Float> getBeforeListByProductPriceAndSort(String expectedSortType) {
 		waitForElementInvisibility(driver, NotebooksPageUI.AJAX_PRODUCT_LOADING_ICON);
 

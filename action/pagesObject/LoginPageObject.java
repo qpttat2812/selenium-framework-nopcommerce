@@ -27,13 +27,13 @@ public class LoginPageObject extends BasePages{
 		return getTextElement(driver, LoginPageUI.EMAIL_ERROR_MESSAGE);
 	}
 
-	@Step("Input to 'Email' textbox with value {0}")
+	@Step("Input to 'Email' textbox with value is {0}")
 	public void inputToEmailTextbox(String email) {
 		waitForElementClickable(driver, LoginPageUI.EMAIL_TEXTBOX);
 		sendkeyToElement(driver, LoginPageUI.EMAIL_TEXTBOX, email);
 	}
 
-	@Step("Input to 'Password' textbox with value {0}")
+	@Step("Input to 'Password' textbox with value is {0}")
 	public void inputToPasswordTextbox(String password) {
 		waitForElementClickable(driver, LoginPageUI.PASSWORD_TEXTBOX);
 		sendkeyToElement(driver, LoginPageUI.PASSWORD_TEXTBOX, password);

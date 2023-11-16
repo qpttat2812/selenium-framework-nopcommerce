@@ -1,6 +1,5 @@
 package com.nopcommerce.common;
 
-import java.util.Random;
 import java.util.Set;
 
 import org.openqa.selenium.Cookie;
@@ -14,12 +13,14 @@ import commons.PageGeneratorManager;
 import pagesObject.HomePageObject;
 import pagesObject.LoginPageObject;
 import pagesObject.RegisterPageObject;
+import utilities.DataHelper;
 
 public class Common_01_RegisterAccountAndGetCookie extends BaseTest {
 	private WebDriver driver;
 	private RegisterPageObject registerPage;
 	private HomePageObject homePage;
 	private LoginPageObject loginPage;
+	private DataHelper dataFake;
 	
 	public static Set<Cookie> loggedCookies;
 	public static String firstName, lastName, emailAddress, password;
@@ -27,10 +28,12 @@ public class Common_01_RegisterAccountAndGetCookie extends BaseTest {
 	@BeforeTest
 	@Parameters({"browser", "url"})
 	public void RegisterAndGetLoginCookie(String browsername, String pageURL) {
-		emailAddress = "autotest" + randomNumber() + "@gmail.com";
-		firstName = "Auto";
-		lastName = "Test";
-		password = "123456";
+		dataFake = DataHelper.getData();
+		
+		emailAddress = dataFake.getEmailAddress();
+		firstName = dataFake.getFirstName();
+		lastName = dataFake.getLastName();
+		password = dataFake.getPassword();
 		
 		driver = getBrowserName(browsername, pageURL);
 		homePage = PageGeneratorManager.getHomePageObject(driver);
@@ -55,10 +58,5 @@ public class Common_01_RegisterAccountAndGetCookie extends BaseTest {
 		loggedCookies = homePage.getAllCookies(driver);
 		
 		driver.quit();
-	}
-
-	public int randomNumber() {
-		Random rnd = new Random();
-		return rnd.nextInt(999);
 	}
 }
