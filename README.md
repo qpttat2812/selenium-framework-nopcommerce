@@ -63,6 +63,16 @@ Apply `Page Object Model (POM)` with 4 main layers:
 - WebDriverManager 5.5.3
 - Allure 2.24.0
 - JavaFaker 1.0.2
-
+- And some other dependency jar files in folder with prefix `lib`
 ## Diagram of Frontend Site
 
+```mermaid
+graph TD;
+    HomePage-->RegisterPage;
+    HomePage-->LoginPage;
+    HomePage-->Computers;
+    Computers-->Desktops;
+    Computers-->Notebooks;
+    Desktops-->Desktops Detailed Page;
+    Notebooks-->Notebooks Detailed Page;
+```
