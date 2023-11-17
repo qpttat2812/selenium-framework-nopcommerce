@@ -104,4 +104,10 @@ public class HomePageObject extends BasePages{
 		clickOnElement(driver, HomePageUI.SHOPPING_CART_LINK);
 		return PageGeneratorManager.getAddToCartPageObject(driver);
 	}
+
+	@Step("Click on Logo link")
+	public void clickOnLogoLink() {
+		waitForElementVisibility(driver, HomePageUI.LOGO_NOPCOMMERCE_LINK);
+		clickOnElement(driver, HomePageUI.LOGO_NOPCOMMERCE_LINK);
+	}
 }

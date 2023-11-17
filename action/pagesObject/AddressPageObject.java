@@ -107,7 +107,6 @@ public class AddressPageObject extends BasePages {
 	public void clickOnCloseButtonInBar() {
 		waitForElementClickable(driver, AddressPageUI.BAR_CLOSE_BUTTON);
 		clickOnElement(driver, AddressPageUI.BAR_CLOSE_BUTTON);
-		waitForElementInvisibility(driver, AddressPageUI.BAR_CLOSE_BUTTON);
 	}
 
 	@Step("Get Name value")
@@ -187,4 +186,15 @@ public class AddressPageObject extends BasePages {
 		waitForElementVisibility(driver, AddressPageUI.COMPANY_TEXT);
 		return getTextElement(driver, AddressPageUI.COMPANY_TEXT);
 	}
+
+	@Step("Get Address Page url")
+	public String getAddressPageURL() {
+		return getCurrentURL(driver);
+	}
+
+	@Step("Open Address Page by URL")
+	public void openAddressPageByURL(String pageURL) {
+		openPageURL(driver, pageURL);
+	}
+
 }

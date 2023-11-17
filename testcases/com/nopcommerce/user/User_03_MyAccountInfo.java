@@ -63,6 +63,7 @@ public class User_03_MyAccountInfo extends BaseTest{
 	private String notebookName;
 	private String reviewTitle;
 	private String reviewContent;
+	private String currentPageURL;
 	
 	@Parameters({"browser", "url"})
 	@BeforeClass
@@ -134,9 +135,11 @@ public class User_03_MyAccountInfo extends BaseTest{
 		myAccountPage.updateCompanyNameTextbox(companyName);
 		myAccountPage.clickOnSaveButton();
 		
+		currentPageURL = myAccountPage.getCustomerInfoPageURL();
 		//The customer info has been updated successfully.
 		Assert.assertEquals(myAccountPage.getBarNotificationSuccessMessage(), "The customer info has been updated successfully.");
 		myAccountPage.clickOnCloseButton();
+		myAccountPage.openCustomerInfoPageByURL(currentPageURL);
 		
 		Assert.assertEquals(myAccountPage.getGenderValue("value", "Female"), genderValue);
 		Assert.assertEquals(myAccountPage.getFirstNameValue("value"), newFirstName);
@@ -168,8 +171,11 @@ public class User_03_MyAccountInfo extends BaseTest{
 		addressPage.inputToFaxNumberTextbox(faxNumber);
 		addressPage.clickOnSaveButton();
 		
+		currentPageURL = addressPage.getAddressPageURL();
+		
 		Assert.assertEquals(addressPage.getBarNotificationSuccessMessage(), "The new address has been added successfully.");
 		addressPage.clickOnCloseButtonInBar();
+		addressPage.openAddressPageByURL(currentPageURL);
 		
 		Assert.assertEquals(addressPage.getTitleName(), newFirstName + " " + newLastName);
 		Assert.assertEquals(addressPage.getNameValue(), newFirstName + " " + newLastName);
@@ -196,9 +202,8 @@ public class User_03_MyAccountInfo extends BaseTest{
 		changePasswordPage.clickOnChangePasswordButton();
 		
 		Assert.assertEquals(changePasswordPage.getBarNotificationSuccessMessage(), "Password was changed");
-		changePasswordPage.clickOnCloseButtonInBar();
 		
-		homePage.clickOnLogoutLink();
+		homePage.clickOnLogoLink();
 		
 		loginPage = homePage.clickOnLoginLink();
 		loginPage.inputToEmailTextbox(newEmail);

@@ -14,4 +14,5 @@ public class HomePageUI {
 	public static final String MINICART_QUANTITY_VALUE = "//div[@class='item first']//div[@class='quantity']";
 	public static final String MINICART_SUB_TOTAL_PRICE_VALUE = "//div[@class='mini-shopping-cart']/div[@class='totals']";
 	public static final String SHOPPING_CART_LINK = "//a[@class='ico-cart']";
+	public static final String LOGO_NOPCOMMERCE_LINK = "//div[@class='header-logo']/a";
 }

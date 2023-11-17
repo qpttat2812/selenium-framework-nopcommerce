@@ -8,6 +8,7 @@ import java.util.TimeZone;
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePages;
+import commons.GlobalConstants;
 import io.qameta.allure.Step;
 import pagesUI.user.CheckoutPageUI;
 import utilities.DataHelper;
@@ -61,6 +62,7 @@ public class CheckoutPageObject extends BasePages {
 	@Step("Select 'Billing State' dropdownlist with value is {0}")
 	public void selectBillingStateDropdownlist(String expectedState) {
 		waitForElementInvisibility(driver, CheckoutPageUI.BILLING_STATE_LOADING_ICON);
+		waitForElementVisibility(driver, CheckoutPageUI.STATE_DROPDOWNLIST);
 		selectDefaultItemDropdownList(driver, CheckoutPageUI.STATE_DROPDOWNLIST, expectedState);
 	}
 
@@ -324,7 +326,6 @@ public class CheckoutPageObject extends BasePages {
 
 	@Step("Click on 'Confirm' button at Confirm Order section and get Order Date")
 	public String clickOnConfirmButton() {
-		sleepInSecond(30);
 		waitForElementClickable(driver, CheckoutPageUI.CONFIRM_ORDER_CONTINUE_BUTTON);
 		clickOnElement(driver, CheckoutPageUI.CONFIRM_ORDER_CONTINUE_BUTTON);
 
@@ -466,5 +467,10 @@ public class CheckoutPageObject extends BasePages {
 	@Step("Verify Checkout page is displayed successfully")
 	public boolean isCheckoutPageDisplayedSuccessfully() {
 		return isJQueryOrJSLoadedSuccess(driver);
+	}
+
+	@Step("Wait 30 seconds before clicking on 'Confirm' button")
+	public void waitForClickOnConfirmButton() {
+		sleepInSecond(GlobalConstants.LONG_TIMEOUT);
 	}
 }

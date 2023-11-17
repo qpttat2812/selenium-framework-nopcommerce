@@ -86,7 +86,8 @@ public class User_06_WishlistAndCompare extends BaseTest {
 		notebooksDetailedPage = PageGeneratorManager.getNotebooksDetailedPageObject(driver);
 		notebooksDetailedPage.clickOnActionButton(firstProductName, wishlistButton);
 		Assert.assertEquals(notebooksDetailedPage.getBarNotificationSuccessMessage(), expectedBarNotificationMessage);
-		notebooksDetailedPage.clickOnCloseButton();
+		homePage.refreshBrowser(driver);
+		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
 
 		wishlistPage = homePage.clickOnWishlistLink();
 		Assert.assertEquals(wishlistPage.getWishlistProductName(), firstProductName);
@@ -109,6 +110,10 @@ public class User_06_WishlistAndCompare extends BaseTest {
 		
 		wishlistPage = homePage.clickOnWishlistLink();
 		Assert.assertTrue(wishlistPage.isProductUndisplayed());
+		
+		addToCartPage = homePage.clickOnShoppingCartLink();
+		addToCartPage.clickOnRemoveIcon();
+		Assert.assertEquals(addToCartPage.getEmptyCartText(), "Your Shopping Cart is empty!");
 	}
 
 	@Test
@@ -123,7 +128,8 @@ public class User_06_WishlistAndCompare extends BaseTest {
 		notebooksDetailedPage = PageGeneratorManager.getNotebooksDetailedPageObject(driver);
 		notebooksDetailedPage.clickOnActionButton(firstProductName, wishlistButton);
 		Assert.assertEquals(notebooksDetailedPage.getBarNotificationSuccessMessage(), expectedBarNotificationMessage);
-		notebooksDetailedPage.clickOnCloseButton();
+		homePage.refreshBrowser(driver);
+		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
 
 		wishlistPage = homePage.clickOnWishlistLink();
 		Assert.assertEquals(wishlistPage.getWishlistProductName(), firstProductName);
@@ -145,7 +151,6 @@ public class User_06_WishlistAndCompare extends BaseTest {
 		notebooksDetailedPage = PageGeneratorManager.getNotebooksDetailedPageObject(driver);
 		notebooksDetailedPage.clickOnActionButton(firstProductName, compareButton);
 		Assert.assertEquals(notebooksDetailedPage.getBarNotificationSuccessMessage(), barNotificationSuccessMessage);
-		notebooksDetailedPage.clickOnCloseButton();
 		
 		firstProductPrice = notebooksDetailedPage.getPriceOfProduct(firstProductName);
 		
@@ -158,7 +163,6 @@ public class User_06_WishlistAndCompare extends BaseTest {
 		notebooksDetailedPage = PageGeneratorManager.getNotebooksDetailedPageObject(driver);
 		notebooksDetailedPage.clickOnActionButton(secondProductName, compareButton);
 		Assert.assertEquals(notebooksDetailedPage.getBarNotificationSuccessMessage(), barNotificationSuccessMessage);
-		notebooksDetailedPage.clickOnCloseButton();
 		
 		secondProductPrice = notebooksDetailedPage.getPriceOfProduct(secondProductName);
 		

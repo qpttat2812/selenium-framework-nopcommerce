@@ -133,16 +133,12 @@ public class User_07_Orders extends BaseTest {
 		desktopsDetailedPage.clickOnAddToCartButton();
 
 		Assert.assertEquals(desktopsDetailedPage.getBarNotificationSuccessMessage(), "The product has been added to your shopping cart");
-		desktopsDetailedPage.clickOnCloseButton();
 
 		expectedProductPrice = desktopsDetailedPage.getProductUnitPriceValue();
-
 		countItem = homePage.getShoppingCartQuantity();
-
 		expectedSubTotalPrice = expectedProductPrice * countItem;
 
 		Assert.assertEquals(homePage.getMiniCartSummaryMessage(), "There are " + countItem + " item(s) in your cart.");
-
 		Assert.assertTrue(homePage.getMiniCartProductInfo().contains("Processor: " + expectedProcessor));
 		Assert.assertTrue(homePage.getMiniCartProductInfo().contains("RAM: " + expectedRam));
 		Assert.assertTrue(homePage.getMiniCartProductInfo().contains("HDD: " + expectedHDD));
@@ -165,6 +161,9 @@ public class User_07_Orders extends BaseTest {
 		secondExpectedSoftware = "Acrobat Reader [+$10.00]";
 		thirdExpectedSoftware = "Total Commander [+$5.00]";
 
+		homePage.refreshBrowser(driver);
+		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
+		
 		addToCartPage = homePage.clickOnShoppingCartLink();
 		Assert.assertEquals(addToCartPage.getProductNameValue(), productName);
 
@@ -176,11 +175,10 @@ public class User_07_Orders extends BaseTest {
 		desktopsDetailedPage.selectDesktopComponentRadioButton("OS", expectedOS);
 		desktopsDetailedPage.checkOnSoftwareCheckbox(secondExpectedSoftware);
 		desktopsDetailedPage.checkOnSoftwareCheckbox(thirdExpectedSoftware);
+		
 		desktopsDetailedPage.inputQuantityToQuantityTextbox("2");
 		desktopsDetailedPage.clickOnAddToCartButton();
-
 		Assert.assertEquals(desktopsDetailedPage.getBarNotificationSuccessMessage(), "The product has been added to your shopping cart");
-		desktopsDetailedPage.clickOnCloseButton();
 
 		expectedProductPrice = desktopsDetailedPage.getProductUnitPriceValue();
 		expectedProductSKU = desktopsDetailedPage.getProductSKUValue();
@@ -199,6 +197,8 @@ public class User_07_Orders extends BaseTest {
 		Assert.assertTrue(homePage.getMiniCartQuantityInfo().contains("Quantity: " + countItem));
 		Assert.assertTrue(homePage.getMiniCartSubTotalPriceValue().contains("Sub-Total: " + dataHelp.getCurrencyFormat(expectedSubTotalPrice)));
 
+		homePage.refreshBrowser(driver);
+		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
 		addToCartPage = homePage.clickOnShoppingCartLink();
 
 		Assert.assertEquals(addToCartPage.getProductSKUValue(), expectedProductSKU);
@@ -235,15 +235,14 @@ public class User_07_Orders extends BaseTest {
 		desktopsDetailedPage.clickOnAddToCartButton();
 
 		Assert.assertEquals(desktopsDetailedPage.getBarNotificationSuccessMessage(), "The product has been added to your shopping cart");
-		desktopsDetailedPage.clickOnCloseButton();
 
 		expectedProductSKU = desktopsDetailedPage.getProductSKUValue();
 		expectedProductPrice = desktopsDetailedPage.getProductUnitPriceValue();
-
 		countItem = homePage.getShoppingCartQuantity();
-
 		expectedSubTotalPrice = expectedProductPrice * countItem;
-
+		
+		homePage.refreshBrowser(driver);
+		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
 		addToCartPage = homePage.clickOnShoppingCartLink();
 
 		Assert.assertEquals(addToCartPage.getProductSKUValue(), expectedProductSKU);
@@ -279,7 +278,6 @@ public class User_07_Orders extends BaseTest {
 		noteBooksDetailedPage.clickOnAddToCartButton();
 
 		Assert.assertEquals(noteBooksDetailedPage.getBarNotificationSuccessMessage(), "The product has been added to your shopping cart");
-		noteBooksDetailedPage.clickOnCloseButton();
 
 		expectedProductSKU = noteBooksDetailedPage.getProductSKUValue();
 		expectedProductPrice = noteBooksDetailedPage.getProductUnitPriceValue();
@@ -288,6 +286,8 @@ public class User_07_Orders extends BaseTest {
 
 		expectedSubTotalPrice = expectedProductPrice * countItem;
 
+		homePage.refreshBrowser(driver);
+		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
 		addToCartPage = homePage.clickOnShoppingCartLink();
 		Assert.assertTrue(addToCartPage.isAddToCartPageLoadedSuccessfully());
 
@@ -414,7 +414,6 @@ public class User_07_Orders extends BaseTest {
 		noteBooksDetailedPage.clickOnAddToCartButton();
 
 		Assert.assertEquals(noteBooksDetailedPage.getBarNotificationSuccessMessage(), "The product has been added to your shopping cart");
-		noteBooksDetailedPage.clickOnCloseButton();
 
 		expectedProductSKU = noteBooksDetailedPage.getProductSKUValue();
 		expectedProductPrice = noteBooksDetailedPage.getProductUnitPriceValue();
@@ -423,6 +422,8 @@ public class User_07_Orders extends BaseTest {
 
 		expectedSubTotalPrice = expectedProductPrice * countItem;
 
+		homePage.refreshBrowser(driver);
+		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
 		addToCartPage = homePage.clickOnShoppingCartLink();
 		Assert.assertTrue(addToCartPage.isAddToCartPageLoadedSuccessfully());
 
@@ -507,6 +508,7 @@ public class User_07_Orders extends BaseTest {
 		Assert.assertEquals(checkoutPage.getProductTotalPriceValue(), dataHelp.getCurrencyFormat(expectedTotalPrice));
 		Assert.assertEquals(checkoutPage.getProductEarningPointValue(), expectedEarningPoint + " points");
 
+		checkoutPage.waitForClickOnConfirmButton();
 		expectedOrderDate = checkoutPage.clickOnConfirmButton();
 
 		Assert.assertTrue(checkoutPage.isOrderMessageSuccessDisplayed());
@@ -664,6 +666,7 @@ public class User_07_Orders extends BaseTest {
 		Assert.assertEquals(checkoutPage.getProductTotalPriceValue(), dataHelp.getCurrencyFormat(expectedTotalPrice));
 		Assert.assertEquals(checkoutPage.getProductEarningPointValue(), expectedEarningPoint + " points");
 
+		checkoutPage.waitForClickOnConfirmButton();
 		expectedOrderDate = checkoutPage.clickOnConfirmButton();
 
 		Assert.assertTrue(checkoutPage.isOrderMessageSuccessDisplayed());

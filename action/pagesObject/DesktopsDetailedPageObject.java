@@ -43,13 +43,6 @@ public class DesktopsDetailedPageObject extends BasePages{
 		return getTextElement(driver, DesktopsDetailedPageUI.BAR_NOTIFICATION_SUCCESS_MESSAGE);
 	}
 
-	@Step("Click on Close button in bar notification success")
-	public void clickOnCloseButton() {
-		waitForElementClickable(driver, DesktopsDetailedPageUI.BAR_CLOSE_BUTTON);
-		clickOnElement(driver, DesktopsDetailedPageUI.BAR_CLOSE_BUTTON);
-		waitForElementInvisibility(driver, DesktopsDetailedPageUI.BAR_CLOSE_BUTTON);
-	}
-
 	@Step("Get product unit price")
 	public float getProductUnitPriceValue() {
 		waitForElementVisibility(driver, DesktopsDetailedPageUI.PRODUCT_UNIT_PRICE_VALUE);

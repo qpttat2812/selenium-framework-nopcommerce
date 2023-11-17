@@ -20,13 +20,6 @@ public class NotebooksDetailedPageObject extends BasePages{
 		return getTextElement(driver, NotebooksDetailedPageUI.BAR_NOTIFICATION_SUCCESS_MESSSAGE);
 	}
 	
-	@Step("Click on 'Close' button in Bar notification success")
-	public void clickOnCloseButton() {
-		waitForElementClickable(driver, NotebooksDetailedPageUI.BAR_CLOSE_BUTTON);
-		clickOnElement(driver, NotebooksDetailedPageUI.BAR_CLOSE_BUTTON);
-		waitForElementInvisibility(driver, NotebooksDetailedPageUI.BAR_CLOSE_BUTTON);
-	}
-	
 	@Step("Click on {1} button of {0} item in product detailed page")
 	public void clickOnActionButton(String productName, String buttonName) {
 		waitForElementVisibility(driver, NotebooksDetailedPageUI.DYNAMIC_ACTION_BUTTONS, productName, buttonName);

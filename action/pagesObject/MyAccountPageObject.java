@@ -77,7 +77,6 @@ public class MyAccountPageObject extends BasePages{
 	public void clickOnCloseButton() {
 		waitForElementClickable(driver, MyAccountPageUI.BAR_CLOSE_BUTTON);
 		clickOnElement(driver, MyAccountPageUI.BAR_CLOSE_BUTTON);
-		waitForElementInvisibility(driver, MyAccountPageUI.BAR_CLOSE_BUTTON);
 	}
 
 	@Step("Get Gender value")
@@ -126,5 +125,15 @@ public class MyAccountPageObject extends BasePages{
 	public String getCompanyNameValue(String value) {
 		waitForElementVisibility(driver, MyAccountPageUI.COMPANY_NAME_TEXTBOX);
 		return getAttributeValue(driver, MyAccountPageUI.COMPANY_NAME_TEXTBOX, value);
+	}
+
+	@Step("Get customer info page url")
+	public String getCustomerInfoPageURL() {
+		return getCurrentURL(driver);
+	}
+
+	@Step("Open Customer Info page by URL")
+	public void openCustomerInfoPageByURL(String pageURL) {
+		openPageURL(driver, pageURL);
 	}
 }

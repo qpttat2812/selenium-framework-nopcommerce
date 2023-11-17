@@ -19,7 +19,7 @@ public class GlobalConstants {
 	public static final String DB_DEV_USER = "admin";
 	public static final String DB_DEV_PASSWORD = "admin";
 
-	public static final long SHORT_TIMEOUT = 15;
+	public static final long SHORT_TIMEOUT = 10;
 	public static final long LONG_TIMEOUT = 30;
 	public static final int RETRY_TEST_FAIL = 3;
 }

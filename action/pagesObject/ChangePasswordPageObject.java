@@ -42,11 +42,4 @@ public class ChangePasswordPageObject extends BasePages{
 		waitForElementVisibility(driver, ChangePasswordPageUI.NOTIFICATION_SUCCESS_MESSAGE);
 		return getTextElement(driver, ChangePasswordPageUI.NOTIFICATION_SUCCESS_MESSAGE);
 	}
-	
-	@Step("Click on Close button at Notification Success Bar")
-	public void clickOnCloseButtonInBar() {
-		waitForElementClickable(driver, ChangePasswordPageUI.BAR_CLOSE_BUTTON);
-		clickOnElement(driver, ChangePasswordPageUI.BAR_CLOSE_BUTTON);
-		waitForElementInvisibility(driver, ChangePasswordPageUI.BAR_CLOSE_BUTTON);
-	}
 }
