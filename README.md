@@ -11,10 +11,10 @@ Apply `Page Object Model (POM)` with 4 main layers:
 
  1. testcases: contains modules of project, one module is one package. It also contains common testcase (for example, register account) to avoid creating too many accounts for each class. 
  2. actions: contains some specific packages
-    - commons package: contains common functions for pages and testcases, constructors management and global constants.
-    - pagesObject package: contains functions for each page.
-    - reportsConfig package: contains reports configuration
-    - utilities package: contains utilities such as: datafaker, ...
+    - commons package: common functions for pages and testcases, constructors management and global constants.
+    - pagesObject package: functions for each page.
+    - reportsConfig package: reports configuration
+    - utilities package: utilities such as: datafaker, ...
  3. interfaces: contains page UIs of each module.
  4. resources: files management, data test, environment files of project.
 
@@ -66,13 +66,3 @@ Apply `Page Object Model (POM)` with 4 main layers:
 - And some other dependency jar files in folder with prefix `lib`
 ## Diagram of Frontend Site
 
-```mermaid
-graph TD;
-    HomePage-->RegisterPage;
-    HomePage-->LoginPage;
-    HomePage-->Computers;
-    Computers-->Desktops;
-    Computers-->Notebooks;
-    Desktops-->Desktops Detailed Page;
-    Notebooks-->Notebooks Detailed Page;
-```
