@@ -63,7 +63,7 @@ Apply `Page Object Model (POM)` with 4 main layers:
 - WebDriverManager 5.5.3
 - Allure 2.24.0
 - JavaFaker 1.0.2
-- And some other dependency jar files in folder with prefix `lib`
+- And some other dependency jar files in folder with `lib` prefix
 ## Some Working Flows of Site
 
 ```mermaid
