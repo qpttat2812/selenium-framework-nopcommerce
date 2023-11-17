@@ -64,5 +64,52 @@ Apply `Page Object Model (POM)` with 4 main layers:
 - Allure 2.24.0
 - JavaFaker 1.0.2
 - And some other dependency jar files in folder with prefix `lib`
-## Diagram of Frontend Site
+## Some Working Flows of Site
 
+```mermaid
+flowchart LR
+  HomePage --> RegisterPage 
+  HomePage --> LoginPage
+  HomePage --> Computers
+  Computers --> Desktops
+  Computers --> Notebooks
+```
+
+
+```mermaid
+flowchart LR
+ subgraph DesktopDetailedPage
+        direction LR
+        left1[Add to Cart button] o--o right1[Add to Wishlist button] o--o bottom1[Add review]
+    end
+    Desktops --> DesktopDetailedPage
+```
+
+
+```mermaid
+flowchart LR
+  HomePage --> WishlistPage 
+  HomePage --> AddtoCartPage
+  WishlistPage --> AddtoCartPage
+  AddtoCartPage --> CheckoutPage
+```
+
+```mermaid
+flowchart LR
+  HomePage --> MyAccountPage 
+  MyAccountPage --> OrdersPage
+  OrdersPage --> AddtoCartPage
+  AddtoCartPage --> CheckoutPage
+```
+## Report Results:
+- Overview:
+  
+![Overview](https://github.com/ttqp2812fi/selenium-framework-nopcommerce/blob/main/allure_report_images/Allure-Report_Overview.png)
+
+- Detailed TC & steps for each TC:
+  
+![Detailed](https://github.com/ttqp2812fi/selenium-framework-nopcommerce/blob/main/allure_report_images/Allure-Report_Suite_Steps.png)
+
+- Statistics:
+
+![Graph](https://github.com/ttqp2812fi/selenium-framework-nopcommerce/blob/main/allure_report_images/Allure-Report_Graph.png)
