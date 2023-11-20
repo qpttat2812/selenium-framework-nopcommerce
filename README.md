@@ -5,6 +5,8 @@ These areas are not interconnected.
 
 The site is reset to its original state every hour.
 
+The waiting time is 30 seconds after the 1st order is made.
+
 ## Framework Structure:
 
 Apply `Page Object Model (POM)` with 4 main layers:
@@ -31,11 +33,16 @@ Apply `Page Object Model (POM)` with 4 main layers:
   ├── commons
     ├── BasePage.java (used by pagesObject)
     ├── BaseTest.java (used by testcases)
-    ├── PageGeneratorManagement.java (contains all construtors)
+    ├── PageGeneratorManagementUser.java (contains all User Pages construtors)
+    ├── PageGeneratorManagementAdmin.java (contains all Admin Pages constructors)
     ├── GlobalConstants.java
-  ├── pageObjects
+  ├── pageObjects.user
     ├── LoginPageObject.java
     ├── HomePagePageObject.java
+    ├── ...
+  ├── pageObjects.admin
+    ├── DashboardPageObject.java
+    ├── ProductsPageObject.java
     ├── ...
   ├── reportsConfig
     ├── AllureTestListener.java
@@ -57,6 +64,7 @@ Apply `Page Object Model (POM)` with 4 main layers:
 </pre>
 
 ## Tools & Libraries:
+- Java 21
 - Eclipse
 - TestNG 6.14.3
 - Selenium Server 4.14.0
