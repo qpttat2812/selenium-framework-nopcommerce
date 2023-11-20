@@ -32,5 +32,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="libJavaFaker/snakeyaml-1.23-android.jar"/>
+	<classpathentry kind="lib" path="libJackson/jackson-annotations-2.15.2.jar"/>
+	<classpathentry kind="lib" path="libJackson/jackson-core-2.15.2.jar"/>
+	<classpathentry kind="lib" path="libJackson/jackson-databind-2.15.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

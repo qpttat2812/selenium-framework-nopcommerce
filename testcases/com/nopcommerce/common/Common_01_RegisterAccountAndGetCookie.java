@@ -9,10 +9,10 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
 import commons.BaseTest;
-import commons.PageGeneratorManager;
-import pagesObject.HomePageObject;
-import pagesObject.LoginPageObject;
-import pagesObject.RegisterPageObject;
+import commons.PageGeneratorManagerUser;
+import pagesObject.user.HomePageObject;
+import pagesObject.user.LoginPageObject;
+import pagesObject.user.RegisterPageObject;
 import utilities.DataHelper;
 
 public class Common_01_RegisterAccountAndGetCookie extends BaseTest {
@@ -36,7 +36,7 @@ public class Common_01_RegisterAccountAndGetCookie extends BaseTest {
 		password = dataFake.getPassword();
 		
 		driver = getBrowserName(browsername, pageURL);
-		homePage = PageGeneratorManager.getHomePageObject(driver);
+		homePage = PageGeneratorManagerUser.getHomePageObject(driver);
 		registerPage = homePage.clickOnRegisterLink();
 
 		registerPage.inputToFirstNameTextbox(firstName);

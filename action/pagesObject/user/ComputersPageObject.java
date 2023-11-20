@@ -1,9 +1,9 @@
-package pagesObject;
+package pagesObject.user;
 
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePages;
-import commons.PageGeneratorManager;
+import commons.PageGeneratorManagerUser;
 import io.qameta.allure.Step;
 import pagesUI.user.ComputersPageUI;
 
@@ -18,13 +18,13 @@ public class ComputersPageObject extends BasePages{
 	public NotebooksPageObject clickOnNotebooksLink() {
 		waitForElementClickable(driver, ComputersPageUI.NOTEBOOK_CATEGORY_LINK);
 		clickOnElement(driver, ComputersPageUI.NOTEBOOK_CATEGORY_LINK);
-		return PageGeneratorManager.getNotebooksPageObject(driver);
+		return PageGeneratorManagerUser.getNotebooksPageObject(driver);
 	}
 	
 	@Step("Click on 'Desktops' link from Computer page")
 	public DesktopsPageObject clickOnDesktopsLink() {
 		waitForElementClickable(driver, ComputersPageUI.DESKTOP_CATEGORY_LINK);
 		clickOnElement(driver, ComputersPageUI.DESKTOP_CATEGORY_LINK);
-		return PageGeneratorManager.getDesktopsPageObject(driver);
+		return PageGeneratorManagerUser.getDesktopsPageObject(driver);
 	}
 }

@@ -1,9 +1,9 @@
-package pagesObject;
+package pagesObject.user;
 
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePages;
-import commons.PageGeneratorManager;
+import commons.PageGeneratorManagerUser;
 import io.qameta.allure.Step;
 import pagesUI.user.HomePageUI;
 
@@ -18,14 +18,14 @@ public class HomePageObject extends BasePages{
 	public RegisterPageObject clickOnRegisterLink() {
 		waitForElementClickable(driver, HomePageUI.REGISTER_LINK);
 		clickOnElement(driver, HomePageUI.REGISTER_LINK);
-		return PageGeneratorManager.getRegisterPageObject(driver);
+		return PageGeneratorManagerUser.getRegisterPageObject(driver);
 	}
 	
 	@Step("Click on 'Login' link")
 	public LoginPageObject clickOnLoginLink() {
 		waitForElementClickable(driver, HomePageUI.LOGIN_LINK);
 		clickOnElement(driver, HomePageUI.LOGIN_LINK);
-		return PageGeneratorManager.getLoginPageObject(driver);
+		return PageGeneratorManagerUser.getLoginPageObject(driver);
 	}
 
 	@Step("Verify My account link is displayed")
@@ -38,21 +38,21 @@ public class HomePageObject extends BasePages{
 	public MyAccountPageObject clickOnMyAccountLink() {
 		waitForElementVisibility(driver, HomePageUI.MY_ACCOUNT_LINK);
 		clickOnElement(driver, HomePageUI.MY_ACCOUNT_LINK);
-		return PageGeneratorManager.getMyAccountPageObject(driver);
+		return PageGeneratorManagerUser.getMyAccountPageObject(driver);
 	}
 
 	@Step("Click on 'Log out' link")
 	public HomePageObject clickOnLogoutLink() {
 		waitForElementVisibility(driver, HomePageUI.LOGOUT_LINK);
 		clickOnElement(driver, HomePageUI.LOGOUT_LINK);
-		return PageGeneratorManager.getHomePageObject(driver);
+		return PageGeneratorManagerUser.getHomePageObject(driver);
 	}
 	
 	@Step("Click on 'Wishlist' link")
 	public WishlistPageObject clickOnWishlistLink() {
 		waitForElementVisibility(driver, HomePageUI.WISHLIST_LINK);
 		clickOnElement(driver, HomePageUI.WISHLIST_LINK);
-		return PageGeneratorManager.getWishlistPageObject(driver);
+		return PageGeneratorManagerUser.getWishlistPageObject(driver);
 	}
 	
 	@Step("Get product quantity from Cart")
@@ -102,7 +102,7 @@ public class HomePageObject extends BasePages{
 	public AddToCartPageObject clickOnShoppingCartLink() {
 		waitForElementVisibility(driver, HomePageUI.SHOPPING_CART_LINK);
 		clickOnElement(driver, HomePageUI.SHOPPING_CART_LINK);
-		return PageGeneratorManager.getAddToCartPageObject(driver);
+		return PageGeneratorManagerUser.getAddToCartPageObject(driver);
 	}
 
 	@Step("Click on Logo link")

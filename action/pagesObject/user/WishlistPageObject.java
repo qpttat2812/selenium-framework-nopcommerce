@@ -1,9 +1,9 @@
-package pagesObject;
+package pagesObject.user;
 
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePages;
-import commons.PageGeneratorManager;
+import commons.PageGeneratorManagerUser;
 import io.qameta.allure.Step;
 import pagesUI.user.WishlistPageUI;
 
@@ -42,7 +42,7 @@ public class WishlistPageObject extends BasePages{
 	public AddToCartPageObject clickOnAddToCartButton() {
 		waitForElementClickable(driver, WishlistPageUI.ADD_TO_CART_BUTTON);
 		clickOnElement(driver, WishlistPageUI.ADD_TO_CART_BUTTON);
-		return PageGeneratorManager.getAddToCartPageObject(driver);
+		return PageGeneratorManagerUser.getAddToCartPageObject(driver);
 	}
 
 	@Step("Verify product is undisplayed")

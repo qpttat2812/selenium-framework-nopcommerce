@@ -10,18 +10,18 @@ import org.testng.annotations.Test;
 import com.nopcommerce.common.Common_01_RegisterAccountAndGetCookie;
 
 import commons.BaseTest;
-import commons.PageGeneratorManager;
-import pagesObject.AddToCartPageObject;
-import pagesObject.CheckoutPageObject;
-import pagesObject.ComputersPageObject;
-import pagesObject.DesktopsDetailedPageObject;
-import pagesObject.DesktopsPageObject;
-import pagesObject.HomePageObject;
-import pagesObject.LoginPageObject;
-import pagesObject.MyAccountPageObject;
-import pagesObject.NotebooksDetailedPageObject;
-import pagesObject.NotebooksPageObject;
-import pagesObject.OrdersPageObject;
+import commons.PageGeneratorManagerUser;
+import pagesObject.user.AddToCartPageObject;
+import pagesObject.user.CheckoutPageObject;
+import pagesObject.user.ComputersPageObject;
+import pagesObject.user.DesktopsDetailedPageObject;
+import pagesObject.user.DesktopsPageObject;
+import pagesObject.user.HomePageObject;
+import pagesObject.user.LoginPageObject;
+import pagesObject.user.MyAccountPageObject;
+import pagesObject.user.NotebooksDetailedPageObject;
+import pagesObject.user.NotebooksPageObject;
+import pagesObject.user.OrdersPageObject;
 import utilities.DataHelper;
 
 public class User_07_Orders extends BaseTest {
@@ -96,7 +96,7 @@ public class User_07_Orders extends BaseTest {
 
 		driver = getBrowserName(browserName, pageURL);
 
-		homePage = PageGeneratorManager.getHomePageObject(driver);
+		homePage = PageGeneratorManagerUser.getHomePageObject(driver);
 		loginPage = homePage.clickOnLoginLink();
 		loginPage.setCookie(driver, Common_01_RegisterAccountAndGetCookie.loggedCookies);
 		loginPage.refreshBrowser(driver);
@@ -104,14 +104,14 @@ public class User_07_Orders extends BaseTest {
 		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
 
 		homePage.clickOnProductTabLink(driver, productTab);
-		computersPage = PageGeneratorManager.getComputersPageObject(driver);
+		computersPage = PageGeneratorManagerUser.getComputersPageObject(driver);
 
 		desktopsPage = computersPage.clickOnDesktopsLink();
 		Assert.assertTrue(desktopsPage.isDesktopsPageDisplayed());
 
 		desktopsPage.clickOnProductNameLinkAtSubCategory(driver, productName);
 
-		desktopsDetailedPage = PageGeneratorManager.getDesktopsDetailedPageObject(driver);
+		desktopsDetailedPage = PageGeneratorManagerUser.getDesktopsDetailedPageObject(driver);
 	}
 
 	@Test
@@ -226,12 +226,12 @@ public class User_07_Orders extends BaseTest {
 
 		addToCartPage.clickOnProductTabLink(driver, productTab);
 
-		computersPage = PageGeneratorManager.getComputersPageObject(driver);
+		computersPage = PageGeneratorManagerUser.getComputersPageObject(driver);
 		desktopsPage = computersPage.clickOnDesktopsLink();
 
 		desktopsPage.clickOnProductNameLinkAtSubCategory(driver, desktopsName);
 
-		desktopsDetailedPage = PageGeneratorManager.getDesktopsDetailedPageObject(driver);
+		desktopsDetailedPage = PageGeneratorManagerUser.getDesktopsDetailedPageObject(driver);
 		desktopsDetailedPage.clickOnAddToCartButton();
 
 		Assert.assertEquals(desktopsDetailedPage.getBarNotificationSuccessMessage(), "The product has been added to your shopping cart");
@@ -270,11 +270,11 @@ public class User_07_Orders extends BaseTest {
 	@Test
 	public void Orders_05_Checkout_QueuePaymentMethod() {
 		homePage.clickOnProductTabLink(driver, productTab);
-		computersPage = PageGeneratorManager.getComputersPageObject(driver);
+		computersPage = PageGeneratorManagerUser.getComputersPageObject(driver);
 		notebooksPage = computersPage.clickOnNotebooksLink();
 		notebooksPage.clickOnProductNameLinkAtSubCategory(driver, notebooksName);
 
-		noteBooksDetailedPage = PageGeneratorManager.getNotebooksDetailedPageObject(driver);
+		noteBooksDetailedPage = PageGeneratorManagerUser.getNotebooksDetailedPageObject(driver);
 		noteBooksDetailedPage.clickOnAddToCartButton();
 
 		Assert.assertEquals(noteBooksDetailedPage.getBarNotificationSuccessMessage(), "The product has been added to your shopping cart");
@@ -393,7 +393,7 @@ public class User_07_Orders extends BaseTest {
 		myAccountPage = homePage.clickOnMyAccountLink();
 		myAccountPage.clickOnSideBarMenu(driver, "Orders");
 
-		ordersPage = PageGeneratorManager.getOrdersPageObject(driver);
+		ordersPage = PageGeneratorManagerUser.getOrdersPageObject(driver);
 
 		Assert.assertEquals(ordersPage.getOrderNumberValue("1"), orderText);
 		Assert.assertTrue(ordersPage.isOrderStatusDisplayed("1"));
@@ -406,11 +406,11 @@ public class User_07_Orders extends BaseTest {
 	@Test
 	public void Orders_06_Checkout_CardPaymentMethod() {
 		homePage.clickOnProductTabLink(driver, productTab);
-		computersPage = PageGeneratorManager.getComputersPageObject(driver);
+		computersPage = PageGeneratorManagerUser.getComputersPageObject(driver);
 		notebooksPage = computersPage.clickOnNotebooksLink();
 		notebooksPage.clickOnProductNameLinkAtSubCategory(driver, notebooksName);
 
-		noteBooksDetailedPage = PageGeneratorManager.getNotebooksDetailedPageObject(driver);
+		noteBooksDetailedPage = PageGeneratorManagerUser.getNotebooksDetailedPageObject(driver);
 		noteBooksDetailedPage.clickOnAddToCartButton();
 
 		Assert.assertEquals(noteBooksDetailedPage.getBarNotificationSuccessMessage(), "The product has been added to your shopping cart");
@@ -519,7 +519,7 @@ public class User_07_Orders extends BaseTest {
 		myAccountPage = homePage.clickOnMyAccountLink();
 		myAccountPage.clickOnSideBarMenu(driver, "Orders");
 
-		ordersPage = PageGeneratorManager.getOrdersPageObject(driver);
+		ordersPage = PageGeneratorManagerUser.getOrdersPageObject(driver);
 
 		Assert.assertEquals(ordersPage.getOrderNumberValue("1"), orderText);
 		Assert.assertTrue(ordersPage.isOrderStatusDisplayed("1"));
@@ -543,6 +543,7 @@ public class User_07_Orders extends BaseTest {
 		
 		ordersPage.clickOnOrderDetails("1");
 		addToCartPage = ordersPage.clickReOrderButton();
+		Assert.assertTrue(addToCartPage.isAddToCartPageLoadedSuccessfully());
 
 		Assert.assertTrue(addToCartPage.isAddToCartPageLoadedSuccessfully());
 		
@@ -677,7 +678,7 @@ public class User_07_Orders extends BaseTest {
 		myAccountPage = homePage.clickOnMyAccountLink();
 		myAccountPage.clickOnSideBarMenu(driver, "Orders");
 
-		ordersPage = PageGeneratorManager.getOrdersPageObject(driver);
+		ordersPage = PageGeneratorManagerUser.getOrdersPageObject(driver);
 
 		Assert.assertEquals(ordersPage.getOrderNumberValue("1"), orderText);
 		Assert.assertTrue(ordersPage.isOrderStatusDisplayed("1"));

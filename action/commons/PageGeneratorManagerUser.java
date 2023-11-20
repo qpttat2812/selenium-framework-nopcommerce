@@ -2,28 +2,28 @@ package commons;
 
 import org.openqa.selenium.WebDriver;
 
-import pagesObject.AddToCartPageObject;
-import pagesObject.AddressPageObject;
-import pagesObject.ChangePasswordPageObject;
-import pagesObject.CheckoutPageObject;
-import pagesObject.CompareProductPageObject;
-import pagesObject.ComputersPageObject;
-import pagesObject.DesktopsDetailedPageObject;
-import pagesObject.DesktopsPageObject;
-import pagesObject.HomePageObject;
-import pagesObject.LoginPageObject;
-import pagesObject.MyAccountPageObject;
-import pagesObject.MyProductReviewPageObject;
-import pagesObject.NotebooksDetailedPageObject;
-import pagesObject.NotebooksPageObject;
-import pagesObject.OrdersPageObject;
-import pagesObject.ProductReviewsPageObject;
-import pagesObject.RecentProductViewPageObject;
-import pagesObject.RegisterPageObject;
-import pagesObject.SearchPageObject;
-import pagesObject.WishlistPageObject;
+import pagesObject.user.AddToCartPageObject;
+import pagesObject.user.AddressPageObject;
+import pagesObject.user.ChangePasswordPageObject;
+import pagesObject.user.CheckoutPageObject;
+import pagesObject.user.CompareProductPageObject;
+import pagesObject.user.ComputersPageObject;
+import pagesObject.user.DesktopsDetailedPageObject;
+import pagesObject.user.DesktopsPageObject;
+import pagesObject.user.HomePageObject;
+import pagesObject.user.LoginPageObject;
+import pagesObject.user.MyAccountPageObject;
+import pagesObject.user.MyProductReviewPageObject;
+import pagesObject.user.NotebooksDetailedPageObject;
+import pagesObject.user.NotebooksPageObject;
+import pagesObject.user.OrdersPageObject;
+import pagesObject.user.ProductReviewsPageObject;
+import pagesObject.user.RecentProductViewPageObject;
+import pagesObject.user.RegisterPageObject;
+import pagesObject.user.SearchPageObject;
+import pagesObject.user.WishlistPageObject;
 
-public class PageGeneratorManager {
+public class PageGeneratorManagerUser {
 	public static RegisterPageObject getRegisterPageObject(WebDriver driver) {
 		return new RegisterPageObject(driver);
 	}

@@ -21,7 +21,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.qameta.allure.Step;
-import pagesUI.user.BasePageUI;
+import pagesUI.admin.AdminBasePageUI;
+import pagesUI.user.UserBasePageUI;
 
 public class BasePages {
 	private long longTimeOut = GlobalConstants.LONG_TIMEOUT;
@@ -473,6 +474,18 @@ public class BasePages {
 			return false;
 		}
 	}
+	
+	public boolean checkImageLoadedAndDisplayed(WebDriver driver, WebElement element) {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		boolean status = (boolean) js.executeScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0",
+				element);
+		
+		if (status) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	public boolean verifyTextInInnerTextByJS(WebDriver driver, String expectedText) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -607,8 +620,8 @@ public class BasePages {
 	 */
 	@Step("Click on {1} link at Sidebar")
 	public void clickOnSideBarMenu(WebDriver driver, String valuesForXpathLocator) {
-		waitForElementVisibility(driver, BasePageUI.DYNAMIC_SIDEBAR_MY_ACCOUNT_LINKS, valuesForXpathLocator);
-		clickOnElement(driver, BasePageUI.DYNAMIC_SIDEBAR_MY_ACCOUNT_LINKS, valuesForXpathLocator);
+		waitForElementVisibility(driver, UserBasePageUI.DYNAMIC_SIDEBAR_MY_ACCOUNT_LINKS, valuesForXpathLocator);
+		clickOnElement(driver, UserBasePageUI.DYNAMIC_SIDEBAR_MY_ACCOUNT_LINKS, valuesForXpathLocator);
 	}
 
 	/**
@@ -619,8 +632,8 @@ public class BasePages {
 	 */
 	@Step("Click on {1} link at Footer")
 	public void clickOnFooterLink(WebDriver driver, String valuesForXpathLocator) {
-		waitForElementVisibility(driver, BasePageUI.DYNAMIC_FOOTER_LINKS, valuesForXpathLocator);
-		clickOnElement(driver, BasePageUI.DYNAMIC_FOOTER_LINKS, valuesForXpathLocator);
+		waitForElementVisibility(driver, UserBasePageUI.DYNAMIC_FOOTER_LINKS, valuesForXpathLocator);
+		clickOnElement(driver, UserBasePageUI.DYNAMIC_FOOTER_LINKS, valuesForXpathLocator);
 	}
 
 	/**
@@ -631,8 +644,8 @@ public class BasePages {
 	 */
 	@Step("Click on {1} tab link")
 	public void clickOnProductTabLink(WebDriver driver, String valuesForXpathLocator) {
-		waitForElementVisibility(driver, BasePageUI.DYNAMIC_PRODUCT_TAB, valuesForXpathLocator);
-		clickOnElement(driver, BasePageUI.DYNAMIC_PRODUCT_TAB, valuesForXpathLocator);
+		waitForElementVisibility(driver, UserBasePageUI.DYNAMIC_PRODUCT_TAB, valuesForXpathLocator);
+		clickOnElement(driver, UserBasePageUI.DYNAMIC_PRODUCT_TAB, valuesForXpathLocator);
 	}
 	
 	/**
@@ -643,7 +656,31 @@ public class BasePages {
 	 */
 	@Step("Click on product name with value {0}")
 	public void clickOnProductNameLinkAtSubCategory(WebDriver driver, String productName) {
-		waitForElementVisibility(driver, BasePageUI.DYNAMIC_PRODUCT_NAME_IN_SUB_CATEGORY_PAGE, productName);
-		clickOnElement(driver, BasePageUI.DYNAMIC_PRODUCT_NAME_IN_SUB_CATEGORY_PAGE, productName);
+		waitForElementVisibility(driver, UserBasePageUI.DYNAMIC_PRODUCT_NAME_IN_SUB_CATEGORY_PAGE, productName);
+		clickOnElement(driver, UserBasePageUI.DYNAMIC_PRODUCT_NAME_IN_SUB_CATEGORY_PAGE, productName);
+	}
+	
+	/** ADMIN
+	 * Fuction for clicking on Parent Sidebar
+	 * 
+	 * @param driver
+	 * @param sideBarName
+	 */
+	@Step("Click on product name with value {0}")
+	public void clickOnParentSidebarMenuOfAdmin(WebDriver driver, String sideBarName) {
+		waitForElementClickable(driver, AdminBasePageUI.DYNAMIC_PARENT_SIDEBAR_MENU, sideBarName);
+		clickOnElement(driver, AdminBasePageUI.DYNAMIC_PARENT_SIDEBAR_MENU, sideBarName);
+	}
+	
+	/** ADMIN
+	 * Fuction for clicking on Sub-Sidebar
+	 * 
+	 * @param driver
+	 * @param subSidebarName
+	 */
+	@Step("Click on product name with value {0}")
+	public void clickOnSubSidebarMenuOfAdmin(WebDriver driver, String sidebarName, String subSidebarName) {
+		waitForElementClickable(driver, AdminBasePageUI.DYNAMIC_SUB_SIDEBAR_MENU, sidebarName, subSidebarName);
+		clickOnElement(driver, AdminBasePageUI.DYNAMIC_SUB_SIDEBAR_MENU, sidebarName, subSidebarName);
 	}
 }

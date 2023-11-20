@@ -5,9 +5,9 @@ import org.testng.annotations.Test;
 import com.nopcommerce.common.Common_01_RegisterAccountAndGetCookie;
 
 import commons.BaseTest;
-import commons.PageGeneratorManager;
-import pagesObject.HomePageObject;
-import pagesObject.RegisterPageObject;
+import commons.PageGeneratorManagerUser;
+import pagesObject.user.HomePageObject;
+import pagesObject.user.RegisterPageObject;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
@@ -38,7 +38,7 @@ public class User_01_RegisterNewAccount extends BaseTest {
 		
 		driver = getBrowserName(browserName, pageURL);
 		
-		homePage = PageGeneratorManager.getHomePageObject(driver);		
+		homePage = PageGeneratorManagerUser.getHomePageObject(driver);		
 		registerPage = homePage.clickOnRegisterLink();
 	}
 

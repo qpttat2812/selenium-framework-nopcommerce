@@ -10,10 +10,10 @@ import org.testng.annotations.Test;
 import com.nopcommerce.common.Common_01_RegisterAccountAndGetCookie;
 
 import commons.BaseTest;
-import commons.PageGeneratorManager;
-import pagesObject.HomePageObject;
-import pagesObject.LoginPageObject;
-import pagesObject.SearchPageObject;
+import commons.PageGeneratorManagerUser;
+import pagesObject.user.HomePageObject;
+import pagesObject.user.LoginPageObject;
+import pagesObject.user.SearchPageObject;
 
 public class User_04_Search extends BaseTest {
 	private WebDriver driver;
@@ -34,14 +34,14 @@ public class User_04_Search extends BaseTest {
 		 
 		driver = getBrowserName(browserName, pageURl);
 
-		homePage = PageGeneratorManager.getHomePageObject(driver);
+		homePage = PageGeneratorManagerUser.getHomePageObject(driver);
 		
 		loginPage = homePage.clickOnLoginLink();
 		loginPage.setCookie(driver, Common_01_RegisterAccountAndGetCookie.loggedCookies);
 		loginPage.refreshBrowser(driver);
 
 		homePage.clickOnFooterLink(driver, pageName);
-		searchPage = PageGeneratorManager.getSearchPageObject(driver);
+		searchPage = PageGeneratorManagerUser.getSearchPageObject(driver);
 	}
 
 	@Test
@@ -57,7 +57,7 @@ public class User_04_Search extends BaseTest {
 		
 		homePage.clickOnFooterLink(driver, pageName);
 		
-		searchPage = PageGeneratorManager.getSearchPageObject(driver);
+		searchPage = PageGeneratorManagerUser.getSearchPageObject(driver);
 		searchPage.inputToSearchTextbox(searchKeyword);
 		searchPage.clickOnSearchButton();
 
@@ -70,7 +70,7 @@ public class User_04_Search extends BaseTest {
 		
 		homePage.clickOnFooterLink(driver, pageName);
 		
-		searchPage = PageGeneratorManager.getSearchPageObject(driver);
+		searchPage = PageGeneratorManagerUser.getSearchPageObject(driver);
 		searchPage.inputToSearchTextbox(searchKeyword);
 		searchPage.clickOnSearchButton();
 
@@ -84,7 +84,7 @@ public class User_04_Search extends BaseTest {
 		
 		homePage.clickOnFooterLink(driver, pageName);
 		
-		searchPage = PageGeneratorManager.getSearchPageObject(driver);
+		searchPage = PageGeneratorManagerUser.getSearchPageObject(driver);
 		searchPage.inputToSearchTextbox(searchKeyword);
 		searchPage.clickOnSearchButton();
 
@@ -96,7 +96,7 @@ public class User_04_Search extends BaseTest {
 	public void Search_05_AdvancedSearchWithParentCategories() {
 		homePage.clickOnFooterLink(driver, pageName);
 		
-		searchPage = PageGeneratorManager.getSearchPageObject(driver);
+		searchPage = PageGeneratorManagerUser.getSearchPageObject(driver);
 		searchPage.inputToSearchTextbox(appleProduct);
 		searchPage.clickOnAdvancedSearchCheckbox();
 		searchPage.selectSearchCategoryDropdownlist(searchCategory);
@@ -109,7 +109,7 @@ public class User_04_Search extends BaseTest {
 	public void Search_06_AdvancedSearchWithSubCategories() {
 		homePage.clickOnFooterLink(driver, pageName);
 		
-		searchPage = PageGeneratorManager.getSearchPageObject(driver);
+		searchPage = PageGeneratorManagerUser.getSearchPageObject(driver);
 
 		searchPage.inputToSearchTextbox(appleProduct);
 		searchPage.clickOnAdvancedSearchCheckbox();
@@ -125,7 +125,7 @@ public class User_04_Search extends BaseTest {
 	public void Search_07_AdvancedSearchWithIncorrectManufacturer() {
 		homePage.clickOnFooterLink(driver, pageName);
 		
-		searchPage = PageGeneratorManager.getSearchPageObject(driver);
+		searchPage = PageGeneratorManagerUser.getSearchPageObject(driver);
 		searchPage.inputToSearchTextbox(appleProduct);
 		searchPage.clickOnAdvancedSearchCheckbox();
 		searchPage.selectSearchCategoryDropdownlist(searchCategory);
@@ -140,7 +140,7 @@ public class User_04_Search extends BaseTest {
 	public void Search_08_AdvancedSearchWithCorrectManufacturer() {
 		homePage.clickOnFooterLink(driver, pageName);
 		
-		searchPage = PageGeneratorManager.getSearchPageObject(driver);
+		searchPage = PageGeneratorManagerUser.getSearchPageObject(driver);
 		searchPage.inputToSearchTextbox(appleProduct);
 		searchPage.clickOnAdvancedSearchCheckbox();
 		searchPage.selectSearchCategoryDropdownlist(searchCategory);

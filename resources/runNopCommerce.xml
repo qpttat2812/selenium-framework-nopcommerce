@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite parallel="false" name="Suite">
-	
-	<parameter name="url" value="https://demo.nopcommerce.com/" />
+<suite parallel="false" name="NopCommerce">
 	
 	<listeners>
 		<listener class-name="reportConfig.AllureTestListener"/>
 	</listeners>
 	
-	<test name="RUN ON FIREFOX">
+	<test name="RUN ON FIREFOX - USER">
+		<parameter name="url" value="https://demo.nopcommerce.com/" />
 		<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="com.nopcommerce.common.Common_01_RegisterAccountAndGetCookie"/>
-			<class name="com.nopcommerce.user.User_01_RegisterNewAccount"/>
-			<class name="com.nopcommerce.user.User_02_LoginAccount"/>
-			<class name="com.nopcommerce.user.User_03_MyAccountInfo"/>
-			<class name="com.nopcommerce.user.User_04_Search"/>
-			<class name="com.nopcommerce.user.User_05_SortAndPaging"/>
-			<class name="com.nopcommerce.user.User_06_WishlistAndCompare"/>
-			<class name="com.nopcommerce.user.User_07_Orders"/>
 		</classes>
+		<packages>
+			<package name="com.nopcommerce.user" />
+		</packages>
+	</test>
+	
+	<test name="RUN ON FIREFOX - ADMIN">
+		<parameter name="url" value="https://admin-demo.nopcommerce.com/" />
+		<parameter name="browser" value="firefox" />
+		<packages>
+			<package name="com.nopcommerce.admin"/>
+		</packages>
 	</test>
 	
 <!--	<test name="RUN ON CHROME">-->

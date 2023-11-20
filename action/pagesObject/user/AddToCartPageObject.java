@@ -1,9 +1,9 @@
-package pagesObject;
+package pagesObject.user;
 
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePages;
-import commons.PageGeneratorManager;
+import commons.PageGeneratorManagerUser;
 import io.qameta.allure.Step;
 import pagesUI.user.AddToCartPageUI;
 
@@ -25,7 +25,7 @@ public class AddToCartPageObject extends BasePages{
 	public DesktopsDetailedPageObject clickOnEditLink() {
 		waitForElementVisibility(driver, AddToCartPageUI.EDIT_ICON);
 		clickOnElement(driver, AddToCartPageUI.EDIT_ICON);
-		return PageGeneratorManager.getDesktopsDetailedPageObject(driver);
+		return PageGeneratorManagerUser.getDesktopsDetailedPageObject(driver);
 	}
 
 	@Step("Get Product SKU Value")
@@ -155,7 +155,7 @@ public class AddToCartPageObject extends BasePages{
 	public CheckoutPageObject clickOnCheckoutButton() {
 		waitForElementVisibility(driver, AddToCartPageUI.CHECKOUT_BUTTON);
 		clickOnElement(driver, AddToCartPageUI.CHECKOUT_BUTTON);
-		return PageGeneratorManager.getCheckoutPageObject(driver);
+		return PageGeneratorManagerUser.getCheckoutPageObject(driver);
 	}
 
 	@Step("Get summary sub-total price value")

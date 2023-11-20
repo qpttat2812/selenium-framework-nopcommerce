@@ -1,9 +1,9 @@
-package pagesObject;
+package pagesObject.user;
 
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePages;
-import commons.PageGeneratorManager;
+import commons.PageGeneratorManagerUser;
 import io.qameta.allure.Step;
 import pagesUI.user.NotebooksDetailedPageUI;
 
@@ -36,7 +36,7 @@ public class NotebooksDetailedPageObject extends BasePages{
 	public ProductReviewsPageObject clickOnAddReviewLink() {
 		waitForElementVisibility(driver, NotebooksDetailedPageUI.ADD_REVIEW_LINK);
 		clickOnElement(driver, NotebooksDetailedPageUI.ADD_REVIEW_LINK);
-		return PageGeneratorManager.getProductReviewsPageObject(driver);
+		return PageGeneratorManagerUser.getProductReviewsPageObject(driver);
 	}
 
 	@Step("Click on 'Add to cart' button")

@@ -1,9 +1,9 @@
-package pagesObject;
+package pagesObject.user;
 
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePages;
-import commons.PageGeneratorManager;
+import commons.PageGeneratorManagerUser;
 import io.qameta.allure.Step;
 import pagesUI.user.LoginPageUI;
 
@@ -18,7 +18,7 @@ public class LoginPageObject extends BasePages{
 	public HomePageObject clickOnLoginButton() {
 		waitForElementClickable(driver, LoginPageUI.LOGIN_BUTTON);
 		clickOnElement(driver, LoginPageUI.LOGIN_BUTTON);
-		return PageGeneratorManager.getHomePageObject(driver);
+		return PageGeneratorManagerUser.getHomePageObject(driver);
 	}
 
 	@Step("Get Email error message")

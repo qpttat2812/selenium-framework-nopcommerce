@@ -12,11 +12,11 @@ import org.testng.annotations.Test;
 import com.nopcommerce.common.Common_01_RegisterAccountAndGetCookie;
 
 import commons.BaseTest;
-import commons.PageGeneratorManager;
-import pagesObject.ComputersPageObject;
-import pagesObject.HomePageObject;
-import pagesObject.LoginPageObject;
-import pagesObject.NotebooksPageObject;
+import commons.PageGeneratorManagerUser;
+import pagesObject.user.ComputersPageObject;
+import pagesObject.user.HomePageObject;
+import pagesObject.user.LoginPageObject;
+import pagesObject.user.NotebooksPageObject;
 
 public class User_05_SortAndPaging extends BaseTest {
 	private WebDriver driver;
@@ -36,14 +36,14 @@ public class User_05_SortAndPaging extends BaseTest {
 		
 		driver = getBrowserName(browserName, pageURL);
 		
-		homePage = PageGeneratorManager.getHomePageObject(driver);
+		homePage = PageGeneratorManagerUser.getHomePageObject(driver);
 		
 		loginPage = homePage.clickOnLoginLink();
 		loginPage.setCookie(driver, Common_01_RegisterAccountAndGetCookie.loggedCookies);
 		loginPage.refreshBrowser(driver);
 
 		homePage.clickOnProductTabLink(driver, productCategoryName);
-		computersPage = PageGeneratorManager.getComputersPageObject(driver);
+		computersPage = PageGeneratorManagerUser.getComputersPageObject(driver);
 		notebooksPage = computersPage.clickOnNotebooksLink();
 	}
 

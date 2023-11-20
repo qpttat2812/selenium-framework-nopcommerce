@@ -1,9 +1,9 @@
-package pagesObject;
+package pagesObject.user;
 
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePages;
-import commons.PageGeneratorManager;
+import commons.PageGeneratorManagerUser;
 import io.qameta.allure.Step;
 import pagesUI.user.OrdersPageUI;
 
@@ -48,6 +48,6 @@ public class OrdersPageObject extends BasePages{
 	public AddToCartPageObject clickReOrderButton() {
 		waitForElementClickable(driver, OrdersPageUI.RE_ORDER_BUTTON);
 		clickOnElement(driver, OrdersPageUI.RE_ORDER_BUTTON);
-		return PageGeneratorManager.getAddToCartPageObject(driver);
+		return PageGeneratorManagerUser.getAddToCartPageObject(driver);
 	}
 }

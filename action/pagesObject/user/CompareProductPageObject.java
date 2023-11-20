@@ -1,4 +1,4 @@
-package pagesObject;
+package pagesObject.user;
 
 import java.util.List;
 

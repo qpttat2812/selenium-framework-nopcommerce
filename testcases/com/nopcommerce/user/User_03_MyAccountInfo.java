@@ -8,18 +8,18 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import commons.BaseTest;
-import commons.PageGeneratorManager;
-import pagesObject.AddressPageObject;
-import pagesObject.ChangePasswordPageObject;
-import pagesObject.ComputersPageObject;
-import pagesObject.HomePageObject;
-import pagesObject.LoginPageObject;
-import pagesObject.MyAccountPageObject;
-import pagesObject.MyProductReviewPageObject;
-import pagesObject.NotebooksDetailedPageObject;
-import pagesObject.NotebooksPageObject;
-import pagesObject.ProductReviewsPageObject;
-import pagesObject.RegisterPageObject;
+import commons.PageGeneratorManagerUser;
+import pagesObject.user.AddressPageObject;
+import pagesObject.user.ChangePasswordPageObject;
+import pagesObject.user.ComputersPageObject;
+import pagesObject.user.HomePageObject;
+import pagesObject.user.LoginPageObject;
+import pagesObject.user.MyAccountPageObject;
+import pagesObject.user.MyProductReviewPageObject;
+import pagesObject.user.NotebooksDetailedPageObject;
+import pagesObject.user.NotebooksPageObject;
+import pagesObject.user.ProductReviewsPageObject;
+import pagesObject.user.RegisterPageObject;
 import utilities.DataHelper;
 
 public class User_03_MyAccountInfo extends BaseTest{
@@ -99,7 +99,7 @@ public class User_03_MyAccountInfo extends BaseTest{
 		
 		driver = getBrowserName(browserName, pageURL);
 		
-		homePage = PageGeneratorManager.getHomePageObject(driver);
+		homePage = PageGeneratorManagerUser.getHomePageObject(driver);
 		
 		//register account
 		registerPage = homePage.clickOnRegisterLink();
@@ -155,7 +155,7 @@ public class User_03_MyAccountInfo extends BaseTest{
 	public void MyAccount_02_AddAddressInfo() {
 		myAccountPage.clickOnSideBarMenu(driver, addressPageName);
 		
-		addressPage = PageGeneratorManager.getAddressPageObject(driver);
+		addressPage = PageGeneratorManagerUser.getAddressPageObject(driver);
 		addressPage.clickOnAddNewAddressButton();
 		addressPage.inputToFirstNameTextbox(newFirstName);
 		addressPage.inputToLastNameTextbox(newLastName);
@@ -195,7 +195,7 @@ public class User_03_MyAccountInfo extends BaseTest{
 	public void MyAccount_03_ChangePassword() {
 		myAccountPage.clickOnSideBarMenu(driver, changePasswordPageName);
 		
-		changePasswordPage = PageGeneratorManager.getChangePasswordPageObject(driver);
+		changePasswordPage = PageGeneratorManagerUser.getChangePasswordPageObject(driver);
 		changePasswordPage.inputToOldPasswordTextbox(registeredPassword);
 		changePasswordPage.inputToNewPasswordTextbox(newPassword);
 		changePasswordPage.inputToConfirmPasswordTextbox(newPassword);
@@ -224,11 +224,11 @@ public class User_03_MyAccountInfo extends BaseTest{
 	public void MyAccount_04_MyProductReview() {
 		homePage.clickOnProductTabLink(driver, "Computers");
 		
-		computersPage = PageGeneratorManager.getComputersPageObject(driver);
+		computersPage = PageGeneratorManagerUser.getComputersPageObject(driver);
 		notebooksPage = computersPage.clickOnNotebooksLink();
 		notebooksPage.clickOnProductNameLinkAtSubCategory(driver, notebookName);
 		
-		notebooksDetailedPage = PageGeneratorManager.getNotebooksDetailedPageObject(driver);
+		notebooksDetailedPage = PageGeneratorManagerUser.getNotebooksDetailedPageObject(driver);
 		productReviewsPage = notebooksDetailedPage.clickOnAddReviewLink();
 		Assert.assertEquals(productReviewsPage.getReviewProductTitle(), "Product reviews for " + notebookName);
 		
@@ -241,7 +241,7 @@ public class User_03_MyAccountInfo extends BaseTest{
 		
 		myAccountPage = homePage.clickOnMyAccountLink();
 		myAccountPage.clickOnSideBarMenu(driver, "My product reviews");
-		myProductReviewPage = PageGeneratorManager.getMyProductReviewPageObject(driver);
+		myProductReviewPage = PageGeneratorManagerUser.getMyProductReviewPageObject(driver);
 		
 		Assert.assertEquals(myProductReviewPage.getReviewTitleText(), reviewTitle);
 		Assert.assertEquals(myProductReviewPage.getReviewText(), reviewContent);
