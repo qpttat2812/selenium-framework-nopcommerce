@@ -56,74 +56,25 @@ public class ProductsPageObject extends BasePages {
 	@Step("Get Product Name in table")
 	public String getProductNameValue(String productNameLabel, String expectedProductName) {
 		waitForElementInvisibility(driver, ProductsPageUI.AJAX_LOADING_ICON);
-
-		String productName = "";
-		int columnIndex = getElements(driver, ProductsPageUI.DYNAMIC_PRODUCT_COLUMN_INDEX, productNameLabel).size() + 1;
-
-		List<WebElement> nameListElement = getElements(driver, ProductsPageUI.DYNAMIC_PRODUCT_INFO_ROW_INDEX, String.valueOf(columnIndex));
-
-		for (WebElement name : nameListElement) {
-			if (name.getText().contains(expectedProductName)) {
-				productName = name.getText();
-				break;
-			}
-		}
-
-		return productName;
+		return getValueFromDataTable(driver, ProductsPageUI.DYNAMIC_PRODUCT_COLUMN_INDEX, ProductsPageUI.DYNAMIC_PRODUCT_INFO_ROW_INDEX, productNameLabel, expectedProductName);
 	}
 
 	@Step("Get Product SKU in table")
 	public String getProductSKUValue(String skuLabel, String expectedSKUValue) {
 		waitForElementInvisibility(driver, ProductsPageUI.AJAX_LOADING_ICON);
-
-		String skuName = "";
-		int columnIndex = getElements(driver, ProductsPageUI.DYNAMIC_PRODUCT_COLUMN_INDEX, skuLabel).size() + 1;
-
-		List<WebElement> skuListElement = getElements(driver, ProductsPageUI.DYNAMIC_PRODUCT_INFO_ROW_INDEX, String.valueOf(columnIndex));
-
-		for (WebElement sku : skuListElement) {
-			if (sku.getText().contains(expectedSKUValue)) {
-				skuName = sku.getText();
-				break;
-			}
-		}
-		return skuName;
+		return getValueFromDataTable(driver, ProductsPageUI.DYNAMIC_PRODUCT_COLUMN_INDEX, ProductsPageUI.DYNAMIC_PRODUCT_INFO_ROW_INDEX, skuLabel, expectedSKUValue);
 	}
 
 	@Step("Get Product Price value in the table")
 	public String getProductPriceValue(String priceLabel, String expectedPriceValue) {
 		waitForElementInvisibility(driver, ProductsPageUI.AJAX_LOADING_ICON);
-
-		String priceValue = "";
-		int columnIndex = getElements(driver, ProductsPageUI.DYNAMIC_PRODUCT_COLUMN_INDEX, priceLabel).size() + 1;
-
-		List<WebElement> priceListElement = getElements(driver, ProductsPageUI.DYNAMIC_PRODUCT_INFO_ROW_INDEX, String.valueOf(columnIndex));
-
-		for (WebElement price : priceListElement) {
-			if (price.getText().contains(expectedPriceValue)) {
-				priceValue = price.getText();
-				break;
-			}
-		}
-		return priceValue;
+		return getValueFromDataTable(driver, ProductsPageUI.DYNAMIC_PRODUCT_COLUMN_INDEX, ProductsPageUI.DYNAMIC_PRODUCT_INFO_ROW_INDEX, priceLabel, expectedPriceValue);
 	}
 
 	@Step("Get Product Quantity value in the table")
 	public String getProductQuantityValue(String quantityLabel, String expectedQuantityValue) {
 		waitForElementInvisibility(driver, ProductsPageUI.AJAX_LOADING_ICON);
-
-		String quantityValue = "";
-		int columnIndex = getElements(driver, ProductsPageUI.DYNAMIC_PRODUCT_COLUMN_INDEX, quantityLabel).size() + 1;
-
-		List<WebElement> quantityListElement = getElements(driver, ProductsPageUI.DYNAMIC_PRODUCT_INFO_ROW_INDEX, String.valueOf(columnIndex));
-
-		for (WebElement quantity : quantityListElement) {
-			if (quantity.getText().contains(expectedQuantityValue)) {
-				quantityValue = quantity.getText();
-				break;
-			}
-		}
-		return quantityValue;
+		return getValueFromDataTable(driver, ProductsPageUI.DYNAMIC_PRODUCT_COLUMN_INDEX, ProductsPageUI.DYNAMIC_PRODUCT_INFO_ROW_INDEX, quantityLabel, expectedQuantityValue);
 	}
 
 	@Step("Get Product Published Status")

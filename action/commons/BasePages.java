@@ -609,7 +609,22 @@ public class BasePages {
 		}
 		sleepInSecond(5);
 	}
+	
+	public String getValueFromDataTable(WebDriver driver, String columnXpathLocator, String rowXpathLocator, String columnLabel, String expectedValue) {
+		String result = "";
+		int columnIndex = getElements(driver, columnXpathLocator, columnLabel).size() + 1;
 
+		List<WebElement> elements = getElements(driver, rowXpathLocator, String.valueOf(columnIndex));
+
+		for (WebElement element : elements) {
+			if (element.getText().contains(expectedValue)) {
+				result = element.getText();
+				break;
+			}
+		}
+
+		return result;
+	}
 	// -------------------- OTHER COMMON SPECIFIC FUNCTIONS IN NOPCOMMERCE -----------------------------
 
 	/**
