@@ -115,7 +115,6 @@ public class BaseTest {
 			e.getMessage();
 		} finally {
 			try {
-				@SuppressWarnings("deprecation")
 				Process process = Runtime.getRuntime().exec(cmd);
 				process.waitFor();
 			} catch (IOException e) {
