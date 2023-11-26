@@ -26,8 +26,8 @@ public class Common_01_RegisterAccountAndGetCookie extends BaseTest {
 	public static String firstName, lastName, emailAddress, password;
 	
 	@BeforeTest
-	@Parameters({"browser", "url"})
-	public void RegisterAndGetLoginCookie(String browsername, String pageURL) {
+	@Parameters({"browser", "environment", "siteType"})
+	public void RegisterAndGetLoginCookie(String browsername, String enviromentName, String siteType) {
 		dataFake = DataHelper.getData();
 		
 		emailAddress = dataFake.getEmailAddress();
@@ -35,7 +35,7 @@ public class Common_01_RegisterAccountAndGetCookie extends BaseTest {
 		lastName = dataFake.getLastName();
 		password = dataFake.getPassword();
 		
-		driver = getBrowserName(browsername, pageURL);
+		driver = getBrowserName(browsername, enviromentName, siteType);
 		homePage = PageGeneratorManagerUser.getHomePageObject(driver);
 		registerPage = homePage.clickOnRegisterLink();
 
@@ -55,7 +55,7 @@ public class Common_01_RegisterAccountAndGetCookie extends BaseTest {
 		
 		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
 		
-		loggedCookies = homePage.getAllCookies(driver);
+		loggedCookies = homePage.getAllCookies();
 		
 		driver.quit();
 	}

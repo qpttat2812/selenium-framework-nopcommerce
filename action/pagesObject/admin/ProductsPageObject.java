@@ -10,41 +10,39 @@ import io.qameta.allure.Step;
 import pagesUI.admin.ProductsPageUI;
 
 public class ProductsPageObject extends BasePages {
-	private WebDriver driver;
-
 	public ProductsPageObject(WebDriver driver) {
-		this.driver = driver;
+		super(driver);
 	}
 
 	@Step("Click on Show Items with value is {0}")
 	public void clickOnShowItems(String expectedValue) {
-		waitForElementVisibility(driver, ProductsPageUI.SHOW_ITEMS);
-		selectDefaultItemDropdownList(driver, ProductsPageUI.SHOW_ITEMS, expectedValue);
+		waitForElementVisibility(ProductsPageUI.SHOW_ITEMS);
+		selectDefaultItemDropdownList(ProductsPageUI.SHOW_ITEMS, expectedValue);
 	}
 
 	@Step("Input to 'Product name' textbox with value is {0}")
 	public void inputToProductNameTextbox(String productName) {
-		waitForElementInvisibility(driver, ProductsPageUI.AJAX_LOADING_ICON);
-		sendkeyToElement(driver, ProductsPageUI.PRODUCT_NAME_TEXTBOX, productName);
+		waitForElementInvisibility(ProductsPageUI.AJAX_LOADING_ICON);
+		sendkeyToElement(ProductsPageUI.PRODUCT_NAME_TEXTBOX, productName);
 	}
 
 	@Step("Click on 'Search' button")
 	public void clickOnSearchButton() {
-		waitForElementClickable(driver, ProductsPageUI.SEARCH_BUTTON);
-		clickOnElement(driver, ProductsPageUI.SEARCH_BUTTON);
+		waitForElementClickable(ProductsPageUI.SEARCH_BUTTON);
+		clickOnElement(ProductsPageUI.SEARCH_BUTTON);
 	}
 
 	public boolean isProductImageDisplayed(String pictureLabel) {
-		waitForElementInvisibility(driver, ProductsPageUI.AJAX_LOADING_ICON);
+		waitForElementInvisibility(ProductsPageUI.AJAX_LOADING_ICON);
 		
-		int columnIndex = getElements(driver, ProductsPageUI.DYNAMIC_PRODUCT_COLUMN_INDEX, pictureLabel).size() + 1;
+		int columnIndex = getElements(ProductsPageUI.DYNAMIC_PRODUCT_COLUMN_INDEX, pictureLabel).size() + 1;
 
-		List<WebElement> nameListElement = getElements(driver, ProductsPageUI.DYNAMIC_PRODUCT_PICTURE_ROW_INDEX, String.valueOf(columnIndex));
+		List<WebElement> nameListElement = getElements(ProductsPageUI.DYNAMIC_PRODUCT_PICTURE_ROW_INDEX, String.valueOf(columnIndex));
 		
 		boolean imageDisplayed = false;
 		
 		for (WebElement name : nameListElement) {
-			if (checkImageLoadedAndDisplayed(driver, name)) {
+			if (checkImageLoadedAndDisplayed(name)) {
 				imageDisplayed = true;
 				break;
 			}
@@ -55,36 +53,36 @@ public class ProductsPageObject extends BasePages {
 
 	@Step("Get Product Name in table")
 	public String getProductNameValue(String productNameLabel, String expectedProductName) {
-		waitForElementInvisibility(driver, ProductsPageUI.AJAX_LOADING_ICON);
-		return getValueFromDataTable(driver, ProductsPageUI.DYNAMIC_PRODUCT_COLUMN_INDEX, ProductsPageUI.DYNAMIC_PRODUCT_INFO_ROW_INDEX, productNameLabel, expectedProductName);
+		waitForElementInvisibility(ProductsPageUI.AJAX_LOADING_ICON);
+		return getValueFromDataTable(ProductsPageUI.DYNAMIC_PRODUCT_COLUMN_INDEX, ProductsPageUI.DYNAMIC_PRODUCT_INFO_ROW_INDEX, productNameLabel, expectedProductName);
 	}
 
 	@Step("Get Product SKU in table")
 	public String getProductSKUValue(String skuLabel, String expectedSKUValue) {
-		waitForElementInvisibility(driver, ProductsPageUI.AJAX_LOADING_ICON);
-		return getValueFromDataTable(driver, ProductsPageUI.DYNAMIC_PRODUCT_COLUMN_INDEX, ProductsPageUI.DYNAMIC_PRODUCT_INFO_ROW_INDEX, skuLabel, expectedSKUValue);
+		waitForElementInvisibility(ProductsPageUI.AJAX_LOADING_ICON);
+		return getValueFromDataTable(ProductsPageUI.DYNAMIC_PRODUCT_COLUMN_INDEX, ProductsPageUI.DYNAMIC_PRODUCT_INFO_ROW_INDEX, skuLabel, expectedSKUValue);
 	}
 
 	@Step("Get Product Price value in the table")
 	public String getProductPriceValue(String priceLabel, String expectedPriceValue) {
-		waitForElementInvisibility(driver, ProductsPageUI.AJAX_LOADING_ICON);
-		return getValueFromDataTable(driver, ProductsPageUI.DYNAMIC_PRODUCT_COLUMN_INDEX, ProductsPageUI.DYNAMIC_PRODUCT_INFO_ROW_INDEX, priceLabel, expectedPriceValue);
+		waitForElementInvisibility(ProductsPageUI.AJAX_LOADING_ICON);
+		return getValueFromDataTable(ProductsPageUI.DYNAMIC_PRODUCT_COLUMN_INDEX, ProductsPageUI.DYNAMIC_PRODUCT_INFO_ROW_INDEX, priceLabel, expectedPriceValue);
 	}
 
 	@Step("Get Product Quantity value in the table")
 	public String getProductQuantityValue(String quantityLabel, String expectedQuantityValue) {
-		waitForElementInvisibility(driver, ProductsPageUI.AJAX_LOADING_ICON);
-		return getValueFromDataTable(driver, ProductsPageUI.DYNAMIC_PRODUCT_COLUMN_INDEX, ProductsPageUI.DYNAMIC_PRODUCT_INFO_ROW_INDEX, quantityLabel, expectedQuantityValue);
+		waitForElementInvisibility(ProductsPageUI.AJAX_LOADING_ICON);
+		return getValueFromDataTable(ProductsPageUI.DYNAMIC_PRODUCT_COLUMN_INDEX, ProductsPageUI.DYNAMIC_PRODUCT_INFO_ROW_INDEX, quantityLabel, expectedQuantityValue);
 	}
 
 	@Step("Get Product Published Status")
 	public String getProductPublishedStatus(String publishedLabel, String expectedStatus) {
-		waitForElementInvisibility(driver, ProductsPageUI.AJAX_LOADING_ICON);
+		waitForElementInvisibility(ProductsPageUI.AJAX_LOADING_ICON);
 
 		String statusResult = "";
-		int columnIndex = getElements(driver, ProductsPageUI.DYNAMIC_PRODUCT_COLUMN_INDEX, publishedLabel).size() + 1;
+		int columnIndex = getElements(ProductsPageUI.DYNAMIC_PRODUCT_COLUMN_INDEX, publishedLabel).size() + 1;
 
-		List<WebElement> statusListElement = getElements(driver, ProductsPageUI.DYNAMIC_PRODUCT_PUBLISHED_ROW_INDEX, String.valueOf(columnIndex));
+		List<WebElement> statusListElement = getElements(ProductsPageUI.DYNAMIC_PRODUCT_PUBLISHED_ROW_INDEX, String.valueOf(columnIndex));
 
 		for (WebElement status : statusListElement) {
 			if (status.getAttribute("nop-value").contains(expectedStatus)) {
@@ -97,10 +95,10 @@ public class ProductsPageObject extends BasePages {
 
 	@Step("Verify 'Edit' button is displayed")
 	public boolean isProductEditButtonDisplayed(String editLabel) {
-		waitForElementInvisibility(driver, ProductsPageUI.AJAX_LOADING_ICON);
+		waitForElementInvisibility(ProductsPageUI.AJAX_LOADING_ICON);
 
-		int columnIndex = getElements(driver, ProductsPageUI.DYNAMIC_PRODUCT_COLUMN_INDEX, editLabel).size() + 1;
-		List<WebElement> editButtonList = getElements(driver, ProductsPageUI.DYNAMIC_PRODUCT_EDIT_ROW_INDEX, String.valueOf(columnIndex));
+		int columnIndex = getElements(ProductsPageUI.DYNAMIC_PRODUCT_COLUMN_INDEX, editLabel).size() + 1;
+		List<WebElement> editButtonList = getElements(ProductsPageUI.DYNAMIC_PRODUCT_EDIT_ROW_INDEX, String.valueOf(columnIndex));
 		boolean flag = false;
 		
 		for(WebElement edit : editButtonList) {
@@ -114,19 +112,19 @@ public class ProductsPageObject extends BasePages {
 
 	@Step("Select 'Category' dropdownlist with value is {0}")
 	public void selectCategoryDropdownlist(String expectedCategoryValue) {
-		waitForElementVisibility(driver, ProductsPageUI.CATEGORY_DROPDOWNLIST);
-		selectDefaultItemDropdownList(driver, ProductsPageUI.CATEGORY_DROPDOWNLIST, expectedCategoryValue);
+		waitForElementVisibility(ProductsPageUI.CATEGORY_DROPDOWNLIST);
+		selectDefaultItemDropdownList(ProductsPageUI.CATEGORY_DROPDOWNLIST, expectedCategoryValue);
 	}
 
 	@Step("Check on 'Search subcategories' checkbox")
 	public void checkOnSubCategoryCheckbox() {
-		waitForElementClickable(driver, ProductsPageUI.SUB_CATEGORY_CHECKBOX);
-		checkOnCheckbox(driver, ProductsPageUI.SUB_CATEGORY_CHECKBOX);
+		waitForElementClickable(ProductsPageUI.SUB_CATEGORY_CHECKBOX);
+		checkOnCheckbox(ProductsPageUI.SUB_CATEGORY_CHECKBOX);
 	}
 
 	@Step("Get No Data message")
 	public String getNoDataMessage() {
-		waitForElementVisibility(driver, ProductsPageUI.NO_DATA_MESSAGE);
-		return getTextElement(driver, ProductsPageUI.NO_DATA_MESSAGE);
+		waitForElementVisibility(ProductsPageUI.NO_DATA_MESSAGE);
+		return getTextElement(ProductsPageUI.NO_DATA_MESSAGE);
 	}
 }

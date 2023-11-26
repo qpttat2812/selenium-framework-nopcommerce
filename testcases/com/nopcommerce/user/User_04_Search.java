@@ -25,22 +25,22 @@ public class User_04_Search extends BaseTest {
 	private String appleProduct;
 	private String searchCategory;
 
-	@Parameters({ "browser", "url" })
+	@Parameters({ "browser", "environment", "siteType"})
 	@BeforeClass
-	public void BeforeClass(String browserName, String pageURl) {
+	public void BeforeClass(String browserName, String environmentName, String siteType) {
 		 pageName = "Search";
 		 appleProduct = "Apple MacBook Pro";
 		 searchCategory = "Computers";
 		 
-		driver = getBrowserName(browserName, pageURl);
+		driver = getBrowserName(browserName, environmentName, siteType);
 
 		homePage = PageGeneratorManagerUser.getHomePageObject(driver);
 		
 		loginPage = homePage.clickOnLoginLink();
-		loginPage.setCookie(driver, Common_01_RegisterAccountAndGetCookie.loggedCookies);
-		loginPage.refreshBrowser(driver);
+		loginPage.setCookie(Common_01_RegisterAccountAndGetCookie.loggedCookies);
+		loginPage.refreshBrowser();
 
-		homePage.clickOnFooterLink(driver, pageName);
+		homePage.clickOnFooterLink(pageName);
 		searchPage = PageGeneratorManagerUser.getSearchPageObject(driver);
 	}
 
@@ -55,7 +55,7 @@ public class User_04_Search extends BaseTest {
 	public void Search_02_InputNotExistedData() {
 		String searchKeyword = "Macbook Pro 2050";
 		
-		homePage.clickOnFooterLink(driver, pageName);
+		homePage.clickOnFooterLink(pageName);
 		
 		searchPage = PageGeneratorManagerUser.getSearchPageObject(driver);
 		searchPage.inputToSearchTextbox(searchKeyword);
@@ -68,7 +68,7 @@ public class User_04_Search extends BaseTest {
 	public void Search_03_InputRelativeKeyword() {
 		String searchKeyword = "Lenovo";
 		
-		homePage.clickOnFooterLink(driver, pageName);
+		homePage.clickOnFooterLink(pageName);
 		
 		searchPage = PageGeneratorManagerUser.getSearchPageObject(driver);
 		searchPage.inputToSearchTextbox(searchKeyword);
@@ -82,7 +82,7 @@ public class User_04_Search extends BaseTest {
 	public void Search_04_InputAbsoluteKeyword() {
 		String searchKeyword = "Lenovo IdeaCentre 600 All-in-One PC";
 		
-		homePage.clickOnFooterLink(driver, pageName);
+		homePage.clickOnFooterLink(pageName);
 		
 		searchPage = PageGeneratorManagerUser.getSearchPageObject(driver);
 		searchPage.inputToSearchTextbox(searchKeyword);
@@ -94,7 +94,7 @@ public class User_04_Search extends BaseTest {
 
 	@Test
 	public void Search_05_AdvancedSearchWithParentCategories() {
-		homePage.clickOnFooterLink(driver, pageName);
+		homePage.clickOnFooterLink(pageName);
 		
 		searchPage = PageGeneratorManagerUser.getSearchPageObject(driver);
 		searchPage.inputToSearchTextbox(appleProduct);
@@ -107,7 +107,7 @@ public class User_04_Search extends BaseTest {
 
 	@Test
 	public void Search_06_AdvancedSearchWithSubCategories() {
-		homePage.clickOnFooterLink(driver, pageName);
+		homePage.clickOnFooterLink(pageName);
 		
 		searchPage = PageGeneratorManagerUser.getSearchPageObject(driver);
 
@@ -123,7 +123,7 @@ public class User_04_Search extends BaseTest {
 
 	@Test
 	public void Search_07_AdvancedSearchWithIncorrectManufacturer() {
-		homePage.clickOnFooterLink(driver, pageName);
+		homePage.clickOnFooterLink(pageName);
 		
 		searchPage = PageGeneratorManagerUser.getSearchPageObject(driver);
 		searchPage.inputToSearchTextbox(appleProduct);
@@ -138,7 +138,7 @@ public class User_04_Search extends BaseTest {
 
 	@Test
 	public void Search_08_AdvancedSearchWithCorrectManufacturer() {
-		homePage.clickOnFooterLink(driver, pageName);
+		homePage.clickOnFooterLink(pageName);
 		
 		searchPage = PageGeneratorManagerUser.getSearchPageObject(driver);
 		searchPage.inputToSearchTextbox(appleProduct);

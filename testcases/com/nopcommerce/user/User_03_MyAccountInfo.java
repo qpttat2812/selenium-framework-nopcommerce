@@ -65,9 +65,9 @@ public class User_03_MyAccountInfo extends BaseTest{
 	private String reviewContent;
 	private String currentPageURL;
 	
-	@Parameters({"browser", "url"})
+	@Parameters({"browser", "environment", "siteType"})
 	@BeforeClass
-	public void BeforeClass(String browserName, String pageURL) {
+	public void BeforeClass(String browserName, String environmentName, String siteType) {
 		dataFake = DataHelper.getData();
 		
 		registeredFirstName = dataFake.getFirstName();
@@ -97,7 +97,7 @@ public class User_03_MyAccountInfo extends BaseTest{
 		reviewTitle  = "recommended";
 		reviewContent = "it's worth to buy.\nGood notebook for programming";
 		
-		driver = getBrowserName(browserName, pageURL);
+		driver = getBrowserName(browserName, environmentName, siteType);
 		
 		homePage = PageGeneratorManagerUser.getHomePageObject(driver);
 		
@@ -153,7 +153,7 @@ public class User_03_MyAccountInfo extends BaseTest{
 	
 	 @Test 
 	public void MyAccount_02_AddAddressInfo() {
-		myAccountPage.clickOnSideBarMenu(driver, addressPageName);
+		myAccountPage.clickOnSideBarMenu(addressPageName);
 		
 		addressPage = PageGeneratorManagerUser.getAddressPageObject(driver);
 		addressPage.clickOnAddNewAddressButton();
@@ -193,7 +193,7 @@ public class User_03_MyAccountInfo extends BaseTest{
 	
 	@Test
 	public void MyAccount_03_ChangePassword() {
-		myAccountPage.clickOnSideBarMenu(driver, changePasswordPageName);
+		myAccountPage.clickOnSideBarMenu(changePasswordPageName);
 		
 		changePasswordPage = PageGeneratorManagerUser.getChangePasswordPageObject(driver);
 		changePasswordPage.inputToOldPasswordTextbox(registeredPassword);
@@ -222,11 +222,11 @@ public class User_03_MyAccountInfo extends BaseTest{
 	
 	@Test
 	public void MyAccount_04_MyProductReview() {
-		homePage.clickOnProductTabLink(driver, "Computers");
+		homePage.clickOnProductTabLink("Computers");
 		
 		computersPage = PageGeneratorManagerUser.getComputersPageObject(driver);
 		notebooksPage = computersPage.clickOnNotebooksLink();
-		notebooksPage.clickOnProductNameLinkAtSubCategory(driver, notebookName);
+		notebooksPage.clickOnProductNameLinkAtSubCategory(notebookName);
 		
 		notebooksDetailedPage = PageGeneratorManagerUser.getNotebooksDetailedPageObject(driver);
 		productReviewsPage = notebooksDetailedPage.clickOnAddReviewLink();
@@ -240,7 +240,7 @@ public class User_03_MyAccountInfo extends BaseTest{
 		Assert.assertEquals(productReviewsPage.getProductReviewsSuccessMessage(), "Product review is successfully added.");
 		
 		myAccountPage = homePage.clickOnMyAccountLink();
-		myAccountPage.clickOnSideBarMenu(driver, "My product reviews");
+		myAccountPage.clickOnSideBarMenu("My product reviews");
 		myProductReviewPage = PageGeneratorManagerUser.getMyProductReviewPageObject(driver);
 		
 		Assert.assertEquals(myProductReviewPage.getReviewTitleText(), reviewTitle);

@@ -11,54 +11,55 @@ public class WishlistPageObject extends BasePages{
 	private WebDriver driver;
 	
 	public WishlistPageObject(WebDriver driver) {
+		super(driver);
 		this.driver = driver;
 	}
 
 	@Step("Get Product name of Wishlist page")
 	public String getWishlistProductName() {
-		waitForElementVisibility(driver, WishlistPageUI.WISHLIST_PRODUCT_NAME);
-		return getTextElement(driver, WishlistPageUI.WISHLIST_PRODUCT_NAME);
+		waitForElementVisibility(WishlistPageUI.WISHLIST_PRODUCT_NAME);
+		return getTextElement(WishlistPageUI.WISHLIST_PRODUCT_NAME);
 	}
 	
 	@Step("Click on 'Wishlist Sharing Url'")
 	public void clickOnWishlistSharingURL() {
-		waitForElementVisibility(driver, WishlistPageUI.WISHLIST_SHARING_URL);
-		clickOnElement(driver, WishlistPageUI.WISHLIST_SHARING_URL);
+		waitForElementVisibility(WishlistPageUI.WISHLIST_SHARING_URL);
+		clickOnElement(WishlistPageUI.WISHLIST_SHARING_URL);
 	}
 	
 	@Step("Get Wishlist Sharing Title")
 	public String getWishlistSharingTitle() {
-		waitForElementVisibility(driver, WishlistPageUI.WISHLIST_SHARING_TITLE);
-		return getTextElement(driver, WishlistPageUI.WISHLIST_SHARING_TITLE);
+		waitForElementVisibility(WishlistPageUI.WISHLIST_SHARING_TITLE);
+		return getTextElement(WishlistPageUI.WISHLIST_SHARING_TITLE);
 	}
 
 	@Step("Check on 'Add to cart' checkbox")
 	public void checkOnAddToCartCheckbox() {
-		waitForElementVisibility(driver, WishlistPageUI.ADD_TO_CART_CHECKBOX);
-		checkOnCheckbox(driver, WishlistPageUI.ADD_TO_CART_CHECKBOX);
+		waitForElementVisibility(WishlistPageUI.ADD_TO_CART_CHECKBOX);
+		checkOnCheckbox(WishlistPageUI.ADD_TO_CART_CHECKBOX);
 	}
 
 	@Step("Click On 'Add to cart' button")
 	public AddToCartPageObject clickOnAddToCartButton() {
-		waitForElementClickable(driver, WishlistPageUI.ADD_TO_CART_BUTTON);
-		clickOnElement(driver, WishlistPageUI.ADD_TO_CART_BUTTON);
+		waitForElementClickable(WishlistPageUI.ADD_TO_CART_BUTTON);
+		clickOnElement(WishlistPageUI.ADD_TO_CART_BUTTON);
 		return PageGeneratorManagerUser.getAddToCartPageObject(driver);
 	}
 
 	@Step("Verify product is undisplayed")
 	public boolean isProductUndisplayed() {
-		return isElementUndisplayed(driver, WishlistPageUI.WISHLIST_PRODUCT_NAME);
+		return isElementUndisplayed(WishlistPageUI.WISHLIST_PRODUCT_NAME);
 	}
 
 	@Step("Click on 'Remove' icon")
 	public void clickOnRemoveIcon() {
-		waitForElementVisibility(driver, WishlistPageUI.REMOVE_WISHLIST_PRODUCT_ICON);
-		clickOnElement(driver, WishlistPageUI.REMOVE_WISHLIST_PRODUCT_ICON);
+		waitForElementVisibility(WishlistPageUI.REMOVE_WISHLIST_PRODUCT_ICON);
+		clickOnElement(WishlistPageUI.REMOVE_WISHLIST_PRODUCT_ICON);
 	}
 
 	@Step("Verify Wishlist page is empty")
 	public boolean isWishlistPageEmpty() {
-		waitForElementInvisibility(driver, WishlistPageUI.AJAX_LOADING_ICON);
-		return isElementDisplayed(driver, WishlistPageUI.WISHLIST_EMPTY_MESSAGE);
+		waitForElementInvisibility(WishlistPageUI.AJAX_LOADING_ICON);
+		return isElementDisplayed(WishlistPageUI.WISHLIST_EMPTY_MESSAGE);
 	}
 }

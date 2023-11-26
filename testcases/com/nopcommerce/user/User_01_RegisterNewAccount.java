@@ -27,16 +27,16 @@ public class User_01_RegisterNewAccount extends BaseTest {
 	private String registeredPassword;
 	private String validEmail;
 	
-	@Parameters({"browser", "url"})
+	@Parameters({"browser", "environment", "siteType"})
 	@BeforeClass
-	public void BeforeClass(String browserName, String pageURL) {
+	public void BeforeClass(String browserName, String environmentName, String siteType) {
 		firstName = Common_01_RegisterAccountAndGetCookie.firstName;
 		lastName = Common_01_RegisterAccountAndGetCookie.lastName;
 		registeredEmail = Common_01_RegisterAccountAndGetCookie.emailAddress;
 		registeredPassword = Common_01_RegisterAccountAndGetCookie.password;
 		validEmail = "auto" + getRandomNumber() + "@gmail.com";
 		
-		driver = getBrowserName(browserName, pageURL);
+		driver = getBrowserName(browserName, environmentName, siteType);
 		
 		homePage = PageGeneratorManagerUser.getHomePageObject(driver);		
 		registerPage = homePage.clickOnRegisterLink();

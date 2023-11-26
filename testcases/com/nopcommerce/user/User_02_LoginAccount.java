@@ -28,9 +28,9 @@ public class User_02_LoginAccount extends BaseTest {
 	private String registeredEmail;
 	private String registeredPassword;
 	
-	@Parameters({"browser", "url"})
+	@Parameters({"browser", "environment", "siteType"})
 	@BeforeClass
-	public void BeforeClass(String browserName, String pageURL) {
+	public void BeforeClass(String browserName, String environmentName, String siteType) {
 		dataFake = DataHelper.getData();
 		
 		unregisteredEmail = dataFake.getEmailAddress();
@@ -38,7 +38,7 @@ public class User_02_LoginAccount extends BaseTest {
 		registeredEmail = Common_01_RegisterAccountAndGetCookie.emailAddress;
 		registeredPassword = Common_01_RegisterAccountAndGetCookie.password;;
 		
-		driver = getBrowserName(browserName, pageURL);
+		driver = getBrowserName(browserName, environmentName, siteType);
 
 		homePage = PageGeneratorManagerUser.getHomePageObject(driver);
 		loginPage = homePage.clickOnLoginLink();

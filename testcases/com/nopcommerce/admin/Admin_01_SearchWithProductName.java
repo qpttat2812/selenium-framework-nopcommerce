@@ -33,9 +33,9 @@ public class Admin_01_SearchWithProductName extends BaseTest {
 	private String expectedCategoryValue;
 	private String showItem;
 
-	@Parameters({ "browser", "url" })
+	@Parameters({ "browser", "environment", "siteType"})
 	@BeforeClass
-	public void BeforeClass(String browserName, String pageURL) {
+	public void BeforeClass(String browserName, String environmentName, String siteType) {
 		catalogSidebarName = "Catalog";
 		productsSubSidebarName = "Products";
 		expectedProductName = "Apple MacBook Pro 13-inch";
@@ -53,7 +53,7 @@ public class Admin_01_SearchWithProductName extends BaseTest {
 		editLabel = "Edit";
 		expectedCategoryValue = "Computers >> Desktops";
 
-		driver = getBrowserName(browserName, pageURL);
+		driver = getBrowserName(browserName, environmentName, siteType);
 
 		email = GlobalConstants.ADMIN_EMAIL;
 		password = GlobalConstants.ADMIN_PASSWORD;
@@ -65,8 +65,8 @@ public class Admin_01_SearchWithProductName extends BaseTest {
 
 		Assert.assertTrue(dashboardPage.isDashboardPageDisplayed());
 
-		dashboardPage.clickOnParentSidebarMenuOfAdmin(driver, catalogSidebarName);
-		dashboardPage.clickOnSubSidebarMenuOfAdmin(driver, catalogSidebarName, productsSubSidebarName);
+		dashboardPage.clickOnParentSidebarMenuOfAdmin(catalogSidebarName);
+		dashboardPage.clickOnSubSidebarMenuOfAdmin(catalogSidebarName, productsSubSidebarName);
 
 		productsPage = PageGeneratorManagerAdmin.getProductsPageObject(driver);
 
@@ -89,7 +89,7 @@ public class Admin_01_SearchWithProductName extends BaseTest {
 
 	@Test
 	public void TC_02_SearchWithSubCategoryIsUnchecked() {
-		productsPage.clickOnSubSidebarMenuOfAdmin(driver, catalogSidebarName, productsSubSidebarName);
+		productsPage.clickOnSubSidebarMenuOfAdmin(catalogSidebarName, productsSubSidebarName);
 
 		productsPage.inputToProductNameTextbox(expectedProductName);
 		productsPage.selectCategoryDropdownlist(expectedCategoryValue);
@@ -100,7 +100,7 @@ public class Admin_01_SearchWithProductName extends BaseTest {
 
 	@Test
 	public void TC_03_SearchWithSubCategoryIsChecked() {
-		productsPage.clickOnSubSidebarMenuOfAdmin(driver, catalogSidebarName, productsSubSidebarName);
+		productsPage.clickOnSubSidebarMenuOfAdmin(catalogSidebarName, productsSubSidebarName);
 
 		productsPage.inputToProductNameTextbox(expectedProductName);
 		productsPage.selectCategoryDropdownlist(expectedCategoryValue);

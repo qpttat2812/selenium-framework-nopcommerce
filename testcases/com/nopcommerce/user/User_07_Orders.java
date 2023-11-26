@@ -72,9 +72,9 @@ public class User_07_Orders extends BaseTest {
 	private float expectedTotalPrice;
 	private int countItem;
 
-	@Parameters({ "browser", "url" })
+	@Parameters({ "browser", "environment", "siteType"})
 	@BeforeClass
-	public void BeforeClass(String browserName, String pageURL) {
+	public void BeforeClass(String browserName, String environmentName, String siteType) {
 		dataHelp = DataHelper.getData();
 
 		productTab = "Computers";
@@ -94,22 +94,22 @@ public class User_07_Orders extends BaseTest {
 		moneyPaymentMethod = "Check / Money Order";
 		cardPaymentMethod = "Credit Card";
 
-		driver = getBrowserName(browserName, pageURL);
+		driver = getBrowserName(browserName, environmentName, siteType);
 
 		homePage = PageGeneratorManagerUser.getHomePageObject(driver);
 		loginPage = homePage.clickOnLoginLink();
-		loginPage.setCookie(driver, Common_01_RegisterAccountAndGetCookie.loggedCookies);
-		loginPage.refreshBrowser(driver);
+		loginPage.setCookie(Common_01_RegisterAccountAndGetCookie.loggedCookies);
+		loginPage.refreshBrowser();
 
 		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
 
-		homePage.clickOnProductTabLink(driver, productTab);
+		homePage.clickOnProductTabLink(productTab);
 		computersPage = PageGeneratorManagerUser.getComputersPageObject(driver);
 
 		desktopsPage = computersPage.clickOnDesktopsLink();
 		Assert.assertTrue(desktopsPage.isDesktopsPageDisplayed());
 
-		desktopsPage.clickOnProductNameLinkAtSubCategory(driver, productName);
+		desktopsPage.clickOnProductNameLinkAtSubCategory(productName);
 
 		desktopsDetailedPage = PageGeneratorManagerUser.getDesktopsDetailedPageObject(driver);
 	}
@@ -161,7 +161,7 @@ public class User_07_Orders extends BaseTest {
 		secondExpectedSoftware = "Acrobat Reader [+$10.00]";
 		thirdExpectedSoftware = "Total Commander [+$5.00]";
 
-		homePage.refreshBrowser(driver);
+		homePage.refreshBrowser();
 		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
 		
 		addToCartPage = homePage.clickOnShoppingCartLink();
@@ -197,7 +197,7 @@ public class User_07_Orders extends BaseTest {
 		Assert.assertTrue(homePage.getMiniCartQuantityInfo().contains("Quantity: " + countItem));
 		Assert.assertTrue(homePage.getMiniCartSubTotalPriceValue().contains("Sub-Total: " + dataHelp.getCurrencyFormat(expectedSubTotalPrice)));
 
-		homePage.refreshBrowser(driver);
+		homePage.refreshBrowser();
 		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
 		addToCartPage = homePage.clickOnShoppingCartLink();
 
@@ -224,12 +224,12 @@ public class User_07_Orders extends BaseTest {
 	public void Orders_04_UpdateShoppingCart() {
 		String desktopsName = "Lenovo IdeaCentre 600 All-in-One PC";
 
-		addToCartPage.clickOnProductTabLink(driver, productTab);
+		addToCartPage.clickOnProductTabLink(productTab);
 
 		computersPage = PageGeneratorManagerUser.getComputersPageObject(driver);
 		desktopsPage = computersPage.clickOnDesktopsLink();
 
-		desktopsPage.clickOnProductNameLinkAtSubCategory(driver, desktopsName);
+		desktopsPage.clickOnProductNameLinkAtSubCategory(desktopsName);
 
 		desktopsDetailedPage = PageGeneratorManagerUser.getDesktopsDetailedPageObject(driver);
 		desktopsDetailedPage.clickOnAddToCartButton();
@@ -241,7 +241,7 @@ public class User_07_Orders extends BaseTest {
 		countItem = homePage.getShoppingCartQuantity();
 		expectedSubTotalPrice = expectedProductPrice * countItem;
 		
-		homePage.refreshBrowser(driver);
+		homePage.refreshBrowser();
 		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
 		addToCartPage = homePage.clickOnShoppingCartLink();
 
@@ -269,10 +269,10 @@ public class User_07_Orders extends BaseTest {
 
 	@Test
 	public void Orders_05_Checkout_QueuePaymentMethod() {
-		homePage.clickOnProductTabLink(driver, productTab);
+		homePage.clickOnProductTabLink(productTab);
 		computersPage = PageGeneratorManagerUser.getComputersPageObject(driver);
 		notebooksPage = computersPage.clickOnNotebooksLink();
-		notebooksPage.clickOnProductNameLinkAtSubCategory(driver, notebooksName);
+		notebooksPage.clickOnProductNameLinkAtSubCategory(notebooksName);
 
 		noteBooksDetailedPage = PageGeneratorManagerUser.getNotebooksDetailedPageObject(driver);
 		noteBooksDetailedPage.clickOnAddToCartButton();
@@ -286,7 +286,7 @@ public class User_07_Orders extends BaseTest {
 
 		expectedSubTotalPrice = expectedProductPrice * countItem;
 
-		homePage.refreshBrowser(driver);
+		homePage.refreshBrowser();
 		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
 		addToCartPage = homePage.clickOnShoppingCartLink();
 		Assert.assertTrue(addToCartPage.isAddToCartPageLoadedSuccessfully());
@@ -391,7 +391,7 @@ public class User_07_Orders extends BaseTest {
 		orderText = checkoutPage.getOrderNumber();
 
 		myAccountPage = homePage.clickOnMyAccountLink();
-		myAccountPage.clickOnSideBarMenu(driver, "Orders");
+		myAccountPage.clickOnSideBarMenu("Orders");
 
 		ordersPage = PageGeneratorManagerUser.getOrdersPageObject(driver);
 
@@ -405,10 +405,10 @@ public class User_07_Orders extends BaseTest {
 
 	@Test
 	public void Orders_06_Checkout_CardPaymentMethod() {
-		homePage.clickOnProductTabLink(driver, productTab);
+		homePage.clickOnProductTabLink(productTab);
 		computersPage = PageGeneratorManagerUser.getComputersPageObject(driver);
 		notebooksPage = computersPage.clickOnNotebooksLink();
-		notebooksPage.clickOnProductNameLinkAtSubCategory(driver, notebooksName);
+		notebooksPage.clickOnProductNameLinkAtSubCategory(notebooksName);
 
 		noteBooksDetailedPage = PageGeneratorManagerUser.getNotebooksDetailedPageObject(driver);
 		noteBooksDetailedPage.clickOnAddToCartButton();
@@ -422,7 +422,7 @@ public class User_07_Orders extends BaseTest {
 
 		expectedSubTotalPrice = expectedProductPrice * countItem;
 
-		homePage.refreshBrowser(driver);
+		homePage.refreshBrowser();
 		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
 		addToCartPage = homePage.clickOnShoppingCartLink();
 		Assert.assertTrue(addToCartPage.isAddToCartPageLoadedSuccessfully());
@@ -517,7 +517,7 @@ public class User_07_Orders extends BaseTest {
 		orderText = checkoutPage.getOrderNumber();
 
 		myAccountPage = homePage.clickOnMyAccountLink();
-		myAccountPage.clickOnSideBarMenu(driver, "Orders");
+		myAccountPage.clickOnSideBarMenu("Orders");
 
 		ordersPage = PageGeneratorManagerUser.getOrdersPageObject(driver);
 
@@ -676,7 +676,7 @@ public class User_07_Orders extends BaseTest {
 		orderText = checkoutPage.getOrderNumber();
 
 		myAccountPage = homePage.clickOnMyAccountLink();
-		myAccountPage.clickOnSideBarMenu(driver, "Orders");
+		myAccountPage.clickOnSideBarMenu("Orders");
 
 		ordersPage = PageGeneratorManagerUser.getOrdersPageObject(driver);
 

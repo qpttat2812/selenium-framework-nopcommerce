@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite parallel="false" name="NopCommerce">
+
+	<listeners>
+		<listener class-name="reportConfig.AllureTestListener" />
+	</listeners>
+
+
+	<test name="RUN ON FIREFOX - Admin">
+		<parameter name="environment" value="DEV" />
+		<parameter name="browser" value="firefox" />
+		<parameter name="siteType" value="admin"/>
+		<packages>
+			<package name="com.nopcommerce.admin" />
+		</packages>
+	</test>
+
+	<!--	<test name="RUN ON CHROME">-->
+	<!--		<parameter name="browser" value="chrome" />-->
+	<!--		<packages>-->
+	<!--			<package name="com.nopcommerce.user" />-->
+	<!--		</packages>-->
+	<!--	</test>-->
+
+	<!--	<test name="RUN ON EDGE">-->
+	<!--		<parameter name="browser" value="edge" />-->
+	<!--		<packages>-->
+	<!--			<package name="com.nopcommerce.user" />-->
+	<!--		</packages>-->
+	<!--	</test>-->
+
+	<!--	<test name="RUN ON FIREFOX HEADLESS">-->
+	<!--		<parameter name="browser" value="h_firefox" />-->
+	<!--		<packages>-->
+	<!--			<package name="com.nopcommerce.user" />-->
+	<!--		</packages>-->
+	<!--	</test>-->
+
+	<!--	<test name="RUN ON CHROME HEADLESS">-->
+	<!--		<parameter name="browser" value="h_chrome" />-->
+	<!--		<packages>-->
+	<!--			<package name="com.nopcommerce.user" />-->
+	<!--		</packages>-->
+	<!--	</test>-->
+</suite>

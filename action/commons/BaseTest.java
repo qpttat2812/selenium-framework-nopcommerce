@@ -23,7 +23,7 @@ public class BaseTest {
 		deleteAllFileInFolder("allure-json");
 	}
 
-	protected WebDriver getBrowserName(String browserName, String url) {
+	protected WebDriver getBrowserName(String browserName, String environmentName, String siteType) {
 		if (browserName.equals("firefox")) {
 			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
@@ -49,10 +49,60 @@ public class BaseTest {
 			throw new RuntimeException("Invalid Browser");
 		}
 
-		driver.get(url);
+		driver.get(getURLBaseOnEnvironment(environmentName, siteType));
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
 		driver.manage().window().maximize();
 		return driver;
+	}
+
+	private String getURLBaseOnEnvironment(String environmentName, String siteType) {
+		String pageURL = "";
+
+		EnvironmentList environment = EnvironmentList.valueOf(environmentName.toUpperCase());
+
+		if (siteType.equals("user")) {
+			switch (environment) {
+			case DEV:
+				pageURL = "https://demo.nopcommerce.com/";
+				break;
+			case TEST:
+				pageURL = "https://test-demo.nopcommerce.com/";
+				break;
+			case STAGING:
+				pageURL = "https://stg-demo.nopcommerce.com/";
+				break;
+			case PRE_PROD:
+				pageURL = "https://pre-demo.nopcommerce.com/";
+				break;
+			case PROD:
+				pageURL = "https://prod-demo.nopcommerce.com/";
+				break;
+			default:
+				break;
+			}
+		} else {
+			switch (environment) {
+			case DEV:
+				pageURL = "https://admin-demo.nopcommerce.com/";
+				break;
+			case TEST:
+				pageURL = "https://test-admin-demo.nopcommerce.com/";
+				break;
+			case STAGING:
+				pageURL = "https://stg-admin-demo.nopcommerce.com/";
+				break;
+			case PRE_PROD:
+				pageURL = "https://pre-admin-demo.nopcommerce.com/";
+				break;
+			case PROD:
+				pageURL = "https://prod-admin-demo.nopcommerce.com/";
+				break;
+			default:
+				break;
+			}
+		}
+		return pageURL;
+
 	}
 
 	// create getter
@@ -79,12 +129,12 @@ public class BaseTest {
 
 	protected void closeBrowserDriver() {
 		String cmd = null;
-		
+
 		try {
 			String osName = System.getProperty("os.name").toLowerCase();
-			
+
 			String driverInstanceName = driver.toString().toLowerCase();
-			
+
 			String browserDriverName = null;
 
 			if (driverInstanceName.contains("chrome")) {
@@ -124,7 +174,7 @@ public class BaseTest {
 			}
 		}
 	}
-	
+
 	protected int getRandomNumber() {
 		Random rnd = new Random();
 		return rnd.nextInt(99999);

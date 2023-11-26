@@ -11,20 +11,21 @@ public class ComputersPageObject extends BasePages{
 	private WebDriver driver;
 	
 	public ComputersPageObject(WebDriver driver) {
+		super(driver);
 		this.driver = driver;
 	}
 	
 	@Step("Click on 'Notebooks' link from Computer page")
 	public NotebooksPageObject clickOnNotebooksLink() {
-		waitForElementClickable(driver, ComputersPageUI.NOTEBOOK_CATEGORY_LINK);
-		clickOnElement(driver, ComputersPageUI.NOTEBOOK_CATEGORY_LINK);
+		waitForElementClickable(ComputersPageUI.NOTEBOOK_CATEGORY_LINK);
+		clickOnElement(ComputersPageUI.NOTEBOOK_CATEGORY_LINK);
 		return PageGeneratorManagerUser.getNotebooksPageObject(driver);
 	}
 	
 	@Step("Click on 'Desktops' link from Computer page")
 	public DesktopsPageObject clickOnDesktopsLink() {
-		waitForElementClickable(driver, ComputersPageUI.DESKTOP_CATEGORY_LINK);
-		clickOnElement(driver, ComputersPageUI.DESKTOP_CATEGORY_LINK);
+		waitForElementClickable(ComputersPageUI.DESKTOP_CATEGORY_LINK);
+		clickOnElement(ComputersPageUI.DESKTOP_CATEGORY_LINK);
 		return PageGeneratorManagerUser.getDesktopsPageObject(driver);
 	}
 }

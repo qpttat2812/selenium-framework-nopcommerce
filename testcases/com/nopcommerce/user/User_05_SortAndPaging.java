@@ -29,20 +29,20 @@ public class User_05_SortAndPaging extends BaseTest {
 	private List<String> itemListBeforeSortingByName, itemListAfterSortingByName;
 	private List<Float> itemListBeforeSortingByPrice, itemListAfterSortingByPrice;
 
-	@Parameters({ "browser", "url" })
+	@Parameters({ "browser", "environment", "siteType"})
 	@BeforeClass
-	public void BeforeClass(String browserName, String pageURL) {
+	public void BeforeClass(String browserName, String environmentName, String siteType) {
 		productCategoryName = "Computers";
 		
-		driver = getBrowserName(browserName, pageURL);
+		driver = getBrowserName(browserName, environmentName, siteType);
 		
 		homePage = PageGeneratorManagerUser.getHomePageObject(driver);
 		
 		loginPage = homePage.clickOnLoginLink();
-		loginPage.setCookie(driver, Common_01_RegisterAccountAndGetCookie.loggedCookies);
-		loginPage.refreshBrowser(driver);
+		loginPage.setCookie(Common_01_RegisterAccountAndGetCookie.loggedCookies);
+		loginPage.refreshBrowser();
 
-		homePage.clickOnProductTabLink(driver, productCategoryName);
+		homePage.clickOnProductTabLink(productCategoryName);
 		computersPage = PageGeneratorManagerUser.getComputersPageObject(driver);
 		notebooksPage = computersPage.clickOnNotebooksLink();
 	}
